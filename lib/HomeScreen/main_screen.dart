@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:siba_cms_2/activities/Events_Activity.dart';
-import 'package:siba_cms_2/activities/Home_Screen.dart';
 import 'package:siba_cms_2/activities/News.dart';
 import 'package:siba_cms_2/activities/Notifications.dart';
+import 'package:siba_cms_2/activities/dashboard.dart';
 import 'package:siba_cms_2/components/DrawerActivity.dart';
 
 class MainScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final screens = [
-    HomeScreen(),
+    DashboardPage(),
     const EventsActivity(),
     const NewsActivity(),
     const NotificationActivity(),

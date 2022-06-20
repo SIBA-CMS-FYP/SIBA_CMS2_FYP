@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:siba_cms_2/HomeScreen/main_screen.dart';
 import 'package:siba_cms_2/constants.dart';
 import 'package:siba_cms_2/splash_screen/splash_screen.dart';
 
@@ -18,6 +19,8 @@ class MyApp extends StatelessWidget {
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: Colors.white,
         ),
-        home: const SplashScreen());
+        // home: const SplashScreen(),
+        home: MainScreen(),
+        );
   }
 }
