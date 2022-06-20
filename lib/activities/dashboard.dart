@@ -12,6 +12,8 @@ import 'package:siba_cms_2/widgets/category_card.dart';
 
 
 class DashboardPage extends StatelessWidget {
+  const DashboardPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context)
