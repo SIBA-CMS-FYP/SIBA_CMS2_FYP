@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:siba_cms_2/activities/Events_Activity.dart';
-import 'package:siba_cms_2/activities/Home_Screen.dart';
 import 'package:siba_cms_2/activities/News.dart';
 import 'package:siba_cms_2/activities/Notifications.dart';
+<<<<<<< HEAD
 import 'package:siba_cms_2/activities/contacts.dart';
 import 'package:siba_cms_2/activities/dashboard.dart';
 import 'package:siba_cms_2/activities/events.dart';
@@ -14,6 +14,10 @@ import 'package:siba_cms_2/activities/notifications%20copy.dart';
 import 'package:siba_cms_2/activities/privacy_policy.dart';
 import 'package:siba_cms_2/activities/send_feedback.dart';
 import 'package:siba_cms_2/activities/settings.dart';
+=======
+import 'package:siba_cms_2/activities/dashboard.dart';
+import 'package:siba_cms_2/components/DrawerActivity.dart';
+>>>>>>> e96d8da (cards)
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -26,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
   // int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final screens = [
-    HomeScreen(),
+    DashboardPage(),
     const EventsActivity(),
     const NewsActivity(),
     const NotificationActivity(),
