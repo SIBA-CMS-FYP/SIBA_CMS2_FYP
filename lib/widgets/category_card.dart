@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CategoryCard extends StatelessWidget {
   final String images;
   final String title;
   final Function()? press;
-   CategoryCard({
-     Key? key,
+  const CategoryCard({
+    Key? key,
     required this.images,
     required this.title,
     this.press,
-  }) : super(key: key) {
-   
-  }
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +18,9 @@ class CategoryCard extends StatelessWidget {
       child: Container(
         // padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Color(0xFFE6E6E6),
+          color: const Color(0xFFE6E6E6),
           borderRadius: BorderRadius.circular(13),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               offset: Offset(0, 17),
               blurRadius: 17,
@@ -40,10 +37,9 @@ class CategoryCard extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: <Widget>[
-                  Spacer(),
+                  const Spacer(),
                   Image.asset(images),
-                  Spacer(),
-                 
+                  const Spacer(),
                 ],
               ),
             ),
@@ -53,4 +49,3 @@ class CategoryCard extends StatelessWidget {
     );
   }
 }
-

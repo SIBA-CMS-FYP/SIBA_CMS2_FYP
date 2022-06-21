@@ -1,6 +1,6 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:siba_cms_2/HomeScreen/main_screen.dart';
-import 'package:siba_cms_2/backgroundComp/background.dart';
+import 'package:siba_cms_2/routes/HomeScreen/main_screen.dart';
+import 'package:siba_cms_2/components/background.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);

@@ -1,18 +1,18 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:siba_cms_2/activities/Events_Activity.dart';
-import 'package:siba_cms_2/activities/News.dart';
-import 'package:siba_cms_2/activities/Notifications.dart';
-import 'package:siba_cms_2/activities/dashboard.dart';
-import 'package:siba_cms_2/activities/contacts.dart';
-import 'package:siba_cms_2/activities/events.dart';
-import 'package:siba_cms_2/activities/my_drawer_header.dart';
-import 'package:siba_cms_2/activities/notes.dart';
-import 'package:siba_cms_2/activities/notifications%20copy.dart';
-import 'package:siba_cms_2/activities/privacy_policy.dart';
-import 'package:siba_cms_2/activities/send_feedback.dart';
-import 'package:siba_cms_2/activities/settings.dart';
+import 'package:siba_cms_2/routes/Events_Activity.dart';
+import 'package:siba_cms_2/routes/News.dart';
+import 'package:siba_cms_2/routes/Notifications.dart';
+import 'package:siba_cms_2/routes/dashboard.dart';
+import 'package:siba_cms_2/routes/contacts.dart';
+import 'package:siba_cms_2/routes/events.dart';
+import 'package:siba_cms_2/routes/my_drawer_header.dart';
+import 'package:siba_cms_2/routes/notes.dart';
+import 'package:siba_cms_2/routes/notifications%20copy.dart';
+import 'package:siba_cms_2/routes/privacy_policy.dart';
+import 'package:siba_cms_2/routes/send_feedback.dart';
+import 'package:siba_cms_2/routes/settings.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -112,7 +112,11 @@ class _MainScreenState extends State<MainScreen> {
       child: Column(
         // shows the list of menu drawer
         children: [
+<<<<<<< HEAD:lib/HomeScreen/main_screen.dart
           menuItem(1, "My Course", Icons.library_books,
+=======
+          menuItem(1, "My Course", Icons.dashboard_outlined,
+>>>>>>> 35e543290cb8d109b5395bf567f99485531af10c:lib/routes/HomeScreen/main_screen.dart
               currentPage == DrawerSections.dashboard ? true : false),
           menuItem(2, "Terms", Icons.list_outlined,
               currentPage == DrawerSections.contacts ? true : false),
