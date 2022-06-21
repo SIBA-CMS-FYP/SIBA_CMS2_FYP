@@ -3,21 +3,20 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class course extends StatelessWidget {
-  const course ({Key? key}) : super(key: key);
+  const course({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       appBar: AppBar(
-         backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.lightBlue,
         leading: IconButton(
-          onPressed: (){
-          Navigator.pop(context);
-        },
-         icon: Icon(
-          Icons.arrow_back_ios,
-
-        ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
         ),
       ),
       body: Center(
@@ -25,7 +24,6 @@ class course extends StatelessWidget {
         "courses",
         textScaleFactor: 2,
       )),
-      
     );
   }
 }
