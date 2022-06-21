@@ -9,7 +9,7 @@ class profile extends StatelessWidget {
   Widget build(BuildContext context) {
      return Scaffold(
       appBar: AppBar(
-         backgroundColor: Colors.orange,
+         backgroundColor: Colors.blue,
         leading: IconButton(
           onPressed: (){
           Navigator.pop(context);
