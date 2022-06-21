@@ -1,29 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:siba_cms_2/activities/Events_Activity.dart';
-import 'package:siba_cms_2/activities/News.dart';
-import 'package:siba_cms_2/activities/Notifications.dart';
+import 'package:siba_cms_2/routes/attendence.dart';
+import 'package:siba_cms_2/routes/course.dart';
+import 'package:siba_cms_2/routes/profile.dart';
+import 'package:siba_cms_2/routes/result.dart';
 import 'package:siba_cms_2/widgets/category_card.dart';
 
-void main() => runApp(MyApp());
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({Key? key}) : super(key: key);
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Meditation App',
-      theme: ThemeData(
-        fontFamily: "Cairo",
-  
-      ),
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context)
@@ -31,7 +15,6 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-         
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -46,51 +29,49 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 20,
                       children: <Widget>[
                         CategoryCard(
-                          title: "profile",
+                          title: "Profile",
                           images: "assets/images/profile.jpg",
                           press: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return  EventsActivity();
+                                return profile();
                               }),
                             );
                           },
                         ),
                         CategoryCard(
-                          title: "course",
+                          title: "Courses",
                           images: "assets/images/courses.jpg",
                           press: () {
-                          
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return  EventsActivity();
+                                return course();
                               }),
                             );
-                          
                           },
                         ),
                         CategoryCard(
-                          title: "attendence",
+                          title: "Attendence",
                           images: "assets/images/attendance.png",
                           press: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return  EventsActivity();
+                                return Attendence();
                               }),
                             );
                           },
                         ),
                         CategoryCard(
                           title: "Result",
-                          images: "assets/images/attendance.png",
+                          images: "assets/images/result.png",
                           press: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return  EventsActivity();
+                                return result();
                               }),
                             );
                           },
@@ -107,4 +88,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

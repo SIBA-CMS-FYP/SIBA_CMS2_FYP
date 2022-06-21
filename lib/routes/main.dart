@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:siba_cms_2/activities/Events_Activity.dart';
-import 'package:siba_cms_2/activities/News.dart';
-import 'package:siba_cms_2/activities/Notifications.dart';
-import 'package:siba_cms_2/activities/attendence.dart';
-import 'package:siba_cms_2/activities/course.dart';
-import 'package:siba_cms_2/activities/profile.dart';
-import 'package:siba_cms_2/activities/result.dart';
+import 'package:siba_cms_2/routes/Events_Activity.dart';
 import 'package:siba_cms_2/widgets/category_card.dart';
 
+void main() => runApp(MyApp());
 
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Meditation App',
+      theme: ThemeData(
+        fontFamily: "Cairo",
+      ),
+      home: HomeScreen(),
+    );
+  }
+}
 
-class DashboardPage extends StatelessWidget {
-  const DashboardPage({Key? key}) : super(key: key);
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context)
@@ -21,7 +27,6 @@ class DashboardPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-         
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -36,49 +41,49 @@ class DashboardPage extends StatelessWidget {
                       mainAxisSpacing: 20,
                       children: <Widget>[
                         CategoryCard(
-                          title: "Profile",
+                          title: "profile",
                           images: "assets/images/profile.jpg",
                           press: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return  profile();
+                                return EventsActivity();
                               }),
                             );
                           },
                         ),
                         CategoryCard(
-                          title: "Courses",
+                          title: "course",
                           images: "assets/images/courses.jpg",
                           press: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return  course();
+                                return EventsActivity();
                               }),
                             );
                           },
                         ),
                         CategoryCard(
-                          title: "Attendence",
+                          title: "attendence",
                           images: "assets/images/attendance.png",
                           press: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return  attendence();
+                                return EventsActivity();
                               }),
                             );
                           },
                         ),
                         CategoryCard(
                           title: "Result",
-                          images: "assets/images/result.png",
+                          images: "assets/images/attendance.png",
                           press: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return  result();
+                                return EventsActivity();
                               }),
                             );
                           },
