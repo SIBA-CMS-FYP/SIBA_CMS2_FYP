@@ -112,11 +112,7 @@ class _MainScreenState extends State<MainScreen> {
       child: Column(
         // shows the list of menu drawer
         children: [
-<<<<<<< HEAD:lib/HomeScreen/main_screen.dart
-          menuItem(1, "My Course", Icons.library_books,
-=======
           menuItem(1, "My Course", Icons.dashboard_outlined,
->>>>>>> 35e543290cb8d109b5395bf567f99485531af10c:lib/routes/HomeScreen/main_screen.dart
               currentPage == DrawerSections.dashboard ? true : false),
           menuItem(2, "Terms", Icons.list_outlined,
               currentPage == DrawerSections.contacts ? true : false),
