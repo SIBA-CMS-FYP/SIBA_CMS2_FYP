@@ -3,8 +3,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class course extends StatelessWidget {
-  const course ({Key? key}) : super(key: key);
-
+String index;
+course(this.index);
   @override
   Widget build(BuildContext context) {
      return Scaffold(
@@ -20,11 +20,8 @@ class course extends StatelessWidget {
         ),
         ),
       ),
-      body: Center(
-          child: Text(
-        "courses",
-        textScaleFactor: 2,
-      )),
+
+      body: Center(child: Text(index.toString()),)
       
     );
   }

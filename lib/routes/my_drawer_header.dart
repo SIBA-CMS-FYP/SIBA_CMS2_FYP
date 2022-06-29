@@ -29,11 +29,11 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
             ),
           ),
           Text(
-            "Hans Raj",
+            "Suraksha, Hans, J",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           Text(
-            "023-18-0020",
+            "0030-0020-0005",
             style: TextStyle(
               color: Colors.grey[200],
               fontSize: 14,

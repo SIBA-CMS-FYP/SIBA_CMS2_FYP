@@ -4,6 +4,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:siba_cms_2/routes/Events_Activity.dart';
 import 'package:siba_cms_2/routes/News.dart';
 import 'package:siba_cms_2/routes/Notifications.dart';
+import 'package:siba_cms_2/routes/attendence.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
 import 'package:siba_cms_2/routes/contacts.dart';
 import 'package:siba_cms_2/routes/events.dart';
@@ -38,9 +39,9 @@ class _MainScreenState extends State<MainScreen> {
     if (currentPage == DrawerSections.dashboard) {
       container = DashboardPage();
     } else if (currentPage == DrawerSections.contacts) {
-      container = ContactsPage();
+      container = ContactsPage(context);
     } else if (currentPage == DrawerSections.events) {
-      container = EventsPage();
+      container = Attendence(context);
     } else if (currentPage == DrawerSections.notes) {
       container = NotesPage();
     } else if (currentPage == DrawerSections.settings) {

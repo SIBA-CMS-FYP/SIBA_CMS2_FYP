@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:siba_cms_2/routes/attendence.dart';
-import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/profile.dart';
 import 'package:siba_cms_2/routes/result.dart';
 import 'package:siba_cms_2/widgets/category_card.dart';
@@ -44,12 +43,9 @@ class DashboardPage extends StatelessWidget {
                           title: "Courses",
                           images: "assets/images/courses.jpg",
                           press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return course();
-                              }),
-                            );
+                            
+                             
+                            
                           },
                         ),
                         CategoryCard(
@@ -59,7 +55,7 @@ class DashboardPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return Attendence();
+                                return Attendence(context);
                               }),
                             );
                           },
