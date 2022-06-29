@@ -40,8 +40,6 @@ class _MainScreenState extends State<MainScreen> {
       container = DashboardPage();
     } else if (currentPage == DrawerSections.contacts) {
       container = ContactsPage(context);
-    } else if (currentPage == DrawerSections.events) {
-      container = Attendence(context);
     } else if (currentPage == DrawerSections.notes) {
       container = NotesPage();
     } else if (currentPage == DrawerSections.settings) {
@@ -117,19 +115,16 @@ class _MainScreenState extends State<MainScreen> {
               currentPage == DrawerSections.dashboard ? true : false),
           menuItem(2, "Terms", Icons.list_outlined,
               currentPage == DrawerSections.contacts ? true : false),
-          menuItem(3, "Attendance", Icons.calendar_month_outlined,
-              currentPage == DrawerSections.events ? true : false),
-          menuItem(4, "Finance", Icons.currency_pound,
+          menuItem(3, "Finance", Icons.currency_pound,
               currentPage == DrawerSections.notes ? true : false),
-          Divider(),
-          menuItem(5, "Withdraw", Icons.book_online_outlined,
+          menuItem(4, "Withdraw", Icons.book_online_outlined,
               currentPage == DrawerSections.settings ? true : false),
-          menuItem(6, "Result", Icons.card_giftcard,
+          menuItem(5, "Result", Icons.card_giftcard,
               currentPage == DrawerSections.notifications ? true : false),
           Divider(),
-          menuItem(7, "Feedback", Icons.note,
+          menuItem(6, "Feedback", Icons.note,
               currentPage == DrawerSections.privacy_policy ? true : false),
-          menuItem(8, "Log out", Icons.arrow_forward,
+          menuItem(7, "Log out", Icons.arrow_forward,
               currentPage == DrawerSections.send_feedback ? true : false),
         ],
       ),
@@ -148,16 +143,14 @@ class _MainScreenState extends State<MainScreen> {
             } else if (id == 2) {
               currentPage = DrawerSections.contacts;
             } else if (id == 3) {
-              currentPage = DrawerSections.events;
-            } else if (id == 4) {
               currentPage = DrawerSections.notes;
-            } else if (id == 5) {
+            } else if (id == 4) {
               currentPage = DrawerSections.settings;
-            } else if (id == 6) {
+            } else if (id == 5) {
               currentPage = DrawerSections.notifications;
-            } else if (id == 7) {
+            } else if (id == 6) {
               currentPage = DrawerSections.privacy_policy;
-            } else if (id == 8) {
+            } else if (id == 7) {
               currentPage = DrawerSections.send_feedback;
             }
           });
