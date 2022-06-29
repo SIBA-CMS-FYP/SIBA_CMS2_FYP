@@ -40,8 +40,6 @@ class _MainScreenState extends State<MainScreen> {
       container = DashboardPage();
     } else if (currentPage == DrawerSections.contacts) {
       container = ContactsPage(context);
-    } else if (currentPage == DrawerSections.events) {
-      container = Attendence(context);
     } else if (currentPage == DrawerSections.notes) {
       container = NotesPage();
     } else if (currentPage == DrawerSections.settings) {
@@ -117,11 +115,8 @@ class _MainScreenState extends State<MainScreen> {
               currentPage == DrawerSections.dashboard ? true : false),
           menuItem(2, "Terms", Icons.list_outlined,
               currentPage == DrawerSections.contacts ? true : false),
-          menuItem(3, "Attendance", Icons.calendar_month_outlined,
-              currentPage == DrawerSections.events ? true : false),
           menuItem(4, "Finance", Icons.currency_pound,
               currentPage == DrawerSections.notes ? true : false),
-          Divider(),
           menuItem(5, "Withdraw", Icons.book_online_outlined,
               currentPage == DrawerSections.settings ? true : false),
           menuItem(6, "Result", Icons.card_giftcard,

@@ -32,6 +32,7 @@ class Attendence extends StatelessWidget {
       return Card(
         child: ListTile(
           title: new Text(totalterms[index]),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           leading: index==0?Icon(Icons.add_home):index==1?Icon(Icons.cloud):Icon(Icons.access_alarm),
           trailing: Icon(Icons.arrow_forward),
           onTap: () =>
