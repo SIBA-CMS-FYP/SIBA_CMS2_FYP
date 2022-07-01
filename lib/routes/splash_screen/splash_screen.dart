@@ -19,7 +19,7 @@ class _SplashScreen extends State<SplashScreen> {
       pageTransitionType: PageTransitionType.rightToLeftWithFade,
       // backgroundColor: Colors.blueAccent,
       backgroundColor: const Color.fromARGB(200, 64, 106, 212),
-      nextScreen: LogIn(),
+      nextScreen: const LogIn(),
     );
   }
 }

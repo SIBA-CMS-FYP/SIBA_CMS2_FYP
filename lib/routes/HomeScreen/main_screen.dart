@@ -143,16 +143,14 @@ class _MainScreenState extends State<MainScreen> {
             } else if (id == 2) {
               currentPage = DrawerSections.contacts;
             } else if (id == 3) {
-              currentPage = DrawerSections.events;
-            } else if (id == 4) {
               currentPage = DrawerSections.notes;
-            } else if (id == 5) {
+            } else if (id == 4) {
               currentPage = DrawerSections.settings;
-            } else if (id == 6) {
+            } else if (id == 5) {
               currentPage = DrawerSections.notifications;
-            } else if (id == 7) {
+            } else if (id == 6) {
               currentPage = DrawerSections.privacy_policy;
-            } else if (id == 8) {
+            } else if (id == 7) {
               currentPage = DrawerSections.send_feedback;
             }
           });
