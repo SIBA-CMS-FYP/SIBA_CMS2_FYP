@@ -85,7 +85,7 @@ class _LogInState extends State<LogIn> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MainScreen(name)));
+                                    builder: (context) => MainScreen("Hans")));
                           }
                         },
                         style: NeumorphicStyle(

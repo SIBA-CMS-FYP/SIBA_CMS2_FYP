@@ -20,7 +20,7 @@ import 'package:siba_cms_2/routes/settings.dart';
 class MainScreen extends StatefulWidget {
   String name;
   MainScreen(this.name);
-  // MainScreen({Key? key, required this.name}) : super(key: key);
+  // const MainScreen({Key? key}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -32,7 +32,7 @@ class _MainScreenState extends State<MainScreen> {
   // final screens = [
   //   DashboardPage(),
   //   const EventsActivity(),
-  //   Courses(),
+  //   const NewsActivity(),
   //   const NotificationActivity(),
   // ];
   var currentPage = DrawerSections.dashboard;
@@ -45,7 +45,9 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.course) {
       container = Courses();
     } else if (currentPage == DrawerSections.terms) {
-      container = ContactsPage(context);
+      container = Terms(context);
+    } else if (currentPage == DrawerSections.events) {
+      container = EventsPage();
     } else if (currentPage == DrawerSections.notes) {
       container = NotesPage();
     } else if (currentPage == DrawerSections.settings) {
@@ -64,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              MyHeaderDrawer(widget.name),
+              MyHeaderDrawer("Hans"),
               MyDrawerList(),
             ],
           ),
@@ -123,6 +125,7 @@ class _MainScreenState extends State<MainScreen> {
               currentPage == DrawerSections.terms ? true : false),
           menuItem(3, "Finance", Icons.currency_pound,
               currentPage == DrawerSections.notes ? true : false),
+          Divider(),
           menuItem(4, "Withdraw", Icons.book_online_outlined,
               currentPage == DrawerSections.settings ? true : false),
           menuItem(5, "Result", Icons.card_giftcard,

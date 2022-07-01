@@ -15,7 +15,7 @@ class Courses extends StatefulWidget {
 class _CoursesState extends State<Courses> {
   List<Course> courses = [];
   Future<void> refreshUsers() async {
-    var result = await http_get('getUsers');
+    var result = await http_get('users');
     if (result.ok) {
       setState(() {
         courses.clear();
