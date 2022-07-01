@@ -36,12 +36,12 @@ class Attendence extends StatelessWidget {
            ),
            ),
           leading: index==0?Icon(Icons.add_home):index==1?Icon(Icons.cloud):Icon(Icons.access_alarm),
-          onTap: () =>
-          {
-            Navigator.push(context,
-            MaterialPageRoute(builder: (context) =>
-            course(totalterms[index])))
-          },
+          // onTap: () =>
+          // {
+          //   Navigator.push(context,
+          //   MaterialPageRoute(builder: (context) =>
+          //   course()))
+          // },
 
         ),
       );
