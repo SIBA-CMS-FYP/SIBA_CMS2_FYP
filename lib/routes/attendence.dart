@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:siba_cms_2/routes/course.dart';
+import 'package:siba_cms_2/routes/dashboard.dart';
 
 class Attendence extends StatelessWidget {
   final totalterms;
@@ -30,7 +31,7 @@ class Attendence extends StatelessWidget {
       itemBuilder: (context, index) {
         return Card(
           child: ListTile(
-            title: new Text(totalterms[index]),
+            title: Text(totalterms[index]),
             leading: index == 0
                 ? Icon(Icons.add_to_home_screen)
                 : index == 1
@@ -39,9 +40,7 @@ class Attendence extends StatelessWidget {
             trailing: Icon(Icons.arrow_forward),
             onTap: () => {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => course(totalterms[index])))
+                  context, MaterialPageRoute(builder: (context) => Courses()))
             },
           ),
         );
