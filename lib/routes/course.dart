@@ -46,6 +46,7 @@ class _CoursesState extends State<Courses> {
             child: Icon(Icons.refresh),
           ),
           ListView.separated(
+            shrinkWrap: true,
             itemCount: 5,
             itemBuilder: (context, i) => ListTile(
               leading: Icon(Icons.person),
