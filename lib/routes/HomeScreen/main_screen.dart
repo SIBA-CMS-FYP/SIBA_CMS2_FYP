@@ -52,6 +52,7 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.send_feedback) {
       container = SendFeedbackPage();
     }
+     
     return Scaffold(
       appBar: AppBar(title: const Text("SIBA CMS")),
       body: container,
@@ -152,7 +153,10 @@ class _MainScreenState extends State<MainScreen> {
             } else if (id == 6) {
               currentPage = DrawerSections.privacy_policy;
             } else if (id == 7) {
-              currentPage = DrawerSections.send_feedback;
+               Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => LogIn()));
             }
           });
         },
