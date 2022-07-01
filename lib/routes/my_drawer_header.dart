@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MyHeaderDrawer extends StatefulWidget {
-  const MyHeaderDrawer({Key? key}) : super(key: key);
+  String name = "";
+  MyHeaderDrawer(this.name);
 
   @override
-  _MyHeaderDrawerState createState() => _MyHeaderDrawerState();
+  MyHeaderDrawerState createState() => MyHeaderDrawerState();
 }
 
-class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
+class MyHeaderDrawerState extends State<MyHeaderDrawer> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +30,7 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
             ),
           ),
           Text(
-            "Suraksha, Hans, J",
+            widget.name,
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           Text(

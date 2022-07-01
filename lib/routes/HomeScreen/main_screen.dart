@@ -1,12 +1,14 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:siba_cms_2/models/courses_model.dart';
 import 'package:siba_cms_2/routes/Events_Activity.dart';
 import 'package:siba_cms_2/routes/News.dart';
 import 'package:siba_cms_2/routes/Notifications.dart';
 import 'package:siba_cms_2/routes/attendence.dart';
+import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
-import 'package:siba_cms_2/routes/contacts.dart';
+import 'package:siba_cms_2/routes/terms.dart';
 import 'package:siba_cms_2/routes/events.dart';
 import 'package:siba_cms_2/routes/my_drawer_header.dart';
 import 'package:siba_cms_2/routes/notes.dart';
@@ -17,7 +19,9 @@ import 'package:siba_cms_2/routes/settings.dart';
 import 'package:siba_cms_2/authentication/login.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  String name;
+  MainScreen(this.name);
+  // MainScreen({Key? key, required this.name}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -26,12 +30,12 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   // int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-  final screens = [
-    DashboardPage(),
-    const EventsActivity(),
-    const NewsActivity(),
-    const NotificationActivity(),
-  ];
+  // final screens = [
+  //   DashboardPage(),
+  //   const EventsActivity(),
+  //   Courses(),
+  //   const NotificationActivity(),
+  // ];
   var currentPage = DrawerSections.dashboard;
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,9 @@ class _MainScreenState extends State<MainScreen> {
 
     if (currentPage == DrawerSections.dashboard) {
       container = DashboardPage();
-    } else if (currentPage == DrawerSections.contacts) {
+    } else if (currentPage == DrawerSections.course) {
+      container = Courses();
+    } else if (currentPage == DrawerSections.terms) {
       container = ContactsPage(context);
     } else if (currentPage == DrawerSections.notes) {
       container = NotesPage();
@@ -60,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              MyHeaderDrawer(),
+              MyHeaderDrawer(widget.name),
               MyDrawerList(),
             ],
           ),
@@ -91,9 +97,9 @@ class _MainScreenState extends State<MainScreen> {
               if (index == 0) {
                 currentPage = DrawerSections.dashboard;
               } else if (index == 1) {
-                currentPage = DrawerSections.contacts;
+                currentPage = DrawerSections.terms;
               } else if (index == 2) {
-                currentPage = DrawerSections.events;
+                currentPage = DrawerSections.course;
               } else if (index == 3) {
                 currentPage = DrawerSections.notes;
               }
@@ -116,7 +122,7 @@ class _MainScreenState extends State<MainScreen> {
           menuItem(1, "My Course", Icons.dashboard_outlined,
               currentPage == DrawerSections.dashboard ? true : false),
           menuItem(2, "Terms", Icons.list_outlined,
-              currentPage == DrawerSections.contacts ? true : false),
+              currentPage == DrawerSections.terms ? true : false),
           menuItem(3, "Finance", Icons.currency_pound,
               currentPage == DrawerSections.notes ? true : false),
           menuItem(4, "Withdraw", Icons.book_online_outlined,
@@ -143,7 +149,7 @@ class _MainScreenState extends State<MainScreen> {
             if (id == 1) {
               currentPage = DrawerSections.dashboard;
             } else if (id == 2) {
-              currentPage = DrawerSections.contacts;
+              currentPage = DrawerSections.terms;
             } else if (id == 3) {
               currentPage = DrawerSections.notes;
             } else if (id == 4) {
@@ -191,7 +197,8 @@ class _MainScreenState extends State<MainScreen> {
 
 enum DrawerSections {
   dashboard,
-  contacts,
+  terms,
+  course,
   events,
   notes,
   settings,

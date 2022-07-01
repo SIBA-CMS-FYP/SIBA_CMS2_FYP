@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:siba_cms_2/routes/course.dart';
+import 'package:siba_cms_2/routes/dashboard.dart';
 
 class Attendence extends StatelessWidget {
   final totalterms;
@@ -45,6 +46,7 @@ class Attendence extends StatelessWidget {
         ),
       );
     },
+
     );
   }
 }
