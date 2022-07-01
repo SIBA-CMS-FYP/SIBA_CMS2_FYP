@@ -25,16 +25,18 @@ class Attendence extends StatelessWidget {
     );
   }
     ListView _buildListview(BuildContext context){
-     final totalterms = ["one", "two", "three"];
+     final totalterms = ["database", "web development", "Robotics", "parallel", "cyber security"];
     return ListView.builder(
       itemCount: totalterms.length,
     itemBuilder: (context, index){
       return Card(
         child: ListTile(
           title: new Text(totalterms[index]),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape: RoundedRectangleBorder(side: BorderSide(
+            color: Colors.blueAccent,
+          ),
+          ),
           leading: index==0?Icon(Icons.add_home):index==1?Icon(Icons.cloud):Icon(Icons.access_alarm),
-          trailing: Icon(Icons.arrow_forward),
           onTap: () =>
           {
             Navigator.push(context,
