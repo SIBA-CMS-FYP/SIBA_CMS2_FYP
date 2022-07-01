@@ -8,10 +8,33 @@ class SendFeedbackPage extends StatefulWidget {
 class _SendFeedbackPageState extends State<SendFeedbackPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text("Send Feedback Page"),
+    return Scaffold(
+      body: Center(
+        child:Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Feedback'),
+            Padding(padding: const EdgeInsets.all(10.0),
+            child: TextFormField(
+    textInputAction: TextInputAction.newline,
+    keyboardType: TextInputType.multiline,
+    maxLines: 10,
+    minLines: 1,
+    decoration: InputDecoration(
+      hintText: "please enter feedback",
+      hintStyle: TextStyle(
+        color: Colors.grey
       ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10))
+        )
+    ),
+            ),
+            ),
+            ElevatedButton(onPressed: (){}, child: Text('send feedback'))
+          ],
+        )
+         ),
     );
   }
 }

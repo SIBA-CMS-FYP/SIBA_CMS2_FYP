@@ -131,7 +131,7 @@ class _MainScreenState extends State<MainScreen> {
               currentPage == DrawerSections.notifications ? true : false),
           Divider(),
           menuItem(6, "Feedback", Icons.note,
-              currentPage == DrawerSections.privacy_policy ? true : false),
+              currentPage == DrawerSections.send_feedback ? true : false),
           menuItem(7, "Log out", Icons.arrow_forward,
               currentPage == DrawerSections.send_feedback ? true : false),
         ],
@@ -157,7 +157,7 @@ class _MainScreenState extends State<MainScreen> {
             } else if (id == 5) {
               currentPage = DrawerSections.notifications;
             } else if (id == 6) {
-              currentPage = DrawerSections.privacy_policy;
+              currentPage = DrawerSections.send_feedback;
             } else if (id == 7) {
                Navigator.push(
                   context,
