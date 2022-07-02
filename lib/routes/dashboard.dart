@@ -34,7 +34,7 @@ class DashboardPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return profile();
+                                return Profile();
                               }),
                             );
                           },
@@ -42,11 +42,7 @@ class DashboardPage extends StatelessWidget {
                         CategoryCard(
                           title: "Courses",
                           images: "assets/images/courses.jpg",
-                          press: () {
-                            
-                             
-                            
-                          },
+                          press: () {},
                         ),
                         CategoryCard(
                           title: "Attendence",

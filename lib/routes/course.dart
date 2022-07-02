@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
 import 'package:siba_cms_2/models/http.dart';
 
@@ -13,6 +11,11 @@ class Courses extends StatefulWidget {
 }
 
 class _CoursesState extends State<Courses> {
+  @override
+  void initState() {
+    refreshUsers();
+  }
+
   List<Course> courses = [];
   Future<void> refreshUsers() async {
     var result = await http_get('users');
@@ -33,48 +36,22 @@ class _CoursesState extends State<Courses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
-      ),
       body: Column(
         children: [
-          SizedBox(height: 10),
-          Text("Courses"),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: (() => {refreshUsers()}),
-            child: Icon(Icons.refresh),
-          ),
-          ListView.separated(
-            shrinkWrap: true,
-            itemCount: 5,
-            itemBuilder: (context, i) => ListTile(
-              leading: Icon(Icons.person),
-              title: Text("courses[i].Course_Title"),
+          const SizedBox(height: 10),
+          Expanded(
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemCount: courses.length,
+              itemBuilder: (context, i) => ListTile(
+                leading: const Icon(Icons.person),
+                title: Text(courses[i].Course_Title),
+              ),
+              separatorBuilder: (context, i) => Divider(),
             ),
-            separatorBuilder: (context, i) => Divider(),
           ),
         ],
       ),
     );
   }
 }
-
-
-
-// class course extends StatelessWidget {
-
-//   @override
-//   Widget build(BuildContext context) {
-//      return Scaffold(
-//       appBar: AppBar(
-        
-       
-//         ),
-//       ),
-
-//       body: Center(child: Text(index.toString()),)
-      
-//     );
-//   }
-// }
