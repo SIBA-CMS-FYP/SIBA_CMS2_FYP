@@ -34,6 +34,8 @@ class _SendFeedbackPageState extends State<SendFeedbackPage> {
             ElevatedButton(onPressed: (){}, child: Text('send feedback'))
           ],
         )
+
+        
          ),
     );
   }
