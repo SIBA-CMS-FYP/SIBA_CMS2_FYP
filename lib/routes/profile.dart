@@ -27,7 +27,7 @@ class profile extends StatelessWidget {
                     children: [
 
                       CircleAvatar(
-                         backgroundImage: new AssetImage("assets/images/profile.jpg" ),
+                         backgroundImage: new AssetImage("assets/images/myphoto.jpg" ),
                          radius: 60.0,
                        ),
                       Text(
