@@ -42,11 +42,7 @@ class DashboardPage extends StatelessWidget {
                         CategoryCard(
                           title: "Courses",
                           images: "assets/images/courses.jpg",
-                          press: () {
-                            
-                             
-                            
-                          },
+                          press: () {},
                         ),
                         CategoryCard(
                           title: "Attendence",

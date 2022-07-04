@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:siba_cms_2/routes/details.dart';
 
-class ContactsPage extends StatelessWidget {
+class Terms extends StatelessWidget {
   final totalterms;
-  ContactsPage(this.totalterms);
+  Terms(this.totalterms);
 
   @override
   Widget build(BuildContext context) {

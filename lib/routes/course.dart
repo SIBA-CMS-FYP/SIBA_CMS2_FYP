@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
 import 'package:siba_cms_2/models/http.dart';
 
@@ -19,7 +17,7 @@ class _CoursesState extends State<Courses> {
   }
   List<Course> courses = [];
   Future<void> refreshUsers() async {
-    var result = await http_get('getUsers');
+    var result = await http_get('users');
     if (result.ok) {
       setState(() {
         courses.clear();

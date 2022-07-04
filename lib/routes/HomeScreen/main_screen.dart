@@ -11,7 +11,7 @@ import 'package:siba_cms_2/routes/dashboard.dart';
 import 'package:siba_cms_2/routes/terms.dart';
 import 'package:siba_cms_2/routes/events.dart';
 import 'package:siba_cms_2/routes/my_drawer_header.dart';
-import 'package:siba_cms_2/routes/notes.dart';
+import 'package:siba_cms_2/routes/finance.dart';
 import 'package:siba_cms_2/routes/notifications%20copy.dart';
 import 'package:siba_cms_2/routes/privacy_policy.dart';
 import 'package:siba_cms_2/routes/send_feedback.dart';
@@ -21,7 +21,7 @@ import 'package:siba_cms_2/authentication/login.dart';
 class MainScreen extends StatefulWidget {
   String name;
   MainScreen(this.name);
-  // MainScreen({Key? key, required this.name}) : super(key: key);
+  // const MainScreen({Key? key}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -33,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
   // final screens = [
   //   DashboardPage(),
   //   const EventsActivity(),
-  //   Courses(),
+  //   const NewsActivity(),
   //   const NotificationActivity(),
   // ];
   var currentPage = DrawerSections.dashboard;
@@ -46,8 +46,10 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.course) {
       container = Courses();
     } else if (currentPage == DrawerSections.terms) {
-      container = ContactsPage(context);
-    } else if (currentPage == DrawerSections.notes) {
+      container = Terms(context);
+    } else if (currentPage == DrawerSections.events) {
+      container = EventsPage();
+    } else if (currentPage == DrawerSections.finance) {
       container = NotesPage();
     } else if (currentPage == DrawerSections.settings) {
       container = SettingsPage();
@@ -66,7 +68,7 @@ class _MainScreenState extends State<MainScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              MyHeaderDrawer(widget.name),
+              MyHeaderDrawer("Hans"),
               MyDrawerList(),
             ],
           ),
@@ -101,7 +103,7 @@ class _MainScreenState extends State<MainScreen> {
               } else if (index == 2) {
                 currentPage = DrawerSections.course;
               } else if (index == 3) {
-                currentPage = DrawerSections.notes;
+                currentPage = DrawerSections.finance;
               }
             });
           },
@@ -124,7 +126,8 @@ class _MainScreenState extends State<MainScreen> {
           menuItem(2, "Terms", Icons.list_outlined,
               currentPage == DrawerSections.terms ? true : false),
           menuItem(3, "Finance", Icons.currency_pound,
-              currentPage == DrawerSections.notes ? true : false),
+              currentPage == DrawerSections.finance ? true : false),
+          Divider(),
           menuItem(4, "Withdraw", Icons.book_online_outlined,
               currentPage == DrawerSections.settings ? true : false),
           menuItem(5, "Result", Icons.card_giftcard,
@@ -151,7 +154,7 @@ class _MainScreenState extends State<MainScreen> {
             } else if (id == 2) {
               currentPage = DrawerSections.terms;
             } else if (id == 3) {
-              currentPage = DrawerSections.notes;
+              currentPage = DrawerSections.finance;
             } else if (id == 4) {
               currentPage = DrawerSections.settings;
             } else if (id == 5) {
@@ -200,7 +203,7 @@ enum DrawerSections {
   terms,
   course,
   events,
-  notes,
+  finance,
   settings,
   notifications,
   privacy_policy,
