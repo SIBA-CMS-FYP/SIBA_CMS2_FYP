@@ -7,6 +7,19 @@ class profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
  return Scaffold(
+  appBar: AppBar(
+         backgroundColor: Colors.lightBlue,
+        title: Text('Profile'),
+        leading: IconButton(
+          onPressed: (){
+          Navigator.pop(context);
+        },
+         icon: Icon(
+          Icons.arrow_back_ios,
+
+        ),
+        ),
+      ),
       body: Column(
         children: [
           Container(
