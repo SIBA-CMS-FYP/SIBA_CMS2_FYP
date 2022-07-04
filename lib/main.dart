@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:siba_cms_2/routes/HomeScreen/main_screen.dart';
 import 'package:siba_cms_2/components/constants.dart';
-import 'package:siba_cms_2/routes/splash_screen/splash_screen.dart';
+import 'package:siba_cms_2/routes/HomeScreen/main_screen.dart';
 
 void main() {
   runApp(const MyApp());
