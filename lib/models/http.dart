@@ -8,16 +8,9 @@ class RequestResult {
 }
 
 const PROTOCOL = "http";
-const DOMAIN = "10.102.136.120:8000";
+const DOMAIN = "localhost:8000";
 
 Future<RequestResult> http_get(String route, [dynamic data]) async {
-  var dataStr = jsonEncode(data);
-  var url = "$PROTOCOL://$DOMAIN/$route?data=$dataStr";
-  var result = await http.get(Uri.parse(url));
-  return RequestResult(true, jsonDecode(result.body));
-}
-
-Future<RequestResult> http_get_user(String route, [dynamic data]) async {
   var dataStr = jsonEncode(data);
   var url = "$PROTOCOL://$DOMAIN/$route?data=$dataStr";
   var result = await http.get(Uri.parse(url));

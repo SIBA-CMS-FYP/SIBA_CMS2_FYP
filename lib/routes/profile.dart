@@ -1,58 +1,101 @@
 import 'package:flutter/material.dart';
-import 'package:siba_cms_2/models/http.dart';
-import 'package:siba_cms_2/models/student_data.dart';
 
-class Profile extends StatefulWidget {
-  // String index;
-  const Profile({Key? key}) : super(key: key);
-
-  @override
-  State<Profile> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  @override
-  Future<void> initState() async {
-    return refreshUsers();
-  }
-
-  List<Student> student = [];
-  Future<void> refreshUsers() async {
-    var result = await http_get_user('getUser');
-    if (result.ok) {
-      setState(() {
-        student.clear();
-        var in_users = result.data as List<dynamic>;
-        in_users.forEach((in_user) {
-          student.add(Student(
-              in_user['studentCMSID'].toString(),
-              in_user['semesterId'],
-              in_user["studentName"],
-              in_user['email'],
-              in_user["phone"],
-              in_user["enrollmentID"]));
-        });
-      });
-    } else {
-      throw Exception('Failed to load post');
-    }
-  }
+class profile extends StatelessWidget {
+  const profile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.lightBlue,
+        title: Text('Profile'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
+        ),
+      ),
       body: Column(
         children: [
-          const SizedBox(height: 10),
-          Expanded(
-            child: ListView.separated(
-              shrinkWrap: true,
-              itemCount: student.length,
-              itemBuilder: (context, i) => ListTile(
-                leading: Icon(Icons.person),
-                title: Text(student[i].studentName),
+          Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.lightBlue, Colors.blueAccent])),
+              child: Container(
+                width: double.infinity,
+                height: 350.0,
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundImage:
+                            new AssetImage("assets/images/myphoto.jpg"),
+                        radius: 60.0,
+                      ),
+                      Text(
+                        "Suraksha",
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )),
+          Container(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
+                    textInputAction: TextInputAction.newline,
+                    keyboardType: TextInputType.multiline,
+                    decoration: InputDecoration(
+                        labelText: "Name",
+                        labelStyle: TextStyle(color: Colors.grey),
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)))),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    textInputAction: TextInputAction.newline,
+                    keyboardType: TextInputType.multiline,
+                    decoration: InputDecoration(
+                        labelText: "Email",
+                        labelStyle: TextStyle(color: Colors.grey),
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)))),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    textInputAction: TextInputAction.newline,
+                    keyboardType: TextInputType.multiline,
+                    decoration: InputDecoration(
+                        labelText: "Contact",
+                        labelStyle: TextStyle(color: Colors.grey),
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)))),
+                  ),
+                ],
               ),
-              separatorBuilder: (context, i) => Divider(),
             ),
           ),
         ],
