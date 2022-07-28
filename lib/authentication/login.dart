@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:siba_cms_2/routes/HomeScreen/main_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:siba_cms_2/components/background.dart';
+import "package:http/http.dart" as http;
+import 'package:siba_cms_2/routes/dashboard.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -10,10 +15,28 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  final TextEditingController userCMS = TextEditingController();
-  TextEditingController cpassword = TextEditingController();
+  final TextEditingController cms = TextEditingController();
+  TextEditingController password = TextEditingController();
   final formKey = GlobalKey<FormState>(); //key for form
-  String name = "";
+  @override
+  void StudyLogin() async {
+    var url = "http://localhost:3000/authentication/login";
+    var data = {
+      "cms": cms.text,
+      "password": password.text,
+    };
+    var res = await http.post(Uri.parse(url), body: data);
+    var resData = jsonDecode(res.body);
+    if (resData["success"].toString() == "false") {
+      Fluttertoast.showToast(
+          msg: "incorrect password", toastLength: Toast.LENGTH_SHORT);
+    } else {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => MainScreen(cms.text)));
+      print((res.body.toString()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -43,7 +66,7 @@ class _LogInState extends State<LogIn> {
                   ),
                   SizedBox(height: height * 0.04),
                   TextFormField(
-                    controller: cpassword,
+                    controller: cms,
                     decoration: const InputDecoration(
                       labelText: "Enter you CMS",
                       border: OutlineInputBorder(),
@@ -60,6 +83,7 @@ class _LogInState extends State<LogIn> {
                   ),
                   SizedBox(height: height * 0.04),
                   TextFormField(
+                    controller: password,
                     obscureText: true,
                     decoration: const InputDecoration(
                       labelText: "Enter you Password",
@@ -82,10 +106,11 @@ class _LogInState extends State<LogIn> {
                         margin: EdgeInsets.only(top: 12, left: width / 2 + 50),
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MainScreen("Hans")));
+                            StudyLogin();
+                            // Navigator.pushReplacement(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => MainScreen("Hans")));
                           }
                         },
                         style: NeumorphicStyle(
