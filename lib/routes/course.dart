@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
 import 'package:siba_cms_2/models/http.dart';
 
+<<<<<<< HEAD
 class Courses extends StatefulWidget {
   // String index;
   const Courses({Key? key}) : super(key: key);
@@ -52,6 +53,30 @@ class _CoursesState extends State<Courses> {
           ),
         ],
       ),
+=======
+class course extends StatelessWidget {
+  const course({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.lightBlue,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
+        ),
+      ),
+      body: Center(
+          child: Text(
+        "courses",
+        textScaleFactor: 2,
+      )),
+>>>>>>> 707094c (solve null safety issues)
     );
   }
 }

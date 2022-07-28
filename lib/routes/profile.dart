@@ -7,8 +7,12 @@ class profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+<<<<<<< HEAD
         backgroundColor: Colors.lightBlue,
         title: Text('Profile'),
+=======
+        backgroundColor: Colors.orange,
+>>>>>>> 707094c (solve null safety issues)
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -18,6 +22,7 @@ class profile extends StatelessWidget {
           ),
         ),
       ),
+<<<<<<< HEAD
       body: Column(
         children: [
           Container(
@@ -100,6 +105,13 @@ class profile extends StatelessWidget {
           ),
         ],
       ),
+=======
+      body: Center(
+          child: Text(
+        "profile",
+        textScaleFactor: 2,
+      )),
+>>>>>>> 707094c (solve null safety issues)
     );
   }
 }

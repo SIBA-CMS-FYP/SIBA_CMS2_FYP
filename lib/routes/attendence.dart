@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
 
+<<<<<<< HEAD
 class Attendence extends StatelessWidget {
   final totalterms;
   Attendence(this.totalterms);
+=======
+class attendence extends StatelessWidget {
+  attendence({Key? key}) : super(key: key);
+>>>>>>> 707094c (solve null safety issues)
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +25,7 @@ class Attendence extends StatelessWidget {
           ),
         ),
       ),
+<<<<<<< HEAD
       body: _buildListview(context),
     );
   }
@@ -45,6 +51,13 @@ class Attendence extends StatelessWidget {
           ),
         );
       },
+=======
+      body: Center(
+          child: Text(
+        "Attendence",
+        textScaleFactor: 2,
+      )),
+>>>>>>> 707094c (solve null safety issues)
     );
   }
 }
