@@ -1,117 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:siba_cms_2/models/http.dart';
+import 'package:siba_cms_2/models/student_data.dart';
 
-class profile extends StatelessWidget {
-  const profile({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
+
+  @override
+  State<Profile> createState() => ProfileState();
+}
+
+late Future<StudentProfile> studentData;
+
+class ProfileState extends State<Profile> {
+  @override
+  initState() {
+    super.initState();
+    studentData = fetchStudent("023-18-0030");
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-<<<<<<< HEAD
         backgroundColor: Colors.lightBlue,
-        title: Text('Profile'),
-=======
-        backgroundColor: Colors.orange,
->>>>>>> 707094c (solve null safety issues)
+        title: const Text('Profile'),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
           ),
         ),
       ),
-<<<<<<< HEAD
-      body: Column(
-        children: [
-          Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Colors.lightBlue, Colors.blueAccent])),
-              child: Container(
-                width: double.infinity,
-                height: 350.0,
-                child: Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        backgroundImage:
-                            new AssetImage("assets/images/myphoto.jpg"),
-                        radius: 60.0,
-                      ),
-                      Text(
-                        "Suraksha",
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )),
-          Container(
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextFormField(
-                    textInputAction: TextInputAction.newline,
-                    keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
-                        labelText: "Name",
-                        labelStyle: TextStyle(color: Colors.grey),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  TextFormField(
-                    textInputAction: TextInputAction.newline,
-                    keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
-                        labelText: "Email",
-                        labelStyle: TextStyle(color: Colors.grey),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  TextFormField(
-                    textInputAction: TextInputAction.newline,
-                    keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
-                        labelText: "Contact",
-                        labelStyle: TextStyle(color: Colors.grey),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-=======
       body: Center(
-          child: Text(
-        "profile",
-        textScaleFactor: 2,
-      )),
->>>>>>> 707094c (solve null safety issues)
+        child: FutureBuilder<StudentProfile>(
+          future: studentData,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                children: [
+                  Text(
+                      snapshot.data!.firstName + " " + snapshot.data!.lastName),
+                  Text(snapshot.data!.cms),
+                  Text(snapshot.data!.email),
+                  Text(snapshot.data!.phone),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+
+            // By default, show a loading spinner.
+            return const CircularProgressIndicator();
+          },
+        ),
+      ),
     );
   }
 }

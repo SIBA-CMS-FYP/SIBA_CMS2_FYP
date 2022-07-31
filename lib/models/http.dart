@@ -1,5 +1,6 @@
 import 'dart:convert';
 import "package:http/http.dart" as http;
+import 'package:siba_cms_2/models/student_data.dart';
 
 class RequestResult {
   bool ok;
@@ -8,7 +9,7 @@ class RequestResult {
 }
 
 const PROTOCOL = "http";
-const DOMAIN = "localhost:8000";
+const DOMAIN = "localhost:3000";
 
 Future<RequestResult> http_get(String route, [dynamic data]) async {
   var dataStr = jsonEncode(data);
@@ -17,6 +18,16 @@ Future<RequestResult> http_get(String route, [dynamic data]) async {
   return RequestResult(true, jsonDecode(result.body));
 }
 
+Future<StudentProfile> fetchStudent(String cms) async {
+  var url = "http://localhost:3000/getstudent/?cms=$cms";
+  var response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    return StudentProfile.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to load Data');
+  }
+}
 // Future<RequestResult> http_post(String route, [dynamic data]) async {
 //   var url = "$PROTOCOL://$DOMAIN/$route";
 //   var dataStr = jsonEncode(data);

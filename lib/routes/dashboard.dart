@@ -33,9 +33,9 @@ class DashboardPage extends StatelessWidget {
                           press: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) {
-                                return profile();
-                              }),
+                              MaterialPageRoute(
+                                builder: (context) => Profile(),
+                              ),
                             );
                           },
                         ),
