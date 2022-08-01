@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:siba_cms_2/routes/attendence.dart';
-import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/profile.dart';
 import 'package:siba_cms_2/routes/result.dart';
 import 'package:siba_cms_2/widgets/category_card.dart';
 
-class DashboardPage extends StatelessWidget {
-  const DashboardPage({Key? key}) : super(key: key);
+class DashboardPage extends StatefulWidget {
+  String? cms;
+  DashboardPage({Key? key, @required this.cms}) : super(key: key);
 
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context)
@@ -34,23 +39,16 @@ class DashboardPage extends StatelessWidget {
                           press: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) {
-                                return profile();
-                              }),
+                              MaterialPageRoute(
+                                builder: (context) => Profile(cms: widget.cms),
+                              ),
                             );
                           },
                         ),
                         CategoryCard(
                           title: "Courses",
                           images: "assets/images/courses.jpg",
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return course();
-                              }),
-                            );
-                          },
+                          press: () {},
                         ),
                         CategoryCard(
                           title: "Attendence",
@@ -59,7 +57,8 @@ class DashboardPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return attendence();
+                     return Attendence(context);
+
                               }),
                             );
                           },

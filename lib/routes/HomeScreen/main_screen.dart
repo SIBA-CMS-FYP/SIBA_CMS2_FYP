@@ -1,11 +1,12 @@
 // ignore: file_names
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:siba_cms_2/routes/Events_Activity.dart';
-import 'package:siba_cms_2/routes/News.dart';
-import 'package:siba_cms_2/routes/Notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
-import 'package:siba_cms_2/routes/contacts.dart';
+import 'package:siba_cms_2/routes/terms.dart';
 import 'package:siba_cms_2/routes/events.dart';
 import 'package:siba_cms_2/routes/my_drawer_header.dart';
 import 'package:siba_cms_2/routes/notes.dart';
@@ -15,7 +16,7 @@ import 'package:siba_cms_2/routes/send_feedback.dart';
 import 'package:siba_cms_2/routes/settings.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  MainScreen({Key? key}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -24,15 +25,34 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   // int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
   var currentPage = DrawerSections.dashboard;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _loadCounter();
+  }
+
+  //Loading counter value on start
+  Future<void> _loadCounter() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      var cmss = (prefs.getString('cms'));
+      print(cmss);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var container;
 
     if (currentPage == DrawerSections.dashboard) {
       container = DashboardPage();
-    } else if (currentPage == DrawerSections.contacts) {
-      container = ContactsPage();
+    } else if (currentPage == DrawerSections.course) {
+      container = Courses();
+    } else if (currentPage == DrawerSections.terms) {
+      container = Terms(context);
     } else if (currentPage == DrawerSections.events) {
       container = EventsPage();
     } else if (currentPage == DrawerSections.notes) {
@@ -44,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.privacy_policy) {
       container = PrivacyPolicyPage();
     } else if (currentPage == DrawerSections.send_feedback) {
-      container = SendFeedbackPage();
+      container = LogoutPage();
     }
     return Scaffold(
       appBar: AppBar(title: const Text("SIBA CMS")),
@@ -53,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              MyHeaderDrawer(),
+              MyHeaderDrawer("Hans"),
               MyDrawerList(),
             ],
           ),
@@ -84,9 +104,9 @@ class _MainScreenState extends State<MainScreen> {
               if (index == 0) {
                 currentPage = DrawerSections.dashboard;
               } else if (index == 1) {
-                currentPage = DrawerSections.contacts;
+                currentPage = DrawerSections.terms;
               } else if (index == 2) {
-                currentPage = DrawerSections.events;
+                currentPage = DrawerSections.course;
               } else if (index == 3) {
                 currentPage = DrawerSections.notes;
               }
@@ -108,21 +128,19 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           menuItem(1, "My Course", Icons.dashboard_outlined,
               currentPage == DrawerSections.dashboard ? true : false),
-          menuItem(2, "Contacts", Icons.people_alt_outlined,
-              currentPage == DrawerSections.contacts ? true : false),
-          menuItem(3, "Events", Icons.event,
-              currentPage == DrawerSections.events ? true : false),
-          menuItem(4, "Notes", Icons.notes,
+          menuItem(2, "Terms", Icons.list_outlined,
+              currentPage == DrawerSections.terms ? true : false),
+          menuItem(3, "Finance", Icons.currency_pound,
               currentPage == DrawerSections.notes ? true : false),
           Divider(),
-          menuItem(5, "Settings", Icons.settings_outlined,
+          menuItem(4, "Withdraw", Icons.book_online_outlined,
               currentPage == DrawerSections.settings ? true : false),
-          menuItem(6, "Notifications", Icons.notifications_outlined,
+          menuItem(5, "Result", Icons.card_giftcard,
               currentPage == DrawerSections.notifications ? true : false),
           Divider(),
-          menuItem(7, "Privacy policy", Icons.privacy_tip_outlined,
+          menuItem(6, "Feedback", Icons.note,
               currentPage == DrawerSections.privacy_policy ? true : false),
-          menuItem(8, "Send feedback", Icons.feedback_outlined,
+          menuItem(7, "Log out", Icons.arrow_forward,
               currentPage == DrawerSections.send_feedback ? true : false),
         ],
       ),
@@ -139,18 +157,16 @@ class _MainScreenState extends State<MainScreen> {
             if (id == 1) {
               currentPage = DrawerSections.dashboard;
             } else if (id == 2) {
-              currentPage = DrawerSections.contacts;
+              currentPage = DrawerSections.terms;
             } else if (id == 3) {
-              currentPage = DrawerSections.events;
-            } else if (id == 4) {
               currentPage = DrawerSections.notes;
-            } else if (id == 5) {
+            } else if (id == 4) {
               currentPage = DrawerSections.settings;
-            } else if (id == 6) {
+            } else if (id == 5) {
               currentPage = DrawerSections.notifications;
-            } else if (id == 7) {
+            } else if (id == 6) {
               currentPage = DrawerSections.privacy_policy;
-            } else if (id == 8) {
+            } else if (id == 7) {
               currentPage = DrawerSections.send_feedback;
             }
           });
@@ -186,7 +202,8 @@ class _MainScreenState extends State<MainScreen> {
 
 enum DrawerSections {
   dashboard,
-  contacts,
+  terms,
+  course,
   events,
   notes,
   settings,

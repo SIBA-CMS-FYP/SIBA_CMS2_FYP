@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      // home: const SplashScreen(),
-      home: MainScreen(),
+      home: const SplashScreen(),
+      // home: MainScreen(),
     );
   }
 }

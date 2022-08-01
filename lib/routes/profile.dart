@@ -1,29 +1,74 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/models/http.dart';
+import 'package:siba_cms_2/models/student_data.dart';
 
-class profile extends StatelessWidget {
-  const profile({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  String? cms;
+  Profile({Key? key, this.cms}) : super(key: key);
+
+  @override
+  State<Profile> createState() => ProfileState();
+}
+
+late Future<StudentProfile> studentData;
+
+class ProfileState extends State<Profile> {
+  var cmss;
+  @override
+  initState() {
+    super.initState();
+    _loadCounter();
+  }
+
+  //Loading counter value on start
+  Future<void> _loadCounter() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      cmss = (prefs.getString('cms'));
+      studentData = fetchStudent(cmss.toString());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.lightBlue,
+        title: const Text('Profile'),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
           ),
         ),
       ),
       body: Center(
-          child: Text(
-        "profile",
-        textScaleFactor: 2,
-      )),
+        child: FutureBuilder<StudentProfile>(
+          future: studentData,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                children: [
+                  Text(
+                      snapshot.data!.firstName + " " + snapshot.data!.lastName),
+                  Text(snapshot.data!.cms),
+                  Text(snapshot.data!.email),
+                  Text(snapshot.data!.phone),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+
+            // By default, show a loading spinner.
+            return const CircularProgressIndicator();
+          },
+        ),
+      ),
+
     );
   }
 }

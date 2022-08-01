@@ -7,17 +7,16 @@ class result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       appBar: AppBar(
-         backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.lightBlue,
         leading: IconButton(
-          onPressed: (){
-          Navigator.pop(context);
-        },
-         icon: Icon(
-          Icons.arrow_back_ios,
-
-        ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
         ),
       ),
       body: Center(
@@ -25,7 +24,6 @@ class result extends StatelessWidget {
         "Result",
         textScaleFactor: 2,
       )),
-      
     );
   }
 }
