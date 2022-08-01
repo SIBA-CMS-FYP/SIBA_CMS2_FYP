@@ -1,11 +1,9 @@
 // ignore: file_names
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:siba_cms_2/models/courses_model.dart';
-import 'package:siba_cms_2/routes/Events_Activity.dart';
-import 'package:siba_cms_2/routes/News.dart';
-import 'package:siba_cms_2/routes/Notifications.dart';
-import 'package:siba_cms_2/routes/attendence.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
 import 'package:siba_cms_2/routes/terms.dart';
@@ -18,9 +16,7 @@ import 'package:siba_cms_2/routes/send_feedback.dart';
 import 'package:siba_cms_2/routes/settings.dart';
 
 class MainScreen extends StatefulWidget {
-  String name;
-  MainScreen(this.name);
-  // const MainScreen({Key? key}) : super(key: key);
+  MainScreen({Key? key}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -29,13 +25,24 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   // int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-  // final screens = [
-  //   DashboardPage(),
-  //   const EventsActivity(),
-  //   const NewsActivity(),
-  //   const NotificationActivity(),
-  // ];
+
   var currentPage = DrawerSections.dashboard;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _loadCounter();
+  }
+
+  //Loading counter value on start
+  Future<void> _loadCounter() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      var cmss = (prefs.getString('cms'));
+      print(cmss);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var container;
@@ -57,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.privacy_policy) {
       container = PrivacyPolicyPage();
     } else if (currentPage == DrawerSections.send_feedback) {
-      container = SendFeedbackPage();
+      container = LogoutPage();
     }
     return Scaffold(
       appBar: AppBar(title: const Text("SIBA CMS")),

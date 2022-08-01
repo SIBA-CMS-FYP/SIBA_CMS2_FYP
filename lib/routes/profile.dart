@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/models/http.dart';
 import 'package:siba_cms_2/models/student_data.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  String? cms;
+  Profile({Key? key, this.cms}) : super(key: key);
 
   @override
   State<Profile> createState() => ProfileState();
@@ -12,10 +14,20 @@ class Profile extends StatefulWidget {
 late Future<StudentProfile> studentData;
 
 class ProfileState extends State<Profile> {
+  var cmss;
   @override
   initState() {
     super.initState();
-    studentData = fetchStudent("023-18-0030");
+    _loadCounter();
+  }
+
+  //Loading counter value on start
+  Future<void> _loadCounter() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      cmss = (prefs.getString('cms'));
+      studentData = fetchStudent(cmss.toString());
+    });
   }
 
   @override

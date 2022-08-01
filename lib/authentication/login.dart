@@ -5,7 +5,7 @@ import 'package:siba_cms_2/routes/HomeScreen/main_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:siba_cms_2/components/background.dart';
 import "package:http/http.dart" as http;
-import 'package:siba_cms_2/routes/dashboard.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -31,8 +31,11 @@ class _LogInState extends State<LogIn> {
       Fluttertoast.showToast(
           msg: "incorrect password", toastLength: Toast.LENGTH_SHORT);
     } else {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => MainScreen(cms.text)));
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('cms', cms.text);
+      prefs.setString("password", password.text);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MainScreen()));
       print((res.body.toString()));
     }
   }
@@ -104,7 +107,7 @@ class _LogInState extends State<LogIn> {
                     children: [
                       NeumorphicButton(
                         margin: EdgeInsets.only(top: 12, left: width / 2 + 50),
-                        onPressed: () {
+                        onPressed: () async {
                           if (formKey.currentState!.validate()) {
                             StudyLogin();
                             // Navigator.pushReplacement(
