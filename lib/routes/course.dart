@@ -52,6 +52,7 @@ class _CoursesState extends State<Courses> {
           ),
         ],
       ),
+
     );
   }
 }

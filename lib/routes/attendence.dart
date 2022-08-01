@@ -5,7 +5,6 @@ import 'package:siba_cms_2/routes/dashboard.dart';
 class Attendence extends StatelessWidget {
   final totalterms;
   Attendence(this.totalterms);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
