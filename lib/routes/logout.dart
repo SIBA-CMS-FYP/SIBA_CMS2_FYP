@@ -12,7 +12,6 @@ class LogoutPage extends StatefulWidget {
 class _LogoutPageState extends State<LogoutPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _logout();
   }
