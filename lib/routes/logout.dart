@@ -26,6 +26,6 @@ class _LogoutPageState extends State<LogoutPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center();
+    return Center(child: CircularProgressIndicator());
   }
 }

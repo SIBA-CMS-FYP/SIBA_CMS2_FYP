@@ -4,15 +4,15 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/routes/notifications.dart';
 import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
 import 'package:siba_cms_2/routes/terms.dart';
 import 'package:siba_cms_2/routes/events.dart';
 import 'package:siba_cms_2/routes/my_drawer_header.dart';
 import 'package:siba_cms_2/routes/notes.dart';
-import 'package:siba_cms_2/routes/notifications%20copy.dart';
 import 'package:siba_cms_2/routes/privacy_policy.dart';
-import 'package:siba_cms_2/routes/send_feedback.dart';
+import 'package:siba_cms_2/routes/logout.dart';
 import 'package:siba_cms_2/routes/settings.dart';
 
 class MainScreen extends StatefulWidget {
@@ -60,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.settings) {
       container = SettingsPage();
     } else if (currentPage == DrawerSections.notifications) {
-      container = NotificationsPage();
+      container = NotificationActivity();
     } else if (currentPage == DrawerSections.privacy_policy) {
       container = PrivacyPolicyPage();
     } else if (currentPage == DrawerSections.send_feedback) {
