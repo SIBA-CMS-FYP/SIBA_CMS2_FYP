@@ -53,28 +53,26 @@ class ProfileState extends State<Profile> {
         ),
       ),
       body: Center(
-          // child: FutureBuilder<StudentProfile>(
-          //   future: studentData,
-          //   builder: (context, snapshot) {
-          //     if (snapshot.hasData) {
-          //       return Column(
-          //         children: [
-          //           Text(
-          //               snapshot.data!.firstName + " " + snapshot.data!.lastName),
-          //           Text(snapshot.data!.cms),
-          //           Text(snapshot.data!.email),
-          //           Text(snapshot.data!.phone),
-          //         ],
-          //       );
-          //     } else if (snapshot.hasError) {
-          //       return Text('${snapshot.error}');
-          //     }
-
-          //     // By default, show a loading spinner.
-          //     return const CircularProgressIndicator();
-          //   },
-          // ),
-          ),
+        child: FutureBuilder<StudentProfile>(
+          future: studentData,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                children: [
+                  Text(
+                      snapshot.data!.firstName + " " + snapshot.data!.lastName),
+                  Text(snapshot.data!.cms),
+                  Text(snapshot.data!.email),
+                  Text(snapshot.data!.phone),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            return const CircularProgressIndicator();
+          },
+        ),
+      ),
     );
   }
 }
