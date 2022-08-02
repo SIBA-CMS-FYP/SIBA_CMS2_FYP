@@ -35,7 +35,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           children: <Widget>[
                             CategoryCard(
                               title: "Profile",
-                              images: "assets/images/profile.jpg",
+                              images: "assets/images/profile.png",
                               press: () {
                                 Navigator.push(
                                   context,

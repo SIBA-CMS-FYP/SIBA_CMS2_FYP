@@ -25,23 +25,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  // late Future<StudentProfile> studentData;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _loadCounter();
-  // }
-
-  // //Loading counter value on start
-  // Future<void> _loadCounter() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     var cmss = (prefs.getString('cms'));
-  //     studentData = fetchStudent(cmss.toString());
-  //   });
-  // }
-
-  // int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   var currentPage = DrawerSections.dashboard;
