@@ -12,9 +12,8 @@ class Profile extends StatefulWidget {
   State<Profile> createState() => ProfileState();
 }
 
-late Future<StudentProfile> studentData;
-
 class ProfileState extends State<Profile> {
+  Future<StudentProfile>? studentData;
   var cmss;
   @override
   initState() {
@@ -29,6 +28,8 @@ class ProfileState extends State<Profile> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       cmss = (prefs.getString('cms'));
+      studentData = fetchStudent(cmss.toString());
+      print(cmss);
     });
   }
 
