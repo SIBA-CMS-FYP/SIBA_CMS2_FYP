@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/models/http.dart';
 import 'package:siba_cms_2/models/student_data.dart';
@@ -17,10 +18,12 @@ class ProfileState extends State<Profile> {
   @override
   initState() {
     super.initState();
+    Future.delayed(Duration.zero).then((_) {
+      fetchStudent(cmss.toString());
+    });
     _loadCounter();
   }
 
-  //Loading counter value on start
   Future<void> _loadCounter() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -28,6 +31,11 @@ class ProfileState extends State<Profile> {
       studentData = fetchStudent(cmss.toString());
       print(cmss);
     });
+  }
+
+  void savedata() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {});
   }
 
   @override

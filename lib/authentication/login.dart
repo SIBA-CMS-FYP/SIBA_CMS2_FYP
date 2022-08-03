@@ -18,8 +18,8 @@ class _LogInState extends State<LogIn> {
   final TextEditingController cms = TextEditingController();
   TextEditingController password = TextEditingController();
   final formKey = GlobalKey<FormState>(); //key for form
-  @override
-  void StudyLogin() async {
+
+  void studyLogin() async {
     var url = "http://localhost:3000/authentication/login";
     var data = {
       "cms": cms.text,
@@ -36,7 +36,6 @@ class _LogInState extends State<LogIn> {
       prefs.setString("password", password.text);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => MainScreen()));
-      print((res.body.toString()));
     }
   }
 
@@ -109,11 +108,7 @@ class _LogInState extends State<LogIn> {
                         margin: EdgeInsets.only(top: 12, left: width / 2 + 50),
                         onPressed: () async {
                           if (formKey.currentState!.validate()) {
-                            StudyLogin();
-                            // Navigator.pushReplacement(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => MainScreen("Hans")));
+                            studyLogin();
                           }
                         },
                         style: NeumorphicStyle(
@@ -122,7 +117,7 @@ class _LogInState extends State<LogIn> {
                                 BorderRadius.circular(100)),
                             depth: 5,
                             lightSource: LightSource.topLeft,
-                            color: Color.fromARGB(200, 64, 106, 212)),
+                            color: const Color.fromARGB(200, 64, 106, 212)),
                         padding: const EdgeInsets.all(12.0),
                         child: const Icon(
                           Icons.arrow_forward,

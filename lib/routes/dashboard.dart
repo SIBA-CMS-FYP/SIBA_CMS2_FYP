@@ -4,6 +4,7 @@ import 'package:siba_cms_2/routes/profile.dart';
 import 'package:siba_cms_2/routes/result.dart';
 import 'package:siba_cms_2/widgets/category_card.dart';
 
+// ignore: must_be_immutable
 class DashboardPage extends StatefulWidget {
   DashboardPage({
     Key? key,

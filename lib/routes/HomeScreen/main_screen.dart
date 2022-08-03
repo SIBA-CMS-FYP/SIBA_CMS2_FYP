@@ -4,6 +4,8 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/models/http.dart';
+import 'package:siba_cms_2/models/student_data.dart';
 import 'package:siba_cms_2/routes/notifications.dart';
 import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
@@ -23,25 +25,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  // int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   var currentPage = DrawerSections.dashboard;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _loadCounter();
-  }
-
-  //Loading counter value on start
-  Future<void> _loadCounter() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      var cmss = (prefs.getString('cms'));
-      print(cmss);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
