@@ -47,7 +47,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             ),
                             CategoryCard(
                               title: "Courses",
-                              images: "assets/images/courses.jpg",
+                              images: "assets/images/course.png",
                               press: () {},
                             ),
                             CategoryCard(

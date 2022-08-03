@@ -36,7 +36,6 @@ class _LogInState extends State<LogIn> {
       prefs.setString("password", password.text);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => MainScreen()));
-      print((res.body.toString()));
     }
   }
 
