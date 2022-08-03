@@ -5,8 +5,9 @@ import 'package:siba_cms_2/routes/result.dart';
 import 'package:siba_cms_2/widgets/category_card.dart';
 
 class DashboardPage extends StatefulWidget {
-  String? cms;
-  DashboardPage({Key? key, @required this.cms}) : super(key: key);
+  DashboardPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -35,19 +36,19 @@ class _DashboardPageState extends State<DashboardPage> {
                       children: <Widget>[
                         CategoryCard(
                           title: "Profile",
-                          images: "assets/images/profile.jpg",
+                          images: "assets/images/profile.png",
                           press: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Profile(cms: widget.cms),
+                                builder: (context) => Profile(),
                               ),
                             );
                           },
                         ),
                         CategoryCard(
                           title: "Courses",
-                          images: "assets/images/courses.jpg",
+                          images: "assets/images/course.png",
                           press: () {},
                         ),
                         CategoryCard(
@@ -57,8 +58,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                     return Attendence(context);
-
+                                return Attendence(context);
                               }),
                             );
                           },
