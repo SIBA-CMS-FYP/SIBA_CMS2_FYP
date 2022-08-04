@@ -18,12 +18,12 @@ Future<RequestResult> http_get(String route, [dynamic data]) async {
   return RequestResult(true, jsonDecode(result.body));
 }
 
-Future<void> fetchStudent(String cms) async {
+Future<StudentProfile> fetchStudent(String cms) async {
   var url = "http://localhost:3000/getstudent/?cms=$cms";
   var response = await http.get(Uri.parse(url));
 
   if (response.statusCode == 200) {
-    return jsonDecode(response.body);
+    return StudentProfile.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to load Data');
   }
