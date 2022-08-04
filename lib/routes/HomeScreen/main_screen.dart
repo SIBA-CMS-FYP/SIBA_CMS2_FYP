@@ -1,11 +1,5 @@
-// ignore: file_names
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:siba_cms_2/models/http.dart';
-import 'package:siba_cms_2/models/student_data.dart';
 import 'package:siba_cms_2/routes/notifications.dart';
 import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
