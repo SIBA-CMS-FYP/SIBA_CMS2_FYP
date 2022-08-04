@@ -18,9 +18,6 @@ class ProfileState extends State<Profile> {
   @override
   initState() {
     super.initState();
-    Future.delayed(Duration.zero).then((_) {
-      fetchStudent(cmss.toString());
-    });
     _loadCounter();
   }
 
