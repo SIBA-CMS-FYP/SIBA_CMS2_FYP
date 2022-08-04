@@ -25,7 +25,7 @@ class ProfileState extends State<Profile> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       cmss = (prefs.getString('cms'));
-      studentData = fetchStudent(cmss.toString());
+      fetchStudent(cmss.toString());
       print(cmss);
     });
   }
