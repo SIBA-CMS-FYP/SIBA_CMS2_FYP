@@ -38,8 +38,8 @@ class Attendence extends StatelessWidget {
                     : Icon(Icons.access_alarm),
             trailing: Icon(Icons.arrow_forward),
             onTap: () => {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Courses()))
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Courses(1001)))
             },
           ),
         );
