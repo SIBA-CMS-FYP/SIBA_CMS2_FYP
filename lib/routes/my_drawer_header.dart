@@ -37,7 +37,7 @@ class MyHeaderDrawerState extends State<MyHeaderDrawer> {
           Container(
             margin: const EdgeInsets.only(bottom: 10),
             height: 70,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
                 image: AssetImage('assets/images/profile.png'),

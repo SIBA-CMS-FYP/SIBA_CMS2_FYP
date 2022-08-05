@@ -20,12 +20,14 @@ class Row {
     required this.finaceId,
     required this.courseFee,
     required this.hostelFee,
+    required this.lateFee,
     required this.cms,
     required this.enrollId,
   });
   late final int finaceId;
   late final int courseFee;
   late final int hostelFee;
+  late final int lateFee;
   late final String cms;
   late final int enrollId;
 
@@ -33,6 +35,7 @@ class Row {
     finaceId = json['finace_id'];
     courseFee = json['course_fee'];
     hostelFee = json['hostel_fee'];
+    lateFee = json['late_fees'];
     cms = json['cms'];
     enrollId = json['enroll_id'];
   }
@@ -42,6 +45,7 @@ class Row {
     _data['finace_id'] = finaceId;
     _data['course_fee'] = courseFee;
     _data['hostel_fee'] = hostelFee;
+    _data['late_fees'] = lateFee;
     _data['cms'] = cms;
     _data['enroll_id'] = enrollId;
     return _data;

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
-
 import 'package:siba_cms_2/models/http_model.dart';
-import 'package:siba_cms_2/routes/details.dart';
 
 class Courses extends StatefulWidget {
   int enrollId;
@@ -33,20 +31,20 @@ class _CoursesState extends State<Courses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.lightBlue,
-          title: const Text('Profile'),
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-            ),
+      appBar: AppBar(
+        backgroundColor: Colors.lightBlue,
+        title: const Text('Profile'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
           ),
         ),
-        body: Center(
-            child: FutureBuilder<StudentCourses>(
+      ),
+      body: Center(
+        child: FutureBuilder<StudentCourses>(
           future: studentCourses,
           builder: (context, Coursesdata) {
             if (Coursesdata.hasData) {
@@ -80,6 +78,8 @@ class _CoursesState extends State<Courses> {
             }
             return const CircularProgressIndicator();
           },
-        )));
+        ),
+      ),
+    );
   }
 }
