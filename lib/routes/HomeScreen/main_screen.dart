@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:siba_cms_2/models/http_model.dart';
+import 'package:siba_cms_2/routes/event.dart';
+import 'package:siba_cms_2/routes/finance.dart';
 import 'package:siba_cms_2/routes/notifications.dart';
 import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
 import 'package:siba_cms_2/routes/terms.dart';
-import 'package:siba_cms_2/routes/events.dart';
 import 'package:siba_cms_2/routes/my_drawer_header.dart';
-import 'package:siba_cms_2/routes/notes.dart';
 import 'package:siba_cms_2/routes/privacy_policy.dart';
 import 'package:siba_cms_2/routes/logout.dart';
 import 'package:siba_cms_2/routes/settings.dart';
@@ -49,9 +48,9 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.terms) {
       container = Terms();
     } else if (currentPage == DrawerSections.events) {
-      container = EventsPage();
-    } else if (currentPage == DrawerSections.notes) {
-      container = NotesPage();
+      container = EventsActivity();
+    } else if (currentPage == DrawerSections.fees) {
+      container = Finance();
     } else if (currentPage == DrawerSections.settings) {
       container = SettingsPage();
     } else if (currentPage == DrawerSections.notifications) {
@@ -103,7 +102,7 @@ class _MainScreenState extends State<MainScreen> {
               } else if (index == 2) {
                 currentPage = DrawerSections.course;
               } else if (index == 3) {
-                currentPage = DrawerSections.notes;
+                currentPage = DrawerSections.fees;
               }
             });
           },
@@ -115,18 +114,18 @@ class _MainScreenState extends State<MainScreen> {
 
   Widget MyDrawerList() {
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: 15,
       ),
       child: Column(
         // shows the list of menu drawer
         children: [
-          menuItem(1, "My Course", Icons.dashboard_outlined,
+          menuItem(1, "Home", Icons.home_outlined,
               currentPage == DrawerSections.dashboard ? true : false),
           menuItem(2, "Terms", Icons.list,
               currentPage == DrawerSections.terms ? true : false),
           menuItem(3, "Finance", Icons.currency_pound,
-              currentPage == DrawerSections.notes ? true : false),
+              currentPage == DrawerSections.fees ? true : false),
           Divider(),
           menuItem(4, "Withdraw", Icons.book_online_outlined,
               currentPage == DrawerSections.settings ? true : false),
@@ -154,7 +153,7 @@ class _MainScreenState extends State<MainScreen> {
             } else if (id == 2) {
               currentPage = DrawerSections.terms;
             } else if (id == 3) {
-              currentPage = DrawerSections.notes;
+              currentPage = DrawerSections.fees;
             } else if (id == 4) {
               currentPage = DrawerSections.settings;
             } else if (id == 5) {
@@ -200,7 +199,7 @@ enum DrawerSections {
   terms,
   course,
   events,
-  notes,
+  fees,
   settings,
   notifications,
   privacy_policy,

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/models/http_model.dart';
 import 'package:siba_cms_2/models/student_data.dart';
 
 class Profile extends StatefulWidget {
-  String? cms;
-  Profile({Key? key, this.cms}) : super(key: key);
+  Profile({Key? key}) : super(key: key);
 
   @override
   State<Profile> createState() => ProfileState();
