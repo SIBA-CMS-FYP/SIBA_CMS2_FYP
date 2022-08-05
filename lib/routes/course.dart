@@ -1,58 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
-import 'package:siba_cms_2/models/http.dart';
+
+import 'package:siba_cms_2/models/http_model.dart';
+import 'package:siba_cms_2/routes/details.dart';
 
 class Courses extends StatefulWidget {
-  // String index;
-  const Courses({Key? key}) : super(key: key);
+  int enrollId;
+  Courses(this.enrollId);
 
   @override
   State<Courses> createState() => _CoursesState();
 }
 
 class _CoursesState extends State<Courses> {
+  Future<StudentCourses>? studentCourses;
+  var cms;
   @override
   void initState() {
-    refreshUsers();
+    _loadCourses();
+    super.initState();
   }
 
-  List<Course> courses = [];
-  Future<void> refreshUsers() async {
-    var result = await http_get('users');
-    if (result.ok) {
-      setState(() {
-        courses.clear();
-        var in_users = result.data as List<dynamic>;
-        in_users.forEach((in_user) {
-          courses.add(
-              Course(in_user['Course_id'].toString(), in_user['Course_Title']));
-        });
-      });
-    } else {
-      throw Exception('Failed to load post');
-    }
+  Future<void> _loadCourses() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      cms = prefs.getString('cms');
+      studentCourses = fetchCourses(cms.toString(), widget.enrollId);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(height: 10),
-          Expanded(
-            child: ListView.separated(
-              shrinkWrap: true,
-              itemCount: courses.length,
-              itemBuilder: (context, i) => ListTile(
-                leading: const Icon(Icons.person),
-                title: Text(courses[i].Course_Title),
-              ),
-              separatorBuilder: (context, i) => Divider(),
+        appBar: AppBar(
+          backgroundColor: Colors.lightBlue,
+          title: const Text('Profile'),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
             ),
           ),
-        ],
-      ),
-
-    );
+        ),
+        body: Center(
+            child: FutureBuilder<StudentCourses>(
+          future: studentCourses,
+          builder: (context, Coursesdata) {
+            if (Coursesdata.hasData) {
+              return ListView.builder(
+                itemCount: Coursesdata.data!.row.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: ListTile(
+                      title: Text(Coursesdata.data!.row[index].title),
+                      leading: index == 0
+                          ? const Icon(Icons.cloud)
+                          : index == 1
+                              ? const Icon(Icons.spa)
+                              : Icon(Icons.access_alarm),
+                      trailing: Icon(Icons.arrow_forward),
+                      onTap: () => {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) =>
+                        //         Courses(Coursesdata.data!.row[index].enrollId),
+                        //   ),
+                        // ),
+                      },
+                    ),
+                  );
+                },
+              );
+            } else if (Coursesdata.hasError) {
+              return Text('${Coursesdata.error}');
+            }
+            return const CircularProgressIndicator();
+          },
+        )));
   }
 }

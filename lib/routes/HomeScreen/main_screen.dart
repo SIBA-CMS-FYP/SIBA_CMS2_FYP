@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/models/http_model.dart';
 import 'package:siba_cms_2/routes/notifications.dart';
 import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
@@ -20,6 +22,19 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  var cms;
+  @override
+  void initState() {
+    _loadCourses();
+    super.initState();
+  }
+
+  Future<void> _loadCourses() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      cms = prefs.getString('cms');
+    });
+  }
 
   var currentPage = DrawerSections.dashboard;
 
@@ -30,9 +45,9 @@ class _MainScreenState extends State<MainScreen> {
     if (currentPage == DrawerSections.dashboard) {
       container = DashboardPage();
     } else if (currentPage == DrawerSections.course) {
-      container = Courses();
+      container = Courses(1001);
     } else if (currentPage == DrawerSections.terms) {
-      container = Terms(context);
+      container = Terms();
     } else if (currentPage == DrawerSections.events) {
       container = EventsPage();
     } else if (currentPage == DrawerSections.notes) {
@@ -108,7 +123,7 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           menuItem(1, "My Course", Icons.dashboard_outlined,
               currentPage == DrawerSections.dashboard ? true : false),
-          menuItem(2, "Terms", Icons.list_outlined,
+          menuItem(2, "Terms", Icons.list,
               currentPage == DrawerSections.terms ? true : false),
           menuItem(3, "Finance", Icons.currency_pound,
               currentPage == DrawerSections.notes ? true : false),

@@ -1,5 +1,7 @@
 import 'dart:convert';
 import "package:http/http.dart" as http;
+import 'package:siba_cms_2/models/semester_terms.dart';
+import 'package:siba_cms_2/models/courses_model.dart';
 import 'package:siba_cms_2/models/student_data.dart';
 
 class RequestResult {
@@ -40,16 +42,27 @@ Future<StudentProfile> fetchStudent(String cms) async {
 //   }
 // }
 
-// Future<StudentProfile> fetchTerms(String cms) async {
-//   var url = "http://localhost:3000/getstudent/?cms=$cms";
-//   var response = await http.get(Uri.parse(url));
+Future<StudentTerms> fetchTerms(String cms) async {
+  var url = "http://localhost:3000/terms/getTerms?cms=$cms";
+  var response = await http.get(Uri.parse(url));
 
-//   if (response.statusCode == 200) {
-//     return StudentProfile.fromJson(jsonDecode(response.body));
-//   } else {
-//     throw Exception('Failed to load Data');
-//   }
-//}
+  if (response.statusCode == 200) {
+    return StudentTerms.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to load Data');
+  }
+}
+
+Future<StudentCourses> fetchCourses(String cms, int enrollID) async {
+  var url = "http://localhost:3000/getCourse?cms=$cms&enroll_id=$enrollID";
+  var response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    return StudentCourses.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception("Failed to load data");
+  }
+}
 // Future<RequestResult> http_post(String route, [dynamic data]) async {
 //   var url = "$PROTOCOL://$DOMAIN/$route";
 //   var dataStr = jsonEncode(data);

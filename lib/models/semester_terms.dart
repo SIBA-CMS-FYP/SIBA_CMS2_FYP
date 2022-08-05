@@ -1,10 +1,10 @@
-class StudentCourses {
-  StudentCourses({
+class StudentTerms {
+  StudentTerms({
     required this.row,
   });
   late final List<Row> row;
 
-  StudentCourses.fromJson(Map<String, dynamic> json) {
+  StudentTerms.fromJson(Map<String, dynamic> json) {
     row = List.from(json['row']).map((e) => Row.fromJson(e)).toList();
   }
 
@@ -17,25 +17,25 @@ class StudentCourses {
 
 class Row {
   Row({
-    required this.title,
-    required this.cms,
-    required this.enrollId,
+    required this.enrollID,
+    required this.season,
+    required this.year,
   });
-  late final String title;
-  late final String cms;
-  late final int enrollId;
+  late final int enrollID;
+  late final String season;
+  late final int year;
 
   Row.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    cms = json['cms'];
-    enrollId = json['enroll_id'];
+    enrollID = json['enroll_ID'];
+    season = json['season'];
+    year = json['year'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['title'] = title;
-    _data['cms'] = cms;
-    _data['enroll_id'] = enrollId;
+    _data['enroll_ID'] = enrollID;
+    _data['season'] = season;
+    _data['year'] = year;
     return _data;
   }
 }

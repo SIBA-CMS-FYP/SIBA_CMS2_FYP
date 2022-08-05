@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:siba_cms_2/models/http.dart';
+import 'package:siba_cms_2/models/http_model.dart';
 import 'package:siba_cms_2/models/student_data.dart';
 
 class Profile extends StatefulWidget {
@@ -18,10 +18,10 @@ class ProfileState extends State<Profile> {
   @override
   initState() {
     super.initState();
-    _loadCounter();
+    _loadProfile();
   }
 
-  Future<void> _loadCounter() async {
+  Future<void> _loadProfile() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       cmss = (prefs.getString('cms'));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHeaderDrawer extends StatefulWidget {
   String name = "";
@@ -9,6 +10,20 @@ class MyHeaderDrawer extends StatefulWidget {
 }
 
 class MyHeaderDrawerState extends State<MyHeaderDrawer> {
+  var cms;
+  @override
+  void initState() {
+    _loadCMS();
+    super.initState();
+  }
+
+  Future<void> _loadCMS() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      cms = prefs.getString('cms');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +49,7 @@ class MyHeaderDrawerState extends State<MyHeaderDrawer> {
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           Text(
-            "0030-0020-0005",
+            '${cms}',
             style: TextStyle(
               color: Colors.grey[200],
               fontSize: 14,
