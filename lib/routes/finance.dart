@@ -32,9 +32,6 @@ class _FinanceState extends State<Finance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Fees"),
-      ),
       body: Center(
         child: FutureBuilder<StudentFees>(
           future: studentFees,

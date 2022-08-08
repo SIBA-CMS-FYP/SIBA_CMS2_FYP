@@ -1,9 +1,13 @@
 import 'dart:convert';
 import "package:http/http.dart" as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/models/current_semester.dart';
 import 'package:siba_cms_2/models/fees_model.dart';
+import 'package:siba_cms_2/models/result_model.dart';
 import 'package:siba_cms_2/models/semester_terms.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
 import 'package:siba_cms_2/models/student_data.dart';
+import 'package:siba_cms_2/routes/current_enroll.dart';
 
 class RequestResult {
   bool ok;
@@ -13,13 +17,6 @@ class RequestResult {
 
 const PROTOCOL = "http";
 const DOMAIN = "localhost:3000";
-
-Future<RequestResult> http_get(String route, [dynamic data]) async {
-  var dataStr = jsonEncode(data);
-  var url = "$PROTOCOL://$DOMAIN/$route?data=$dataStr";
-  var result = await http.get(Uri.parse(url));
-  return RequestResult(true, jsonDecode(result.body));
-}
 
 Future<StudentProfile> fetchStudent(String cms) async {
   var url = "$PROTOCOL://$DOMAIN/getstudent/?cms=$cms";
@@ -65,6 +62,40 @@ Future<StudentCourses> fetchCourses(String cms, int enrollID) async {
   }
 }
 
+Future<StudentResults> fetchResult(String cms, var enrollID) async {
+  var url = "$PROTOCOL://$DOMAIN/result/getResult?cms=$cms&enroll_id=$enrollID";
+  var response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    // print(json.decode(response.body));
+    return StudentResults.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception("Failed to load data");
+  }
+}
+
+void fetchEnroll(String cms) async {
+  var url = "$PROTOCOL://$DOMAIN/getCurrent/enrollID?cms=$cms";
+  var response = await http.get(Uri.parse(url));
+  if (response.statusCode == 200) {
+    var data = json.decode(response.body);
+    final pref = await SharedPreferences.getInstance();
+    pref.setInt("enrollID", data);
+  } else {
+    throw Exception("Failed to load data");
+  }
+}
+
+Future<CurrentSemester> fetchCurrent(String cms) async {
+  var url = "$PROTOCOL://$DOMAIN/getCurrent/Semester?cms=$cms";
+  var response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    return CurrentSemester.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception("Failed to load data");
+  }
+}
 // Future<RequestResult> http_post(String route, [dynamic data]) async {
 //   var url = "$PROTOCOL://$DOMAIN/$route";
 //   var dataStr = jsonEncode(data);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:siba_cms_2/routes/attendence.dart';
+import 'package:siba_cms_2/routes/current_enroll.dart';
 import 'package:siba_cms_2/routes/profile.dart';
 import 'package:siba_cms_2/routes/result.dart';
 import 'package:siba_cms_2/widgets/category_card.dart';
@@ -50,7 +51,14 @@ class _DashboardPageState extends State<DashboardPage> {
                         CategoryCard(
                           title: "Courses",
                           images: "assets/images/course.png",
-                          press: () {},
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CurrentEnroll(),
+                              ),
+                            );
+                          },
                         ),
                         CategoryCard(
                           title: "Attendence",
@@ -71,7 +79,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return result();
+                                return Result();
                               }),
                             );
                           },
