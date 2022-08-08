@@ -19,6 +19,7 @@ class _LogoutPageState extends State<LogoutPage> {
   Future<void> _logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('cms');
+    prefs.remove('enrollID');
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (BuildContext ctx) => LogIn()));
   }

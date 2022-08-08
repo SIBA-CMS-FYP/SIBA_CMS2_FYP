@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/models/http_model.dart';
 import 'package:siba_cms_2/routes/event.dart';
 import 'package:siba_cms_2/routes/finance.dart';
 import 'package:siba_cms_2/routes/notifications.dart';
@@ -25,7 +26,17 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     _loadCourses();
+    _loadEnrollKey();
     super.initState();
+  }
+
+  _loadEnrollKey() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      cms = (prefs.getString('cms'));
+      fetchEnroll(cms.toString());
+      print(prefs.getInt("enrollID"));
+    });
   }
 
   Future<void> _loadCourses() async {

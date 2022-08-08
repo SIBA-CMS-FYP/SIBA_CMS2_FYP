@@ -33,7 +33,7 @@ class _CoursesState extends State<Courses> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
-        title: const Text('Profile'),
+        title: const Text('Courses'),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

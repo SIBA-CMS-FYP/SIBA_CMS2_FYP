@@ -1,29 +1,41 @@
-class Result {
-  Result({
+class StudentResults {
+  StudentResults({
+    required this.row,
+  });
+  late final List<Row> row;
+
+  StudentResults.fromJson(Map<String, dynamic> json) {
+    row = List.from(json['row']).map((e) => Row.fromJson(e)).toList();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['row'] = row.map((e) => e.toJson()).toList();
+    return _data;
+  }
+}
+
+class Row {
+  final double todouble = 0.0;
+  Row({
     required this.Course,
     required this.firstMid,
     required this.secondMid,
     required this.sessional,
     required this.finalExam,
-    required this.GPA,
-    required this.CGPA,
   });
   late final String Course;
-  late final double firstMid;
-  late final int secondMid;
-  late final int sessional;
-  late final int finalExam;
-  late final int GPA;
-  late final int CGPA;
+  late final double? firstMid;
+  late final double? secondMid;
+  late final double? sessional;
+  late final double? finalExam;
 
-  Result.fromJson(Map<String, dynamic> json) {
+  Row.fromJson(Map<String, dynamic> json) {
     Course = json['Course'];
-    firstMid = json['firstMid'];
-    secondMid = json['secondMid'];
-    sessional = json['sessional'];
-    finalExam = json['final'];
-    GPA = json['GPA'];
-    CGPA = json['CGPA'];
+    firstMid = json['firstMid'] + todouble;
+    secondMid = json['secondMid'] + todouble;
+    sessional = json['sessional'] + todouble;
+    finalExam = json['finalExam'] + todouble;
   }
 
   Map<String, dynamic> toJson() {
@@ -32,9 +44,7 @@ class Result {
     _data['firstMid'] = firstMid;
     _data['secondMid'] = secondMid;
     _data['sessional'] = sessional;
-    _data['final'] = finalExam;
-    _data['GPA'] = GPA;
-    _data['CGPA'] = CGPA;
+    _data['finalExam'] = finalExam;
     return _data;
   }
 }
