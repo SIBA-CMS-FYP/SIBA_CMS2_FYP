@@ -13,7 +13,6 @@ class Result extends StatefulWidget {
 
 class _ResultState extends State<Result> {
   Future<StudentResults>? studentResultData;
-  Future<StudentCourses>? studentCourses;
   var cmss;
   var enrollid;
 
@@ -29,7 +28,6 @@ class _ResultState extends State<Result> {
       cmss = (prefs.getString('cms'));
       enrollid = (prefs.getInt('enrollID'));
       studentResultData = fetchResult(cmss.toString(), enrollid);
-      // studentCourses = fetchCourses(cmss.toString(), 1001);
     });
   }
 
@@ -50,25 +48,25 @@ class _ResultState extends State<Result> {
       body: Center(
         child: FutureBuilder<StudentResults>(
           future: studentResultData,
-          builder: (context, Coursesdata) {
-            print(Coursesdata.hasData);
-            if (Coursesdata.hasData) {
+          builder: (context, resultData) {
+            print(resultData.hasData);
+            if (resultData.hasData) {
               return ListView.builder(
-                itemCount: Coursesdata.data!.row.length,
+                itemCount: resultData.data!.row.length,
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
-                      title: Text(Coursesdata.data!.row[index].Course),
+                      title: Text(resultData.data!.row[index].Course),
                       leading: Icon(Icons.book_rounded),
                       trailing: Text(
-                          '${Coursesdata.data!.row[index].firstMid}  ${Coursesdata.data!.row[index].secondMid}  '),
+                          '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid}  '),
                       onTap: () => {},
                     ),
                   );
                 },
               );
-            } else if (Coursesdata.hasError) {
-              return Text('${Coursesdata.error}');
+            } else if (resultData.hasError) {
+              return Text('${resultData.error}');
             }
             return const CircularProgressIndicator();
           },
@@ -77,9 +75,3 @@ class _ResultState extends State<Result> {
     );
   }
 }
-
-// class SResult {
-//   final String title;
-//   final double
-
-// }
