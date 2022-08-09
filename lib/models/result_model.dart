@@ -16,7 +16,6 @@ class StudentResults {
 }
 
 class Row {
-  final double todouble = 0.0;
   Row({
     required this.Course,
     required this.firstMid,
@@ -32,10 +31,10 @@ class Row {
 
   Row.fromJson(Map<String, dynamic> json) {
     Course = json['Course'];
-    firstMid = json['firstMid'] + todouble;
-    secondMid = json['secondMid'] + todouble;
-    sessional = json['sessional'] + todouble;
-    finalExam = json['finalExam'] + todouble;
+    firstMid = (json['firstMid'] as num).toDouble();
+    secondMid = (json['secondMid'] as num).toDouble();
+    sessional = (json['sessional'] as num).toDouble();
+    finalExam = (json['finalExam'] as num).toDouble();
   }
 
   Map<String, dynamic> toJson() {
