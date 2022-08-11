@@ -8,8 +8,6 @@ import 'package:siba_cms_2/models/semester_terms.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
 import 'package:siba_cms_2/models/student_data.dart';
 import 'package:siba_cms_2/models/withdraw_courses.dart';
-import 'package:siba_cms_2/routes/current_enroll.dart';
-import 'package:siba_cms_2/routes/withdraw.dart';
 
 class RequestResult {
   bool ok;
