@@ -60,15 +60,7 @@ class _CoursesState extends State<Courses> {
                               ? const Icon(Icons.spa)
                               : Icon(Icons.access_alarm),
                       trailing: Icon(Icons.arrow_forward),
-                      onTap: () => {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) =>
-                        //         Courses(Coursesdata.data!.row[index].enrollId),
-                        //   ),
-                        // ),
-                      },
+                      onTap: () => {},
                     ),
                   );
                 },
