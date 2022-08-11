@@ -30,6 +30,14 @@ class _CourseWithdrawState extends State<CourseWithdraw> {
   }
 
   @override
+  showData(var course_id, var cms, var teacher_id, var enroll_id) {
+    print("Course id " + course_id.toString());
+    print("Cms id " + cms.toString());
+    print("Teacher id " + teacher_id.toString());
+    print("Enroll id " + enroll_id.toString());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -47,11 +55,11 @@ class _CourseWithdrawState extends State<CourseWithdraw> {
                       leading: Icon(Icons.book_online_rounded),
                       trailing: ElevatedButton(
                         onPressed: () => {
-                          setState: {
-                            SendWithdrawReq(
-                                // cData.data[index].enrollID
-                                )
-                          }
+                          showData(
+                              cData.data[index].courseId,
+                              cData.data[index].cms,
+                              cData.data[index].teacherId,
+                              cData.data[index].enrollID)
                         },
                         child: Text("Withdraw"),
                       ),
@@ -68,19 +76,5 @@ class _CourseWithdrawState extends State<CourseWithdraw> {
         ),
       ),
     );
-  }
-}
-
-class SendWithdrawReq extends StatefulWidget {
-  SendWithdrawReq();
-
-  @override
-  _SendWithdrawReq createState() => _SendWithdrawReq();
-}
-
-class _SendWithdrawReq extends State<SendWithdrawReq> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
