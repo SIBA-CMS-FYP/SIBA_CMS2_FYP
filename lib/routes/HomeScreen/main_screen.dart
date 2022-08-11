@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.fees) {
       container = Finance();
     } else if (currentPage == DrawerSections.settings) {
-      container = SettingsPage();
+      container = CourseWithdraw();
     } else if (currentPage == DrawerSections.notifications) {
       container = NotificationActivity();
     } else if (currentPage == DrawerSections.privacy_policy) {

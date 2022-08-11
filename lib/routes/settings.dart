@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class SettingsPage extends StatefulWidget {
+class CourseWithdraw extends StatefulWidget {
+  const CourseWithdraw({Key? key}) : super(key: key);
+
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  _CourseWithdrawState createState() => _CourseWithdrawState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _CourseWithdrawState extends State<CourseWithdraw> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("Settings Page"),
+        child: Text("Withdraw page"),
       ),
     );
   }
