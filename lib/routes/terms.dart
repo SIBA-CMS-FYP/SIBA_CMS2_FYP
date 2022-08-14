@@ -25,6 +25,7 @@ class _TermsState extends State<Terms> {
     setState(() {
       cms = prefs.getString('cms');
       studentTerms = fetchTerms(cms.toString());
+     // print(cms);
     });
   }
 
