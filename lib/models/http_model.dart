@@ -7,7 +7,7 @@ import 'package:siba_cms_2/models/result_model.dart';
 import 'package:siba_cms_2/models/semester_terms.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
 import 'package:siba_cms_2/models/student_data.dart';
-import 'package:siba_cms_2/routes/current_enroll.dart';
+import 'package:siba_cms_2/models/withdraw_courses.dart';
 
 class RequestResult {
   bool ok;
@@ -96,10 +96,22 @@ Future<CurrentSemester> fetchCurrent(String cms) async {
     throw Exception("Failed to load data");
   }
 }
-// Future<RequestResult> http_post(String route, [dynamic data]) async {
-//   var url = "$PROTOCOL://$DOMAIN/$route";
-//   var dataStr = jsonEncode(data);
-//   var result = await http
-//       .post(url, body: dataStr, headers: {"Content-Type": "application/json"});
-//   return RequestResult(true, jsonDecode(result.body));
-// }
+
+Future<WithdrawCourse> fetch_C_W(String cms) async {
+  var url = "$PROTOCOL://$DOMAIN/getCurrent/forWithdraw?cms=$cms";
+  var response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    return WithdrawCourse.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception("Failed to load data");
+  }
+}
+
+Future<RequestResult> withdrawReq(String route, [dynamic data]) async {
+  var url = "$PROTOCOL://$DOMAIN/withdraw/sendWithdrawReq?";
+  var dataStr = jsonEncode(data);
+  var result = await http.post(Uri.parse(url),
+      body: dataStr, headers: {"Content-Type": "application/json"});
+  return RequestResult(true, jsonDecode(result.body));
+}

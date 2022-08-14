@@ -11,7 +11,7 @@ import 'package:siba_cms_2/routes/terms.dart';
 import 'package:siba_cms_2/routes/my_drawer_header.dart';
 import 'package:siba_cms_2/routes/privacy_policy.dart';
 import 'package:siba_cms_2/routes/logout.dart';
-import 'package:siba_cms_2/routes/settings.dart';
+import 'package:siba_cms_2/routes/withdraw.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.fees) {
       container = Finance();
     } else if (currentPage == DrawerSections.settings) {
-      container = SettingsPage();
+      container = CourseWithdraw();
     } else if (currentPage == DrawerSections.notifications) {
       container = NotificationActivity();
     } else if (currentPage == DrawerSections.privacy_policy) {
