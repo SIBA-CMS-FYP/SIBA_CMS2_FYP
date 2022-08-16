@@ -55,14 +55,9 @@ class _FinanceState extends State<Finance> {
                         "Fees Information",
                         style: new TextStyle (
                           fontWeight: FontWeight. bold,
-                          fontSize: 20.0,
-                          
-                        ),
+                          fontSize: 20.0, ),
                           ),
                                ),
-                      
-                        
-                             
                         ),
                       ),
                       SizedBox(
@@ -114,9 +109,7 @@ class _FinanceState extends State<Finance> {
                   borderRadius: BorderRadius.circular(15)),
            textColor: Colors.white,
            tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
-                          title: Text(
-                              "Total Fees"
-                          ),
+                          title: Text( "Total Fees" ),
                           leading: Icon(Icons.disc_full, color: Colors.white,),
                           trailing: Text( '${feestotal = feeData.data!.row[index].courseFee + feeData.data!.row[index].hostelFee + feeData.data!.row[index].lateFee}'),
                         ),

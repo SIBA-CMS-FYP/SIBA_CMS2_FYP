@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
@@ -58,11 +59,31 @@ class _ResultState extends State<Result> {
                   Text(resultData.data!.row[0].firstMid.toString());
                   return Card(
                     child: ListTile(
+                      shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+           textColor: Colors.white,
+           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
                       title: Text(resultData.data!.row[index].Course),
-                      leading: Icon(Icons.book_rounded),
+                     
+                      leading: Icon(CupertinoIcons.book, color: Colors.white,),
+                      // trailing: Container(
+                      //   padding: EdgeInsets.only(left: 12.0),
+                      //   decoration: new BoxDecoration(
+                      //     border: new Border(
+                      //       left: new BorderSide(
+                      //         width: 1.0, color: Colors.white24
+                      //       )
+                      //     )
+                      //   ),
+                       
+                       
+                      //   child: Text('${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].finalExam}  '),
+                      // ),
+                      
                       trailing: Text(
                           '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].finalExam}  '),
                       onTap: () => {},
+                     
                     ),
                   );
                 },
