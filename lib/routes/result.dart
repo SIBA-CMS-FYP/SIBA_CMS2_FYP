@@ -27,6 +27,7 @@ class _ResultState extends State<Result> {
     setState(() {
       cmss = (prefs.getString('cms'));
       enrollid = (prefs.getInt('enrollID'));
+      print(enrollid);
       studentResultData = fetchResult(cmss.toString(), enrollid);
     });
   }
@@ -54,12 +55,13 @@ class _ResultState extends State<Result> {
               return ListView.builder(
                 itemCount: resultData.data!.row.length,
                 itemBuilder: (context, index) {
+                  Text(resultData.data!.row[0].firstMid.toString());
                   return Card(
                     child: ListTile(
                       title: Text(resultData.data!.row[index].Course),
                       leading: Icon(Icons.book_rounded),
                       trailing: Text(
-                          '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid}  '),
+                          '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].finalExam}  '),
                       onTap: () => {},
                     ),
                   );
