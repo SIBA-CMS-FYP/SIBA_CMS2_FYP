@@ -77,10 +77,11 @@ class _FinanceState extends State<Finance> {
            tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
 
                           title: Text(
-                            "Academic Fees:                          " + 
-                                feeData.data!.row[index].courseFee.toString(),
-                          ),
+                            "Academic Fees:"   ),
+                          leading: Icon(Icons.class_, color: Colors.white,),
+                           trailing: Text( feeData.data!.row[index].courseFee.toString()),
                         ),
+                       
                       ),
                       Card(
                         child: ListTile(
@@ -88,10 +89,10 @@ class _FinanceState extends State<Finance> {
                   borderRadius: BorderRadius.circular(15)),
            textColor: Colors.white,
            tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
-                          title: Text(
-                             " Hostel Fees                               " +
-                              feeData.data!.row[index].hostelFee.toString(),
-                          )
+                          title: Text( " Hostel Fees:"),
+                          leading: Icon(Icons.home, color: Colors.white,),
+                          trailing: Text( feeData.data!.row[index].hostelFee.toString()
+                          ),
                         ),
                       ),
                       Card(
@@ -102,10 +103,9 @@ class _FinanceState extends State<Finance> {
                   borderRadius: BorderRadius.circular(15)),
            textColor: Colors.white,
            tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
-                          title: Text(
-                              "Late Fees                                    "+
-                               feeData.data!.row[index].lateFee.toString(),
-                               ),
+                          title: Text( "Late Fees" ),
+                               leading: Icon(Icons.not_started, color: Colors.white,),
+                               trailing: Text(feeData.data!.row[index].lateFee.toString()),
                         ),
                       ),
                       Card(
@@ -115,9 +115,10 @@ class _FinanceState extends State<Finance> {
            textColor: Colors.white,
            tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
                           title: Text(
-                              "Total Fees                                 "
-                             '${feestotal = feeData.data!.row[index].courseFee + feeData.data!.row[index].hostelFee + feeData.data!.row[index].lateFee}',
+                              "Total Fees"
                           ),
+                          leading: Icon(Icons.disc_full, color: Colors.white,),
+                          trailing: Text( '${feestotal = feeData.data!.row[index].courseFee + feeData.data!.row[index].hostelFee + feeData.data!.row[index].lateFee}'),
                         ),
                       ),
                     ],
