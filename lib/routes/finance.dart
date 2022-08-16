@@ -13,6 +13,7 @@ class Finance extends StatefulWidget {
 class _FinanceState extends State<Finance> {
   TextEditingController fees = TextEditingController();
   Future<StudentFees>? studentFees;
+    var feestotal;
   var coursfees;
   var cms;
   @override
@@ -36,36 +37,87 @@ class _FinanceState extends State<Finance> {
         child: FutureBuilder<StudentFees>(
           future: studentFees,
           builder: (context, feeData) {
+            
             if (feeData.hasData) {
               return ListView.builder(
+                
                 itemCount: feeData.data!.row.length,
+                
                 itemBuilder: (context, index) {
                   return Column(
+                    
                     children: <Widget>[
-                      Card(
+                       Card(
+                        
                         child: ListTile(
+                          textColor: Colors.black,
+                          title: new Center( child: new Text(
+                        "Fees Information",
+                        style: new TextStyle (
+                          fontWeight: FontWeight. bold,
+                          fontSize: 20.0,
+                          
+                        ),
+                          ),
+                               ),
+                      
+                        
+                             
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Card(
+
+                        child: ListTile(
+                          shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+           textColor: Colors.white,
+           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
+
                           title: Text(
-                            "Course Fees " +
+                            "Academic Fees:                          " + 
                                 feeData.data!.row[index].courseFee.toString(),
                           ),
                         ),
                       ),
                       Card(
                         child: ListTile(
+                          shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+           textColor: Colors.white,
+           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
                           title: Text(
-                              "Hostel Fees ${feeData.data!.row[index].hostelFee}"),
+                             " Hostel Fees                               " +
+                              feeData.data!.row[index].hostelFee.toString(),
+                          )
+                        ),
+                      ),
+                      Card(
+                        
+                        child: ListTile(
+                          
+                          shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+           textColor: Colors.white,
+           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
+                          title: Text(
+                              "Late Fees                                    "+
+                               feeData.data!.row[index].lateFee.toString(),
+                               ),
                         ),
                       ),
                       Card(
                         child: ListTile(
+                          shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+           textColor: Colors.white,
+           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
                           title: Text(
-                              'Late Fees ${feeData.data!.row[index].lateFee}'),
-                        ),
-                      ),
-                      Card(
-                        child: ListTile(
-                          title: Text(
-                              'Total Fees ${feeData.data!.row[index].courseFee + feeData.data!.row[index].hostelFee + feeData.data!.row[index].lateFee}'),
+                              "Total Fees                                 "
+                             '${feestotal = feeData.data!.row[index].courseFee + feeData.data!.row[index].hostelFee + feeData.data!.row[index].lateFee}',
+                          ),
                         ),
                       ),
                     ],
@@ -80,5 +132,8 @@ class _FinanceState extends State<Finance> {
         ),
       ),
     );
+
+
+
   }
 }
