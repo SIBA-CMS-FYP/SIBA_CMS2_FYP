@@ -120,7 +120,7 @@ var cms1;
                 children: [
                   
                   Container(
-                    height: height * 0.28,
+                    height: 300,
                     child: LayoutBuilder(
                       builder: (context, constraints) {
                         double innerHeight = constraints.maxHeight;
@@ -129,12 +129,12 @@ var cms1;
                           fit: StackFit.expand,
                           children: [
                             Positioned(
-                              top: 40,
+                             top: 150,
                              bottom: 0,
                               left: 0,
                               right: 0,
                               child: Container(
-                               height: innerHeight * 0.5,
+                               height:  0.5,
                                 width: innerWidth,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
@@ -160,6 +160,7 @@ var cms1;
                                         fontSize: 30,
                                       ),
                                     ),
+
                                
                            Text(
                                       "CGPA:  ",
@@ -178,14 +179,15 @@ var cms1;
                             
                             Positioned(
                               top: 0,
-                              left: 0,
-                              right: 0,
+                              left: 20,
+                              right: 20,
+                              bottom: 70,
                              
                               child: Center(
                                 child: Container(
                                   child: Image.asset(
                                     'assets/images/profile.png',
-                                    width: innerWidth * 0.4,
+                                    width: 200,
                                     fit: BoxFit.fitWidth,
                                   ),
                                 ),
@@ -196,13 +198,15 @@ var cms1;
                       },
                     ),
                   ),
+
+
                   SizedBox(
                     height: 30,
                   ),
                 
                         
                            Container(
-                            height: height * 0.08,
+                            height: 80,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                                   gradient: LinearGradient(
@@ -244,15 +248,10 @@ var cms1;
                               fontFamily: 'Nunito',
                             ),
                           ),
-                        
-          
-        
-                          Divider(
+                         Divider(
                             thickness: 2.5,
                           ),
                        
-                          
-                         
                         ],
                         
                       ),

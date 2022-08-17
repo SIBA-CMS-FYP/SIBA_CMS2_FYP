@@ -81,11 +81,15 @@ class _ResultState extends State<Result> {
                       // ),
                       
                       trailing: Text(
-                          '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].finalExam}  '),
+                          '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].sessional} ${resultData.data!.row[index].finalExam}  '),
                       onTap: () => {},
                      
                     ),
+                   
                   );
+                  
+                  
+                  
                 },
               );
             } else if (resultData.hasError) {
