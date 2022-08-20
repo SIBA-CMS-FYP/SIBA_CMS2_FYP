@@ -13,6 +13,7 @@ class Result extends StatefulWidget {
 
 class _ResultState extends State<Result> {
   Future<StudentResults>? studentResultData;
+  int vIndex = 0;
   var cmss;
   var enrollid;
 
@@ -49,18 +50,36 @@ class _ResultState extends State<Result> {
         child: FutureBuilder<StudentResults>(
           future: studentResultData,
           builder: (context, resultData) {
-            print(resultData.hasData);
             if (resultData.hasData) {
               return ListView.builder(
                 itemCount: resultData.data!.row.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      title: Text(resultData.data!.row[index].Course),
-                      leading: Icon(Icons.book_rounded),
-                      trailing: Text(
-                          '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid}  '),
-                      onTap: () => {},
+                  return Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Card(
+                          child: index == 0
+                              ? ListTile(
+                                  title: Text(
+                                      'GPA ${resultData.data!.row[0].GPA.toString()}  CGPA ${resultData.data!.row[0].GPA.toString()}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                )
+                              : null,
+                        ),
+                        Card(
+                          child: ListTile(
+                            title: Text(resultData.data!.row[index].Course),
+                            leading: Icon(Icons.book_rounded),
+                            trailing: Text(
+                                '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid}  '),
+                            onTap: () => {},
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 },
