@@ -99,7 +99,6 @@ class _ResultState extends State<Result> {
                               CupertinoIcons.book,
                               color: Colors.white,
                             ),
-                            title: Text(resultData.data!.row[index].Course),
                             trailing: Text(
                                 '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].finalExam}   '),
                             onTap: () => {},
