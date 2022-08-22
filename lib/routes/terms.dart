@@ -25,6 +25,7 @@ class _TermsState extends State<Terms> {
     setState(() {
       cms = prefs.getString('cms');
       studentTerms = fetchTerms(cms.toString());
+     // print(cms);
     });
   }
 
@@ -41,15 +42,19 @@ class _TermsState extends State<Terms> {
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
+                      shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+           textColor: Colors.white,
+           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
                       title: Text(termsdata.data!.row[index].season +
                           " " +
                           termsdata.data!.row[index].year.toString()),
                       leading: termsdata.data!.row[index].season == 'spring'
-                          ? const Icon(Icons.cloud)
+                          ? const Icon(Icons.cloud, color: Colors.white,)
                           : termsdata.data!.row[index].season == 'Fall'
-                              ? const Icon(Icons.spa)
-                              : Icon(Icons.access_alarm),
-                      trailing: Icon(Icons.arrow_forward),
+                              ? const Icon(Icons.spa, color: Colors.white,)
+                              : Icon(Icons.access_alarm ,color: Colors.white,),
+                      trailing: Icon(Icons.arrow_forward, color: Colors.white,),
                       onTap: () => {
                         Navigator.push(
                           context,

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
@@ -31,6 +32,7 @@ class _CoursesState extends State<Courses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+  
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
         title: const Text('Courses'),
@@ -43,25 +45,42 @@ class _CoursesState extends State<Courses> {
           ),
         ),
       ),
+      
       body: Center(
+        
         child: FutureBuilder<StudentCourses>(
           future: studentCourses,
           builder: (context, Coursesdata) {
             if (Coursesdata.hasData) {
+             
               return ListView.builder(
+                
                 itemCount: Coursesdata.data!.row.length,
                 itemBuilder: (context, index) {
+                
                   return Card(
+                    
+                    
                     child: ListTile(
+                      
+                      shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+           textColor: Colors.white,
+           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
+                      
                       title: Text(Coursesdata.data!.row[index].title),
-                      leading: index == 0
-                          ? const Icon(Icons.cloud)
-                          : index == 1
-                              ? const Icon(Icons.spa)
-                              : Icon(Icons.access_alarm),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () => {},
+                     
+                      leading: 
+                      //index == 0  ?
+                       Icon(CupertinoIcons.book, color: Colors.white,)
+                         // : index == 1
+                            //  ? const Icon(Icons.spa, color: Colors.white,)
+                            //  : Icon(Icons.access_alarm, color: Colors.white,),
+                      
+                     // onTap: () => {},
+                     
                     ),
+                    
                   );
                 },
               );
