@@ -33,14 +33,17 @@ class Row {
   late final double? GPA;
   late final double? CGPA;
 
+
   Row.fromJson(Map<String, dynamic> json) {
     Course = json['Course'];
     firstMid = (json['firstMid'] as num).toDouble();
     secondMid = (json['secondMid'] as num).toDouble();
     sessional = (json['sessional'] as num).toDouble();
     finalExam = (json['finalExam'] as num).toDouble();
+
     GPA = (json['GPA'] as num).toDouble();
     CGPA = (json['CGPA'] as num).toDouble();
+
   }
 
   Map<String, dynamic> toJson() {
