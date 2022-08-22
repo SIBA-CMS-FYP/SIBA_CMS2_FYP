@@ -22,12 +22,17 @@ class Row {
     required this.secondMid,
     required this.sessional,
     required this.finalExam,
+    required this.GPA,
+    required this.CGPA,
   });
   late final String Course;
   late final double? firstMid;
   late final double? secondMid;
   late final double? sessional;
   late final double? finalExam;
+  late final double? GPA;
+  late final double? CGPA;
+
 
   Row.fromJson(Map<String, dynamic> json) {
     Course = json['Course'];
@@ -35,6 +40,10 @@ class Row {
     secondMid = (json['secondMid'] as num).toDouble();
     sessional = (json['sessional'] as num).toDouble();
     finalExam = (json['finalExam'] as num).toDouble();
+
+    GPA = (json['GPA'] as num).toDouble();
+    CGPA = (json['CGPA'] as num).toDouble();
+
   }
 
   Map<String, dynamic> toJson() {
@@ -44,6 +53,8 @@ class Row {
     _data['secondMid'] = secondMid;
     _data['sessional'] = sessional;
     _data['finalExam'] = finalExam;
+    _data['GPA'] = GPA;
+    _data['CGPA'] = CGPA;
     return _data;
   }
 }

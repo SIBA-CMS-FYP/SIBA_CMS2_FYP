@@ -14,6 +14,8 @@ class Result extends StatefulWidget {
 
 class _ResultState extends State<Result> {
   Future<StudentResults>? studentResultData;
+
+  int vIndex = 0;
   var cmss;
   var enrollid;
 
@@ -51,45 +53,62 @@ class _ResultState extends State<Result> {
         child: FutureBuilder<StudentResults>(
           future: studentResultData,
           builder: (context, resultData) {
-            print(resultData.hasData);
             if (resultData.hasData) {
               return ListView.builder(
                 itemCount: resultData.data!.row.length,
                 itemBuilder: (context, index) {
-                  Text(resultData.data!.row[0].firstMid.toString());
-                  return Card(
-                    child: ListTile(
-                      shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-           textColor: Colors.white,
-           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
-                      title: Text(resultData.data!.row[index].Course),
-                     
-                      leading: Icon(CupertinoIcons.book, color: Colors.white,),
-                      // trailing: Container(
-                      //   padding: EdgeInsets.only(left: 12.0),
-                      //   decoration: new BoxDecoration(
-                      //     border: new Border(
-                      //       left: new BorderSide(
-                      //         width: 1.0, color: Colors.white24
-                      //       )
-                      //     )
-                      //   ),
-                       
-                       
-                      //   child: Text('${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].finalExam}  '),
-                      // ),
-                      
-                      trailing: Text(
-                          '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].sessional} ${resultData.data!.row[index].finalExam}  '),
-                      onTap: () => {},
-                     
+                  return Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Card(
+                          child: index == 0
+                              ? ListTile(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  textColor: Colors.white,
+                                  tileColor: Color.alphaBlend(
+                                    Color.fromARGB(255, 41, 55, 124),
+                                    Color.fromRGBO(39, 115, 171, 1),
+                                  ),
+                                  leading: Icon(
+                                    CupertinoIcons.book,
+                                    color: Colors.white,
+                                  ),
+                                  title: Text(
+                                    'GPA ${resultData.data!.row[0].GPA.toString()}  CGPA ${resultData.data!.row[0].GPA.toString()}',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
+                              : null,
+                        ),
+                        Card(
+                          child: ListTile(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            textColor: Colors.white,
+                            tileColor: Color.alphaBlend(
+                              Color.fromARGB(255, 41, 55, 124),
+                              Color.fromRGBO(39, 115, 171, 1),
+                            ),
+                            leading: Icon(
+                              CupertinoIcons.book,
+                              color: Colors.white,
+                            ),
+                            title: Text(resultData.data!.row[index].Course),
+                            trailing: Text(
+                                '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].finalExam}   '),
+                            onTap: () => {},
+                          ),
+                        ),
+                      ],
                     ),
-                   
                   );
-                  
-                  
-                  
                 },
               );
             } else if (resultData.hasError) {
