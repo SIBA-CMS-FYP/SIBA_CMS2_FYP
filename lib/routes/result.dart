@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
@@ -63,18 +64,42 @@ class _ResultState extends State<Result> {
                         Card(
                           child: index == 0
                               ? ListTile(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  textColor: Colors.white,
+                                  tileColor: Color.alphaBlend(
+                                    Color.fromARGB(255, 41, 55, 124),
+                                    Color.fromRGBO(39, 115, 171, 1),
+                                  ),
+                                  leading: Icon(
+                                    CupertinoIcons.book,
+                                    color: Colors.white,
+                                  ),
                                   title: Text(
-                                      'GPA ${resultData.data!.row[0].GPA.toString()}  CGPA ${resultData.data!.row[0].GPA.toString()}',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      )),
+                                    'GPA ${resultData.data!.row[0].GPA.toString()}  CGPA ${resultData.data!.row[0].GPA.toString()}',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 )
                               : null,
                         ),
                         Card(
                           child: ListTile(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            textColor: Colors.white,
+                            tileColor: Color.alphaBlend(
+                              Color.fromARGB(255, 41, 55, 124),
+                              Color.fromRGBO(39, 115, 171, 1),
+                            ),
+                            leading: Icon(
+                              CupertinoIcons.book,
+                              color: Colors.white,
+                            ),
                             title: Text(resultData.data!.row[index].Course),
-                            leading: Icon(Icons.book_rounded),
                             trailing: Text(
                                 '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].finalExam}   '),
                             onTap: () => {},
