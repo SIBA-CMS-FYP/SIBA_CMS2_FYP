@@ -1,12 +1,14 @@
 import 'dart:convert';
 import "package:http/http.dart" as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/models/attendance_Model.dart';
 import 'package:siba_cms_2/models/current_semester.dart';
 import 'package:siba_cms_2/models/fees_model.dart';
 import 'package:siba_cms_2/models/result_model.dart';
 import 'package:siba_cms_2/models/semester_terms.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
 import 'package:siba_cms_2/models/student_data.dart';
+import 'package:siba_cms_2/models/sub_attendance.dart';
 import 'package:siba_cms_2/models/withdraw_courses.dart';
 
 class RequestResult {
@@ -114,4 +116,31 @@ Future<RequestResult> withdrawReq(String route, [dynamic data]) async {
   var result = await http.post(Uri.parse(url),
       body: dataStr, headers: {"Content-Type": "application/json"});
   return RequestResult(true, jsonDecode(result.body));
+}
+
+Future<StudentAttendance> fetchAttendance(String cms, var enroll_id) async {
+  var url =
+      "$PROTOCOL://$DOMAIN/attendance/userAttendance?cms=$cms&enroll_id=$enroll_id";
+  var response = await http.get(Uri.parse(url));
+  if (response.statusCode == 200) {
+    return StudentAttendance.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception("Faild To 'Load attendance ");
+  }
+}
+
+Future<AttendanceSubject> fetchAttendanceBySubj(
+  var cms,
+  var enroll_id,
+  var course_code,
+) async {
+  print(course_code);
+  var url =
+      "$PROTOCOL://$DOMAIN/attendance/bySubAttendance?cms=$cms&enroll_id=$enroll_id&course_Code=$course_code";
+  var response = await http.get(Uri.parse(url));
+  if (response.statusCode == 200) {
+    return AttendanceSubject.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception("Faild To 'Load attendance ");
+  }
 }

@@ -72,13 +72,13 @@ class _ResultState extends State<Result> {
                                     Color.fromARGB(255, 41, 55, 124),
                                     Color.fromRGBO(39, 115, 171, 1),
                                   ),
-                                  leading: Icon(
+                                  leading: const Icon(
                                     CupertinoIcons.book,
                                     color: Colors.white,
                                   ),
                                   title: Text(
                                     'GPA ${resultData.data!.row[0].GPA.toString()}  CGPA ${resultData.data!.row[0].GPA.toString()}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -95,12 +95,14 @@ class _ResultState extends State<Result> {
                               Color.fromARGB(255, 41, 55, 124),
                               Color.fromRGBO(39, 115, 171, 1),
                             ),
-                            leading: Icon(
+                            title:
+                                Text('${resultData.data!.row[index].Course}'),
+                            leading: const Icon(
                               CupertinoIcons.book,
                               color: Colors.white,
                             ),
                             trailing: Text(
-                                '${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].finalExam}   '),
+                                ' ${resultData.data!.row[index].firstMid}  ${resultData.data!.row[index].secondMid} ${resultData.data!.row[index].finalExam}   '),
                             onTap: () => {},
                           ),
                         ),

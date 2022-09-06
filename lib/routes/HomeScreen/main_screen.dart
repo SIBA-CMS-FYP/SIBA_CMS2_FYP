@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/components/constants.dart';
 import 'package:siba_cms_2/models/http_model.dart';
 import 'package:siba_cms_2/routes/event.dart';
 import 'package:siba_cms_2/routes/finance.dart';
@@ -30,12 +31,13 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
   }
 
+  Color colors = myColor;
+
   _loadEnrollKey() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       cms = (prefs.getString('cms'));
       fetchEnroll(cms.toString());
-      print(prefs.getInt("enrollID"));
     });
   }
 
@@ -65,11 +67,11 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.settings) {
       container = CourseWithdraw();
     } else if (currentPage == DrawerSections.notifications) {
-      container = NotificationActivity();
+      container = const NotificationActivity();
     } else if (currentPage == DrawerSections.privacy_policy) {
-      container = PrivacyPolicyPage();
+      container = FeedBack();
     } else if (currentPage == DrawerSections.send_feedback) {
-      container = LogoutPage();
+      container = const LogoutPage();
     }
     return Scaffold(
       appBar: AppBar(title: const Text("SIBA CMS")),
@@ -99,8 +101,8 @@ class _MainScreenState extends State<MainScreen> {
             Icon(Icons.newspaper, size: 30),
             Icon(Icons.notifications, size: 30),
           ],
-          color: Colors.blueAccent,
-          buttonBackgroundColor: Colors.blue,
+          color: myColor,
+          buttonBackgroundColor: myColor,
           backgroundColor: Colors.transparent,
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 300),
@@ -137,12 +139,10 @@ class _MainScreenState extends State<MainScreen> {
               currentPage == DrawerSections.terms ? true : false),
           menuItem(3, "Finance", Icons.currency_pound,
               currentPage == DrawerSections.fees ? true : false),
-          Divider(),
           menuItem(4, "Withdraw", Icons.book_online_outlined,
               currentPage == DrawerSections.settings ? true : false),
           menuItem(5, "Result", Icons.card_giftcard,
               currentPage == DrawerSections.notifications ? true : false),
-          Divider(),
           menuItem(6, "Feedback", Icons.note,
               currentPage == DrawerSections.privacy_policy ? true : false),
           menuItem(7, "Log out", Icons.arrow_forward,
@@ -154,50 +154,60 @@ class _MainScreenState extends State<MainScreen> {
 
   Widget menuItem(int id, String title, IconData icon, bool selected) {
     return Material(
-      color: selected ? Colors.grey[300] : Colors.transparent,
-      child: InkWell(
-        onTap: () {
-          Navigator.pop(context);
-          setState(() {
-            if (id == 1) {
-              currentPage = DrawerSections.dashboard;
-            } else if (id == 2) {
-              currentPage = DrawerSections.terms;
-            } else if (id == 3) {
-              currentPage = DrawerSections.fees;
-            } else if (id == 4) {
-              currentPage = DrawerSections.settings;
-            } else if (id == 5) {
-              currentPage = DrawerSections.notifications;
-            } else if (id == 6) {
-              currentPage = DrawerSections.privacy_policy;
-            } else if (id == 7) {
-              currentPage = DrawerSections.send_feedback;
-            }
-          });
-        },
-        child: Padding(
-          padding: EdgeInsets.all(15.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: Icon(
-                  icon,
-                  size: 20,
-                  color: Colors.black,
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: Card(
+          elevation: selected ? 10.0 : 0.0,
+          shadowColor: Color.fromARGB(255, 12, 103, 163),
+          color: colors,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          child: InkWell(
+            onTap: () {
+              // Navigator.pop(context);
+              setState(() {
+                if (id == 1) {
+                  currentPage = DrawerSections.dashboard;
+                } else if (id == 2) {
+                  currentPage = DrawerSections.terms;
+                } else if (id == 3) {
+                  currentPage = DrawerSections.fees;
+                } else if (id == 4) {
+                  currentPage = DrawerSections.settings;
+                } else if (id == 5) {
+                  currentPage = DrawerSections.notifications;
+                } else if (id == 6) {
+                  currentPage = DrawerSections.privacy_policy;
+                } else if (id == 7) {
+                  currentPage = DrawerSections.send_feedback;
+                }
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(11.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Icon(
+                      icon,
+                      size: 20,
+                      color: myTextColor,
+                    ),
                   ),
-                ),
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        color: myTextColor,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

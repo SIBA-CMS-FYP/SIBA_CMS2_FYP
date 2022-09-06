@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/components/constants.dart';
 
 class MyHeaderDrawer extends StatefulWidget {
   String name = "";
-  MyHeaderDrawer(this.name);
+  MyHeaderDrawer(this.name, {Key? key}) : super(key: key);
 
   @override
   MyHeaderDrawerState createState() => MyHeaderDrawerState();
@@ -27,7 +28,7 @@ class MyHeaderDrawerState extends State<MyHeaderDrawer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blueAccent,
+      color: myColor,
       width: double.infinity,
       height: 200,
       padding: const EdgeInsets.only(top: 20.0),
@@ -46,12 +47,12 @@ class MyHeaderDrawerState extends State<MyHeaderDrawer> {
           ),
           Text(
             widget.name,
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: const TextStyle(color: myTextColor, fontSize: 20),
           ),
           Text(
-            '${cms}',
-            style: TextStyle(
-              color: Colors.grey[200],
+            '$cms',
+            style: const TextStyle(
+              color: myTextColor,
               fontSize: 14,
             ),
           ),

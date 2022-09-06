@@ -1,24 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:siba_cms_2/models/attendance_Model.dart';
 import 'package:siba_cms_2/models/http_model.dart';
 import 'package:siba_cms_2/models/sub_attendance.dart';
-import 'package:siba_cms_2/routes/attendance_sub.dart';
-import 'package:siba_cms_2/routes/course.dart';
-import 'package:siba_cms_2/routes/dashboard.dart';
 
-class Attendence extends StatefulWidget {
-  Attendence({Key? key}) : super(key: key);
+class AttendenceBYSub extends StatefulWidget {
+  var cms;
+  var enrollid;
+  var course_code;
+  AttendenceBYSub(this.cms, this.enrollid, this.course_code);
 
   @override
-  State<Attendence> createState() => _AttendenceState();
+  State<AttendenceBYSub> createState() => _AttendenceBYSubState();
 }
 
-class _AttendenceState extends State<Attendence> {
-  Future<StudentAttendance>? attendanceData;
-  var cmss;
-  var enrollid;
+class _AttendenceBYSubState extends State<AttendenceBYSub> {
+  late var cms = widget.cms;
+  late var enrollid = widget.enrollid;
+  late var course_code = widget.course_code;
+  Future<AttendanceSubject>? attendanceBYSub;
 
   @override
   void initState() {
@@ -27,12 +26,8 @@ class _AttendenceState extends State<Attendence> {
   }
 
   Future<void> _loadAttendance() async {
-    final prefs = await SharedPreferences.getInstance();
     setState(() {
-      cmss = (prefs.getString('cms'));
-      enrollid = (prefs.getInt('enrollID'));
-      print(enrollid);
-      attendanceData = fetchAttendance(cmss.toString(), enrollid);
+      attendanceBYSub = fetchAttendanceBySubj(cms, enrollid, course_code);
     });
   }
 
@@ -51,8 +46,8 @@ class _AttendenceState extends State<Attendence> {
         ),
       ),
       body: Center(
-        child: FutureBuilder<StudentAttendance>(
-          future: attendanceData,
+        child: FutureBuilder<AttendanceSubject>(
+          future: attendanceBYSub,
           builder: (context, resultData) {
             if (resultData.hasData) {
               return ListView.builder(
@@ -74,23 +69,14 @@ class _AttendenceState extends State<Attendence> {
                               Color.fromRGBO(39, 115, 171, 1),
                             ),
                             title: Text(
-                                '${resultData.data!.row[index].CourseTitle}'),
+                                '${resultData.data!.row[index].attendance}'),
                             leading: const Icon(
                               CupertinoIcons.book,
                               color: Colors.white,
                             ),
-                            trailing: Text(
-                                ' ${resultData.data!.row[index].Present}  ${resultData.data!.row[index].Absent}  ${resultData.data!.row[index].courseCode}'),
-                            onTap: () => {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => AttendenceBYSub(
-                                          cmss,
-                                          enrollid,
-                                          resultData
-                                              .data!.row[index].courseCode)))
-                            },
+                            trailing:
+                                Text(' ${resultData.data!.row[index].Date} '),
+                            onTap: () => {},
                           ),
                         ),
                       ],

@@ -67,7 +67,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return Attendence(context);
+                                return Attendence();
                               }),
                             );
                           },

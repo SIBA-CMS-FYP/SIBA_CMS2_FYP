@@ -39,14 +39,14 @@ class ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-       leading: IconButton(
+      appBar: AppBar(
+        leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
           icon: Icon(
             Icons.arrow_back_ios,
-          ),   
+          ),
         ),
       ),
       body: Center(
@@ -54,9 +54,8 @@ class ProfileState extends State<Profile> {
           future: studentData,
           builder: (context, profiledata) {
             if (profiledata.hasData) {
-              var d=profiledata.data!;
-              return
-                   ProfileTemp(d.firstName, d.lastName, d.email, d.phone);
+              var d = profiledata.data!;
+              return ProfileTemp(d.firstName, d.lastName, d.email, d.phone);
             } else if (profiledata.hasError) {
               return Text('${profiledata.error}');
             }
@@ -69,8 +68,7 @@ class ProfileState extends State<Profile> {
 }
 
 class ProfileTemp extends StatefulWidget {
-  
-  var firstName,lastName, email, phone;
+  var firstName, lastName, email, phone;
   ProfileTemp(this.firstName, this.lastName, this.email, this.phone);
 
   @override
@@ -78,8 +76,7 @@ class ProfileTemp extends StatefulWidget {
 }
 
 class _ProfileTempState extends State<ProfileTemp> {
-
-var cms1;
+  var cms1;
   @override
   void initState() {
     _loadCMS();
@@ -93,9 +90,6 @@ var cms1;
     });
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -105,11 +99,9 @@ var cms1;
       children: [
         Container(
           decoration: BoxDecoration(
-            
             color: Colors.white,
           ),
         ),
-        
         Scaffold(
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(
@@ -118,7 +110,6 @@ var cms1;
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 73),
               child: Column(
                 children: [
-                  
                   Container(
                     height: 300,
                     child: LayoutBuilder(
@@ -129,23 +120,23 @@ var cms1;
                           fit: StackFit.expand,
                           children: [
                             Positioned(
-                             top: 150,
-                             bottom: 0,
+                              top: 150,
+                              bottom: 0,
                               left: 0,
                               right: 0,
                               child: Container(
-                               height:  0.5,
+                                height: 0.5,
                                 width: innerWidth,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
                                   gradient: LinearGradient(
-                                      colors: [
+                                    colors: [
                                       Color.fromRGBO(4, 9, 35, 1),
                                       Color.fromRGBO(39, 105, 171, 1),
-                                              ],
-                                      begin: FractionalOffset.bottomCenter,
-                                       end: FractionalOffset.topCenter,
-                                ),
+                                    ],
+                                    begin: FractionalOffset.bottomCenter,
+                                    end: FractionalOffset.topCenter,
+                                  ),
                                 ),
                                 child: Column(
                                   children: [
@@ -153,16 +144,14 @@ var cms1;
                                       height: 80,
                                     ),
                                     Text(
-                                      widget.firstName +" "+ widget.lastName,
-                                      style: TextStyle(
+                                      widget.firstName + " " + widget.lastName,
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontFamily: 'Nunito',
                                         fontSize: 30,
                                       ),
                                     ),
-
-                               
-                           Text(
+                                    const Text(
                                       "CGPA:  ",
                                       style: TextStyle(
                                         color: Colors.white,
@@ -170,19 +159,15 @@ var cms1;
                                         fontSize: 14,
                                       ),
                                     ),
-                                    
-                             
                                   ],
                                 ),
                               ),
                             ),
-                            
                             Positioned(
                               top: 0,
                               left: 20,
                               right: 20,
                               bottom: 70,
-                             
                               child: Center(
                                 child: Container(
                                   child: Image.asset(
@@ -198,159 +183,122 @@ var cms1;
                       },
                     ),
                   ),
-
-
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                
-                        
-                           Container(
-                            height: 80,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                                  gradient: LinearGradient(
-              colors: [
-                Color.fromRGBO(4, 9, 35, 1),
-                Color.fromRGBO(39, 105, 171, 1),
-              ],
-              begin: FractionalOffset.bottomCenter,
-              end: FractionalOffset.topCenter,
-            ),
-                            
-                            ),
-                            child: Padding(
+                  Container(
+                    height: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromRGBO(4, 9, 35, 1),
+                          Color.fromRGBO(39, 105, 171, 1),
+                        ],
+                        begin: FractionalOffset.bottomCenter,
+                        end: FractionalOffset.topCenter,
+                      ),
+                    ),
+                    child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
-                      
-                          
                         children: [
-
-                        
-                          
                           SizedBox(
-                                      height: 10,
-                                    ),
-                                    
-  Icon(
-    
-   
+                            height: 10,
+                          ),
+                          Icon(
                             CupertinoIcons.goforward,
-                        color: Colors.white, 
-                             size: 25,
-                              ),
-                          
+                            color: Colors.white,
+                            size: 25,
+                          ),
                           Text(
-                           " " +'${cms1}',
+                            " " + '${cms1}',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 17,
                               fontFamily: 'Nunito',
                             ),
                           ),
-                         Divider(
+                          Divider(
                             thickness: 2.5,
                           ),
-                       
                         ],
-                        
                       ),
                     ),
-                          ),
-                          SizedBox(
+                  ),
+                  SizedBox(
                     height: 10,
                   ),
-                   Container(
-                            height: height * 0.08,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                                  gradient: LinearGradient(
-              colors: [
-                Color.fromRGBO(4, 9, 35, 1),
-                Color.fromRGBO(39, 105, 171, 1),
-              ],
-              begin: FractionalOffset.bottomCenter,
-              end: FractionalOffset.topCenter,
-            ),
-                            
-                            ),
-                            child: Padding(
+                  Container(
+                    height: height * 0.08,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromRGBO(4, 9, 35, 1),
+                          Color.fromRGBO(39, 105, 171, 1),
+                        ],
+                        begin: FractionalOffset.bottomCenter,
+                        end: FractionalOffset.topCenter,
+                      ),
+                    ),
+                    child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
-                      
-                          
                         children: [
-
-                        
-                          
                           SizedBox(
-                                      height: 10,
-                                    ),
-                                    
-  Icon(
-    
-   
+                            height: 10,
+                          ),
+                          Icon(
                             CupertinoIcons.house,
-                        color: Colors.white, 
-                             size: 25,
-                              ),
-                          
+                            color: Colors.white,
+                            size: 25,
+                          ),
                           Text(
-                           " "+widget.email,
+                            " " + widget.email,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 17,
                               fontFamily: 'Nunito',
                             ),
                           ),
-                        
-          
-        
                           Divider(
                             thickness: 2.5,
                           ),
-                       
-                          
-                         
                         ],
-                        
                       ),
                     ),
-                          ),
-                          SizedBox(
+                  ),
+                  SizedBox(
                     height: 10,
                   ),
-                
-                           Container(
-                            height: height * 0.08,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                                  gradient: LinearGradient(
-              colors: [
-                Color.fromRGBO(4, 9, 35, 1),
-                Color.fromRGBO(39, 105, 171, 1),
-              ],
-              begin: FractionalOffset.bottomCenter,
-              end: FractionalOffset.topCenter,
-            ),
-                            
-                            ),
-                            child: Padding(
+                  Container(
+                    height: height * 0.08,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromRGBO(4, 9, 35, 1),
+                          Color.fromRGBO(39, 105, 171, 1),
+                        ],
+                        begin: FractionalOffset.bottomCenter,
+                        end: FractionalOffset.topCenter,
+                      ),
+                    ),
+                    child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
                         children: [
                           SizedBox(
-                                      height: 10,
-                                    ),
-                                    Icon(
-    
-   
+                            height: 10,
+                          ),
+                          Icon(
                             CupertinoIcons.phone,
-                        color: Colors.white, 
-                             size: 25,
-                              ),
+                            color: Colors.white,
+                            size: 25,
+                          ),
                           Text(
-                          " "+ widget.phone,
+                            " " + widget.phone,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 17,
@@ -360,74 +308,54 @@ var cms1;
                           Divider(
                             thickness: 2.5,
                           ),
-                       
-                          
-                         
                         ],
                       ),
                     ),
-                          ),
-                          SizedBox(
+                  ),
+                  SizedBox(
                     height: 10,
                   ),
-                 Container(
-                            height: height * 0.08,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                                  gradient: LinearGradient(
-              colors: [
-                Color.fromRGBO(4, 9, 35, 1),
-                Color.fromRGBO(39, 105, 171, 1),
-              ],
-              begin: FractionalOffset.bottomCenter,
-              end: FractionalOffset.topCenter,
-            ),
-                            
-                            ),
-                            child: Padding(
+                  Container(
+                    height: height * 0.08,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromRGBO(4, 9, 35, 1),
+                          Color.fromRGBO(39, 105, 171, 1),
+                        ],
+                        begin: FractionalOffset.bottomCenter,
+                        end: FractionalOffset.topCenter,
+                      ),
+                    ),
+                    child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
-                      
-                          
                         children: [
-
-                        
-                          
                           SizedBox(
-                                      height: 10,
-                                    ),
-                                    
-  Icon(
-    
-   
+                            height: 10,
+                          ),
+                          Icon(
                             CupertinoIcons.book,
-                        color: Colors.white, 
-                             size: 25,
-                              ),
-                          
+                            color: Colors.white,
+                            size: 25,
+                          ),
                           Text(
-                           " Computer Science",
+                            " Computer Science",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 17,
                               fontFamily: 'Nunito',
                             ),
                           ),
-                        
-          
-        
                           Divider(
                             thickness: 2.5,
                           ),
-                       
-                          
-                         
                         ],
-                        
                       ),
                     ),
-                          ),
-                          SizedBox(
+                  ),
+                  SizedBox(
                     height: 10,
                   ),
                 ],
@@ -437,7 +365,5 @@ var cms1;
         )
       ],
     );
-          
-                
   }
 }

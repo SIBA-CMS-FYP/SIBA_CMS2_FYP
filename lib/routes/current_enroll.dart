@@ -55,15 +55,18 @@ class CurrentEnrollState extends State<CurrentEnroll> {
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
-                       shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-           textColor: Colors.white,
-           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
-                        title: Text(enrollData.data!.row[index].title),
-                      leading: 
-                      Icon(CupertinoIcons.book, color: Colors.white,)
-                      ,
-                        ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      textColor: Colors.white,
+                      tileColor: Color.alphaBlend(
+                          Color.fromARGB(255, 41, 55, 124),
+                          Color.fromRGBO(39, 115, 171, 1)),
+                      title: Text(enrollData.data!.row[index].title),
+                      leading: const Icon(
+                        CupertinoIcons.book,
+                        color: Colors.white,
+                      ),
+                    ),
                   );
                 },
               );

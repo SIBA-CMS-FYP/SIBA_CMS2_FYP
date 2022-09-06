@@ -24,15 +24,4 @@ class StudentProfile {
       cms: json['cms'],
     );
   }
-
-  // Map<String, dynamic> toJson() {
-  //   Map<String, dynamic> data = new Map<String, dynamic>();
-  //   data['id'] = this.id;
-  //   data['first_name'] = this.firstName;
-  //   data['last_name'] = this.lastName;
-  //   data['email'] = this.email;
-  //   data['phone'] = this.phone;
-  //   data['cms'] = this.cms;
-  //   return data;
-  // }
 }
