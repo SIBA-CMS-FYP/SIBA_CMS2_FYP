@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class StudentProfile {
   final id;
   final String firstName;
@@ -5,14 +7,17 @@ class StudentProfile {
   final String email;
   final String phone;
   final String cms;
+  final double CGPA;
 
-  StudentProfile(
-      {required this.id,
-      required this.firstName,
-      required this.lastName,
-      required this.email,
-      required this.phone,
-      required this.cms});
+  StudentProfile({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.phone,
+    required this.cms,
+    required this.CGPA,
+  });
 
   factory StudentProfile.fromJson(Map<String, dynamic> json) {
     return StudentProfile(
@@ -22,6 +27,7 @@ class StudentProfile {
       email: json['email'],
       phone: json['phone'],
       cms: json['cms'],
+      CGPA: (json['CGPA'] as num) as double,
     );
   }
 }

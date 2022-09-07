@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/components/constants.dart';
 import 'package:siba_cms_2/models/current_semester.dart';
 import 'package:siba_cms_2/models/http_model.dart';
-import 'package:siba_cms_2/models/student_data.dart';
 
 class CurrentEnroll extends StatefulWidget {
-  CurrentEnroll({Key? key}) : super(key: key);
+  const CurrentEnroll({Key? key}) : super(key: key);
 
   @override
   State<CurrentEnroll> createState() => CurrentEnrollState();
@@ -34,7 +34,7 @@ class CurrentEnrollState extends State<CurrentEnroll> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: myColor,
         title: const Text('CurrentEnroll'),
         leading: IconButton(
           onPressed: () {
@@ -59,8 +59,9 @@ class CurrentEnrollState extends State<CurrentEnroll> {
                           borderRadius: BorderRadius.circular(15)),
                       textColor: Colors.white,
                       tileColor: Color.alphaBlend(
-                          Color.fromARGB(255, 41, 55, 124),
-                          Color.fromRGBO(39, 115, 171, 1)),
+                        const Color.fromARGB(255, 30, 50, 151),
+                        const Color.fromARGB(255, 8, 119, 231),
+                      ),
                       title: Text(enrollData.data!.row[index].title),
                       leading: const Icon(
                         CupertinoIcons.book,

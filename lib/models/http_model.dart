@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/models/attendance_Model.dart';
 import 'package:siba_cms_2/models/current_semester.dart';
 import 'package:siba_cms_2/models/fees_model.dart';
+import 'package:siba_cms_2/models/library_model.dart';
 import 'package:siba_cms_2/models/result_model.dart';
 import 'package:siba_cms_2/models/semester_terms.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
@@ -142,5 +143,15 @@ Future<AttendanceSubject> fetchAttendanceBySubj(
     return AttendanceSubject.fromJson(jsonDecode(response.body));
   } else {
     throw Exception("Faild To 'Load attendance ");
+  }
+}
+
+Future<LibraryModel> fetchLibDue(var cms) async {
+  var url = "$PROTOCOL://$DOMAIN/library/getLibrary?cms=$cms";
+  var response = await http.get(Uri.parse(url));
+  if (response.statusCode == 200) {
+    return LibraryModel.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception("Faild To 'Load Library data ");
   }
 }

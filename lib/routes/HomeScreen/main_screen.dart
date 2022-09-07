@@ -3,7 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/components/constants.dart';
 import 'package:siba_cms_2/models/http_model.dart';
-import 'package:siba_cms_2/routes/event.dart';
+import 'package:siba_cms_2/routes/library_due.dart';
 import 'package:siba_cms_2/routes/finance.dart';
 import 'package:siba_cms_2/routes/notifications.dart';
 import 'package:siba_cms_2/routes/course.dart';
@@ -61,20 +61,23 @@ class _MainScreenState extends State<MainScreen> {
     } else if (currentPage == DrawerSections.terms) {
       container = Terms();
     } else if (currentPage == DrawerSections.events) {
-      container = EventsActivity();
+      container = FinanceLibrary();
     } else if (currentPage == DrawerSections.fees) {
       container = Finance();
     } else if (currentPage == DrawerSections.settings) {
       container = CourseWithdraw();
     } else if (currentPage == DrawerSections.notifications) {
-      container = const NotificationActivity();
+      container = const FinanceLibrary();
     } else if (currentPage == DrawerSections.privacy_policy) {
       container = FeedBack();
     } else if (currentPage == DrawerSections.send_feedback) {
       container = const LogoutPage();
     }
     return Scaffold(
-      appBar: AppBar(title: const Text("SIBA CMS")),
+      appBar: AppBar(
+          title: const Text("SIBA CMS"),
+          foregroundColor: myTextColor,
+          backgroundColor: myColor),
       body: container,
       drawer: Drawer(
         child: SingleChildScrollView(
@@ -141,7 +144,7 @@ class _MainScreenState extends State<MainScreen> {
               currentPage == DrawerSections.fees ? true : false),
           menuItem(4, "Withdraw", Icons.book_online_outlined,
               currentPage == DrawerSections.settings ? true : false),
-          menuItem(5, "Result", Icons.card_giftcard,
+          menuItem(5, "Library", Icons.card_giftcard,
               currentPage == DrawerSections.notifications ? true : false),
           menuItem(6, "Feedback", Icons.note,
               currentPage == DrawerSections.privacy_policy ? true : false),
@@ -165,7 +168,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           child: InkWell(
             onTap: () {
-              // Navigator.pop(context);
+              Navigator.pop(context);
               setState(() {
                 if (id == 1) {
                   currentPage = DrawerSections.dashboard;

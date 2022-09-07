@@ -48,6 +48,7 @@ dependencies:
   dio: ^4.0.0
   freezed_annotation: ^0.14.3
   fluttertoast: ^8.0.9
+  widget_circular_animator: ^1.0.0
   # retrofit: ^2.0.1
   # pretty_dio_logger: ^1.2.0-beta-1
   # json_annotation: ^4.1.0

@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/components/constants.dart';
 import 'package:siba_cms_2/models/http_model.dart';
 import 'package:siba_cms_2/models/student_data.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
+
+import 'package:widget_circular_animator/widget_circular_animator.dart';
 
 class Profile extends StatefulWidget {
   Profile({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class Profile extends StatefulWidget {
 }
 
 class ProfileState extends State<Profile> {
-  var cmss;
+  var cms;
   Future<StudentProfile>? studentData;
 
   @override
@@ -25,9 +27,8 @@ class ProfileState extends State<Profile> {
   Future<void> _loadProfile() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      cmss = (prefs.getString('cms'));
-      studentData = fetchStudent(cmss.toString());
-      print(cmss);
+      cms = (prefs.getString('cms'));
+      studentData = fetchStudent(cms.toString());
     });
   }
 
@@ -40,11 +41,12 @@ class ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: myColor,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
           ),
         ),
@@ -55,7 +57,8 @@ class ProfileState extends State<Profile> {
           builder: (context, profiledata) {
             if (profiledata.hasData) {
               var d = profiledata.data!;
-              return ProfileTemp(d.firstName, d.lastName, d.email, d.phone);
+              return ProfileTemp(
+                  d.firstName, d.lastName, d.email, d.phone, d.CGPA);
             } else if (profiledata.hasError) {
               return Text('${profiledata.error}');
             }
@@ -67,9 +70,12 @@ class ProfileState extends State<Profile> {
   }
 }
 
+// ignore: must_be_immutable
 class ProfileTemp extends StatefulWidget {
-  var firstName, lastName, email, phone;
-  ProfileTemp(this.firstName, this.lastName, this.email, this.phone);
+  var firstName, lastName, email, phone, CGPA;
+  ProfileTemp(this.firstName, this.lastName, this.email, this.phone, this.CGPA,
+      {Key? key})
+      : super(key: key);
 
   @override
   State<ProfileTemp> createState() => _ProfileTempState();
@@ -98,23 +104,22 @@ class _ProfileTempState extends State<ProfileTemp> {
       fit: StackFit.expand,
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
           ),
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 73),
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 300,
                     child: LayoutBuilder(
                       builder: (context, constraints) {
-                        double innerHeight = constraints.maxHeight;
                         double innerWidth = constraints.maxWidth;
                         return Stack(
                           fit: StackFit.expand,
@@ -129,18 +134,15 @@ class _ProfileTempState extends State<ProfileTemp> {
                                 width: innerWidth,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color.fromRGBO(4, 9, 35, 1),
-                                      Color.fromRGBO(39, 105, 171, 1),
-                                    ],
+                                  gradient: const LinearGradient(
+                                    colors: cardColor,
                                     begin: FractionalOffset.bottomCenter,
                                     end: FractionalOffset.topCenter,
                                   ),
                                 ),
                                 child: Column(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 80,
                                     ),
                                     Text(
@@ -151,12 +153,12 @@ class _ProfileTempState extends State<ProfileTemp> {
                                         fontSize: 30,
                                       ),
                                     ),
-                                    const Text(
-                                      "CGPA:  ",
-                                      style: TextStyle(
+                                    Text(
+                                      "CGPA:    " + '${widget.CGPA}',
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontFamily: 'Nunito',
-                                        fontSize: 14,
+                                        fontSize: 16,
                                       ),
                                     ),
                                   ],
@@ -169,11 +171,22 @@ class _ProfileTempState extends State<ProfileTemp> {
                               right: 20,
                               bottom: 70,
                               child: Center(
-                                child: Container(
-                                  child: Image.asset(
-                                    'assets/images/profile.png',
-                                    width: 200,
-                                    fit: BoxFit.fitWidth,
+                                child: WidgetCircularAnimator(
+                                  size: 210,
+                                  innerIconsSize: 2,
+                                  outerIconsSize: 2,
+                                  innerAnimation: Curves.easeInOutBack,
+                                  outerAnimation: Curves.easeInOutBack,
+                                  innerColor: Colors.deepPurple,
+                                  outerColor: Colors.orangeAccent,
+                                  innerAnimationSeconds: 10,
+                                  outerAnimationSeconds: 10,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.grey[200]),
+                                    child: Image.asset(
+                                        "assets/images/iba_logo.png"),
                                   ),
                                 ),
                               ),
@@ -190,11 +203,8 @@ class _ProfileTempState extends State<ProfileTemp> {
                     height: 80,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromRGBO(4, 9, 35, 1),
-                          Color.fromRGBO(39, 105, 171, 1),
-                        ],
+                      gradient: const LinearGradient(
+                        colors: cardColor,
                         begin: FractionalOffset.bottomCenter,
                         end: FractionalOffset.topCenter,
                       ),
@@ -203,41 +213,38 @@ class _ProfileTempState extends State<ProfileTemp> {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Icon(
+                          const Icon(
                             CupertinoIcons.goforward,
                             color: Colors.white,
                             size: 25,
                           ),
                           Text(
-                            " " + '${cms1}',
-                            style: TextStyle(
+                            " " + '$cms1',
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 17,
                               fontFamily: 'Nunito',
                             ),
                           ),
-                          Divider(
+                          const Divider(
                             thickness: 2.5,
                           ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
                     height: height * 0.08,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromRGBO(4, 9, 35, 1),
-                          Color.fromRGBO(39, 105, 171, 1),
-                        ],
+                      gradient: const LinearGradient(
+                        colors: cardColor,
                         begin: FractionalOffset.bottomCenter,
                         end: FractionalOffset.topCenter,
                       ),
@@ -246,41 +253,38 @@ class _ProfileTempState extends State<ProfileTemp> {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Icon(
+                          const Icon(
                             CupertinoIcons.house,
                             color: Colors.white,
                             size: 25,
                           ),
                           Text(
                             " " + widget.email,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 17,
                               fontFamily: 'Nunito',
                             ),
                           ),
-                          Divider(
+                          const Divider(
                             thickness: 2.5,
                           ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
                     height: height * 0.08,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromRGBO(4, 9, 35, 1),
-                          Color.fromRGBO(39, 105, 171, 1),
-                        ],
+                      gradient: const LinearGradient(
+                        colors: cardColor,
                         begin: FractionalOffset.bottomCenter,
                         end: FractionalOffset.topCenter,
                       ),
@@ -289,41 +293,38 @@ class _ProfileTempState extends State<ProfileTemp> {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Icon(
+                          const Icon(
                             CupertinoIcons.phone,
                             color: Colors.white,
                             size: 25,
                           ),
                           Text(
                             " " + widget.phone,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 17,
                               fontFamily: 'Nunito',
                             ),
                           ),
-                          Divider(
+                          const Divider(
                             thickness: 2.5,
                           ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
                     height: height * 0.08,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromRGBO(4, 9, 35, 1),
-                          Color.fromRGBO(39, 105, 171, 1),
-                        ],
+                      gradient: const LinearGradient(
+                        colors: cardColor,
                         begin: FractionalOffset.bottomCenter,
                         end: FractionalOffset.topCenter,
                       ),
@@ -331,7 +332,7 @@ class _ProfileTempState extends State<ProfileTemp> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
-                        children: [
+                        children: const [
                           SizedBox(
                             height: 10,
                           ),
@@ -355,7 +356,7 @@ class _ProfileTempState extends State<ProfileTemp> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],

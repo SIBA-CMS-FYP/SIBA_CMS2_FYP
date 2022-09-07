@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:siba_cms_2/components/constants.dart';
 import 'package:siba_cms_2/models/courses_model.dart';
 import 'package:siba_cms_2/models/http_model.dart';
 import 'package:siba_cms_2/models/result_model.dart';
@@ -38,7 +39,7 @@ class _ResultState extends State<Result> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: myColor,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -95,8 +96,7 @@ class _ResultState extends State<Result> {
                               Color.fromARGB(255, 41, 55, 124),
                               Color.fromRGBO(39, 115, 171, 1),
                             ),
-                            title:
-                                Text('${resultData.data!.row[index].Course}'),
+                            title: Text(resultData.data!.row[index].Course),
                             leading: const Icon(
                               CupertinoIcons.book,
                               color: Colors.white,

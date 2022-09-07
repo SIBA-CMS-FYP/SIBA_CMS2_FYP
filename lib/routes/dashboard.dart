@@ -18,14 +18,12 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context)
-        .size; //this gonna give us total height and with of our device
     return Scaffold(
       body: Stack(
         children: <Widget>[
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
