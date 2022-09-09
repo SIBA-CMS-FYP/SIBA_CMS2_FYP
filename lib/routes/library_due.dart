@@ -42,32 +42,55 @@ class _FinanceLibraryState extends State<FinanceLibrary> {
                 itemCount: feeData.data!.row.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(1.0),
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 3),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Card(
-                          child: ListTile(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            textColor: Colors.white,
-                            tileColor: Color.alphaBlend(
-                              const Color.fromARGB(255, 30, 50, 151),
-                              const Color.fromARGB(255, 8, 119, 231),
-                            ),
-                            leading: const Icon(
-                              CupertinoIcons.book,
-                              color: Colors.white,
-                            ),
-                            title:
-                                Text('${feeData.data!.row[index].BookIssue}'),
-                            trailing: Text(feeData.data!.row[index].issueDate +
-                                "  | " +
-                                feeData.data!.row[index].dueDate +
-                                " | " +
-                                feeData.data!.row[index].Due.toString()),
+                        index == 0
+                            ? ListTile(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                textColor: Colors.black87,
+                                leading: const Icon(
+                                  CupertinoIcons.book,
+                                  color: Colors.black87,
+                                ),
+                                title: const Text(
+                                  '  Book  ',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                trailing: const Text(
+                                    "Due Date" +
+                                        "  | " +
+                                        "Submited Date" +
+                                        " | " +
+                                        "Due",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                              )
+                            : SizedBox(),
+                        Divider(),
+                        ListTile(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
                           ),
+                          textColor: Colors.black87,
+                          leading: const Icon(
+                            CupertinoIcons.book,
+                            color: Colors.black87,
+                          ),
+                          title: Text(
+                            '${feeData.data!.row[index].BookIssue}',
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          trailing: Text(
+                              feeData.data!.row[index].dueDate +
+                                  "   |    " +
+                                  feeData.data!.row[index].submitDate +
+                                  "    | " +
+                                  feeData.data!.row[index].Due.toString(),
+                              style: TextStyle(fontWeight: FontWeight.w500)),
                         ),
                       ],
                     ),

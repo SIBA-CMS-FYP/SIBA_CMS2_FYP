@@ -98,29 +98,32 @@ class _CourseWithdrawState extends State<CourseWithdraw> {
                   var cData = Coursesdata.data!;
                   return Card(
                     child: ListTile(
-                        title: Text(cData.data[index].title),
-                        leading: Icon(Icons.book_online_rounded),
-                        trailing: (cData.data[index].isWithdraw == 1)
-                            ? ElevatedButton(
-                                onPressed: null,
-                                child: Text("pending"),
-                              )
-                            : ElevatedButton(
-                                onPressed: () => {
-                                  setState(
-                                    () {
-                                      updateisWithdraw(cData.data[index].cms,
-                                          cData.data[index].course_Code);
-                                      // sendWithdrawdata(
-                                      //     int.parse(cData.data[index].courseId),
-                                      //     cData.data[index].cms,
-                                      //     cData.data[index].teacherId,
-                                      //     cData.data[index].enrollID);
-                                    },
-                                  ),
-                                },
-                                child: Text("Withdraw"),
-                              )),
+                      title: Text(cData.data[index].title),
+                      leading: Icon(Icons.book_online_rounded),
+                      trailing: ((cData.data[index].isTeacherAcp == 0 &&
+                              cData.data[index].isHODAcept == 0)
+                          ? ElevatedButton(
+                              onPressed: () => {
+                                setState(
+                                  () {
+                                    updateisWithdraw(cData.data[index].cms,
+                                        cData.data[index].courseCode);
+                                  },
+                                ),
+                              },
+                              child: Text("Withdraw"),
+                            )
+                          : (cData.data[index].isTeacherAcp == 1 &&
+                                  cData.data[index].isHODAcept == 0)
+                              ? ElevatedButton(
+                                  onPressed: null,
+                                  child: Text("pending"),
+                                )
+                              : ElevatedButton(
+                                  onPressed: null,
+                                  child: Text("Accept"),
+                                )),
+                    ),
                   );
                 },
               );
