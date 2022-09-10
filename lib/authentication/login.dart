@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:siba_cms_2/routes/HomeScreen/main_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:siba_cms_2/components/background.dart';
 import "package:http/http.dart" as http;
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
@@ -15,13 +13,18 @@ class LogIn extends StatefulWidget {
   State<LogIn> createState() => _LogInState();
 }
 
+const PROTOCOL = "http";
+
+const DOMAIN = "192.168.10.18:8080";
+
 class _LogInState extends State<LogIn> {
   final TextEditingController cms = TextEditingController();
   TextEditingController password = TextEditingController();
   final formKey = GlobalKey<FormState>(); //key for form
 
   void studyLogin() async {
-    var url = "http://localhost:3000/authentication/login";
+    print("clicks");
+    var url = "http://$DOMAIN/authentication/login";
     var data = {
       "cms": cms.text,
       "password": password.text,

@@ -49,6 +49,10 @@ dependencies:
   freezed_annotation: ^0.14.3
   fluttertoast: ^8.0.9
   widget_circular_animator: ^1.0.0
+  cached_network_image: 
+  pull_to_refresh: ^2.0.0
+  push_notification: ^1.1.1
+
   # retrofit: ^2.0.1
   # pretty_dio_logger: ^1.2.0-beta-1
   # json_annotation: ^4.1.0

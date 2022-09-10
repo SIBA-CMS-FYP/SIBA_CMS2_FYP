@@ -5,7 +5,6 @@ import 'package:siba_cms_2/components/constants.dart';
 import 'package:siba_cms_2/models/http_model.dart';
 import 'package:siba_cms_2/routes/library_due.dart';
 import 'package:siba_cms_2/routes/finance.dart';
-import 'package:siba_cms_2/routes/notifications.dart';
 import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
 import 'package:siba_cms_2/routes/terms.dart';

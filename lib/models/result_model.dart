@@ -41,7 +41,6 @@ class Row {
     finalExam = (json['finalExam'] as num).toDouble();
     GPA = (json['GPA'] as num).toDouble();
     CGPA = (json['CGPA'] as num).toDouble();
-
   }
 
   Map<String, dynamic> toJson() {

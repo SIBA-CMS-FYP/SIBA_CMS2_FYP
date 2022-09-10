@@ -12,6 +12,8 @@ class CourseWithdraw extends StatefulWidget {
   _CourseWithdrawState createState() => _CourseWithdrawState();
 }
 
+const DOMAIN = "192.168.10.18:8080";
+
 class _CourseWithdrawState extends State<CourseWithdraw> {
   // Future<SendWR>? _futureRequest;
   Future<WithdrawCourse>? studentCourseForWithdraw;
@@ -34,7 +36,7 @@ class _CourseWithdrawState extends State<CourseWithdraw> {
   Future<void> sendWithdrawdata(
       int course_id, String cms, String teacher_id, String enroll_id) async {
     final response = await http.post(
-      Uri.parse('http://localhost:3000/withdraw/sendWithdrawReq'),
+      Uri.parse('http://$DOMAIN/withdraw/sendWithdrawReq'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -61,7 +63,7 @@ class _CourseWithdrawState extends State<CourseWithdraw> {
 
   Future<void> updateisWithdraw(String cms, String course_Code) async {
     final response = await http.post(
-      Uri.parse('http://localhost:3000/getCurrent/withdrawCResponse'),
+      Uri.parse('http://$DOMAIN/getCurrent/withdrawCResponse'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -86,6 +88,8 @@ class _CourseWithdrawState extends State<CourseWithdraw> {
 
   @override
   Widget build(BuildContext context) {
+    int count = 0;
+    int countaccept = 0;
     return Scaffold(
       body: Center(
         child: FutureBuilder<WithdrawCourse>(
@@ -96,34 +100,66 @@ class _CourseWithdrawState extends State<CourseWithdraw> {
                 itemCount: Coursesdata.data!.data.length,
                 itemBuilder: (context, index) {
                   var cData = Coursesdata.data!;
+
+                  count = cData.data[index].isTeacherAcp == 1 ||
+                          cData.data[index].isWithdraw == 1
+                      ? (count + 1)
+                      : (count + 0);
+                  print("Total Withdraw " + count.toString());
                   return Card(
-                    child: ListTile(
-                      title: Text(cData.data[index].title),
-                      leading: Icon(Icons.book_online_rounded),
-                      trailing: ((cData.data[index].isTeacherAcp == 0 &&
-                              cData.data[index].isHODAcept == 0)
-                          ? ElevatedButton(
-                              onPressed: () => {
-                                setState(
-                                  () {
-                                    updateisWithdraw(cData.data[index].cms,
-                                        cData.data[index].courseCode);
-                                  },
-                                ),
-                              },
-                              child: Text("Withdraw"),
-                            )
-                          : (cData.data[index].isTeacherAcp == 1 &&
-                                  cData.data[index].isHODAcept == 0)
-                              ? ElevatedButton(
-                                  onPressed: null,
-                                  child: Text("pending"),
-                                )
-                              : ElevatedButton(
-                                  onPressed: null,
-                                  child: Text("Accept"),
-                                )),
-                    ),
+                    child: count < 2
+                        ? ListTile(
+                            title: Text(cData.data[index].title),
+                            leading: Icon(Icons.book_online_rounded),
+                            trailing: ((cData.data[index].isTeacherAcp == 0 &&
+                                    cData.data[index].isHODAcept == 0)
+                                ? ElevatedButton(
+                                    onPressed: () => {
+                                      setState(
+                                        () {
+                                          updateisWithdraw(
+                                              cData.data[index].cms,
+                                              cData.data[index].courseCode);
+                                        },
+                                      ),
+                                    },
+                                    child: Text("Withdraw"),
+                                  )
+                                : (cData.data[index].isTeacherAcp == 1 &&
+                                        cData.data[index].isHODAcept == 0)
+                                    ? ElevatedButton(
+                                        onPressed: null,
+                                        child: Text("pending"),
+                                      )
+                                    : ElevatedButton(
+                                        onPressed: null,
+                                        child: Text("Accept"),
+                                      )),
+                          )
+                        : Column(children: [
+                            index == 0
+                                ? Text(
+                                    "You Already Withdraw two Subject's",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 23),
+                                  )
+                                : Text(""),
+                            ListTile(
+                              title: Text(cData.data[index].title),
+                              leading: Icon(Icons.book_online_rounded),
+                              trailing: ((cData.data[index].isTeacherAcp == 0 &&
+                                      cData.data[index].isHODAcept == 0)
+                                  ? ElevatedButton(
+                                      onPressed: null,
+                                      child: Text("Withdraw"),
+                                    )
+                                  : ElevatedButton(
+                                      onPressed: null,
+                                      child: Text("Accept"),
+                                    )),
+                            ),
+                          ]),
                   );
                 },
               );
@@ -135,62 +171,5 @@ class _CourseWithdrawState extends State<CourseWithdraw> {
         ),
       ),
     );
-  }
-}
-
-// class SendWR {
-//   final int course_id;
-//   final int isWithdraw;
-//   final String cms;
-//   final String teacher_id;
-//   final int enroll_id;
-
-//   const SendWR(
-//       {required this.course_id,
-//       required this.isWithdraw,
-//       required this.cms,
-//       required this.teacher_id,
-//       required this.enroll_id});
-
-//   factory SendWR.fromJson(Map<String, dynamic> json) {
-//     return SendWR(
-//         course_id: json['course_id'],
-//         isWithdraw: json['course_id'],
-//         cms: json['cms'],
-//         teacher_id: json['teacher_id'],
-//         enroll_id: json['enroll_id']);
-//   }
-// }
-class IsWithdrawCheck {
-  IsWithdrawCheck({
-    required this.data,
-  });
-  late final List<Data> data;
-
-  IsWithdrawCheck.fromJson(Map<String, dynamic> json) {
-    data = List.from(json['data']).map((e) => Data.fromJson(e)).toList();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.map((e) => e.toJson()).toList();
-    return _data;
-  }
-}
-
-class Data {
-  Data({
-    required this.isWithdraw,
-  });
-  late final int isWithdraw;
-
-  Data.fromJson(Map<String, dynamic> json) {
-    isWithdraw = json['isWithdraw'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['isWithdraw'] = isWithdraw;
-    return _data;
   }
 }

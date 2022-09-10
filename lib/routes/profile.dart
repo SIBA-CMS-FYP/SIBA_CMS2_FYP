@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,8 +58,8 @@ class ProfileState extends State<Profile> {
           builder: (context, profiledata) {
             if (profiledata.hasData) {
               var d = profiledata.data!;
-              return ProfileTemp(
-                  d.firstName, d.lastName, d.email, d.phone, d.CGPA);
+              return ProfileTemp(d.firstName, d.lastName, d.email, d.phone,
+                  d.cms, d.CGPA, d.img);
             } else if (profiledata.hasError) {
               return Text('${profiledata.error}');
             }
@@ -72,8 +73,9 @@ class ProfileState extends State<Profile> {
 
 // ignore: must_be_immutable
 class ProfileTemp extends StatefulWidget {
-  var firstName, lastName, email, phone, CGPA;
-  ProfileTemp(this.firstName, this.lastName, this.email, this.phone, this.CGPA,
+  var firstName, lastName, email, phone, scms, CGPA, img;
+  ProfileTemp(this.firstName, this.lastName, this.email, this.phone, this.scms,
+      this.CGPA, this.img,
       {Key? key})
       : super(key: key);
 
@@ -181,12 +183,21 @@ class _ProfileTempState extends State<ProfileTemp> {
                                   outerColor: Colors.orangeAccent,
                                   innerAnimationSeconds: 10,
                                   outerAnimationSeconds: 10,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.grey[200]),
-                                    child: Image.asset(
-                                        "assets/images/iba_logo.png"),
+                                  child: CachedNetworkImage(
+                                    imageUrl: widget.img,
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
                                   ),
                                 ),
                               ),
@@ -222,7 +233,7 @@ class _ProfileTempState extends State<ProfileTemp> {
                             size: 25,
                           ),
                           Text(
-                            " " + '$cms1',
+                            "CMS " + widget.scms,
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 17,
@@ -262,7 +273,7 @@ class _ProfileTempState extends State<ProfileTemp> {
                             size: 25,
                           ),
                           Text(
-                            " " + widget.email,
+                            "Email " + widget.email.toString(),
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 17,
@@ -302,7 +313,7 @@ class _ProfileTempState extends State<ProfileTemp> {
                             size: 25,
                           ),
                           Text(
-                            " " + widget.phone,
+                            "Phone " + widget.phone.toString(),
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 17,
@@ -342,7 +353,7 @@ class _ProfileTempState extends State<ProfileTemp> {
                             size: 25,
                           ),
                           Text(
-                            " Computer Science",
+                            "Department Computer Science",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 17,
