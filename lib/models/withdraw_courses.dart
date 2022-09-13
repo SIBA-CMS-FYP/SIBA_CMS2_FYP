@@ -25,6 +25,7 @@ class Data {
     required this.isWithdraw,
     required this.isTeacherAcp,
     required this.isHODAcept,
+    required this.CGPA,
   });
   late final String title;
   late final String courseCode;
@@ -34,6 +35,7 @@ class Data {
   late final int isWithdraw;
   late final int isTeacherAcp;
   late final int isHODAcept;
+  late final double CGPA;
 
   Data.fromJson(Map<String, dynamic> json) {
     title = json['title'];
@@ -44,6 +46,7 @@ class Data {
     isWithdraw = json['isWithdraw'];
     isTeacherAcp = json['isTeacherAcp'];
     isHODAcept = json['isHODAcept'];
+    CGPA = (json['CGPA'] as num).toDouble();
   }
 
   Map<String, dynamic> toJson() {
@@ -56,6 +59,7 @@ class Data {
     _data['isWithdraw'] = isWithdraw;
     _data['isTeacherAcp'] = isTeacherAcp;
     _data['isHODAcept'] = isHODAcept;
+    _data['CGPA'] = CGPA;
     return _data;
   }
 }

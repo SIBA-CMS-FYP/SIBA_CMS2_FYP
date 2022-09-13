@@ -15,7 +15,7 @@ class LogIn extends StatefulWidget {
 
 const PROTOCOL = "http";
 
-const DOMAIN = "192.168.10.18:8080";
+const DOMAIN = "192.168.102.60:8080";
 
 class _LogInState extends State<LogIn> {
   final TextEditingController cms = TextEditingController();

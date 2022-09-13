@@ -4,10 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/components/constants.dart';
 import 'package:siba_cms_2/models/attendance_Model.dart';
 import 'package:siba_cms_2/models/http_model.dart';
-import 'package:siba_cms_2/models/sub_attendance.dart';
+
 import 'package:siba_cms_2/routes/attendance_sub.dart';
-import 'package:siba_cms_2/routes/course.dart';
-import 'package:siba_cms_2/routes/dashboard.dart';
 
 class Attendence extends StatefulWidget {
   Attendence({Key? key}) : super(key: key);
@@ -80,8 +78,8 @@ class _AttendenceState extends State<Attendence> {
                               CupertinoIcons.book,
                               color: Colors.white,
                             ),
-                            trailing: Text(
-                                ' ${resultData.data!.row[index].Present}  ${resultData.data!.row[index].Absent}  ${resultData.data!.row[index].courseCode}'),
+                            trailing: Text("P" +
+                                '=> ${resultData.data!.row[index].Present} | A=> ${resultData.data!.row[index].Absent} '),
                             onTap: () => {
                               Navigator.push(
                                   context,

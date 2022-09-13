@@ -10,19 +10,29 @@ class _FeedBackState extends State<FeedBack> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: 500,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text("How much This application Help students"),
+          TextField(
+            decoration: InputDecoration(hintText: "Ans"),
+          ),
+          Text("Is this Application Easy to use"),
+          TextField(
+            decoration: InputDecoration(hintText: "Ans"),
+          ),
+          Text("Rate this App"),
           SizedBox(
-            height: 100,
+            height: 10,
           ),
           SizedBox(
             height: 200,
+            width: 300,
             child: TextField(
               controller: feedbackmsg,
               decoration: const InputDecoration(
-                labelText: 'Enter Your Feedback',
+                labelText: 'Give Your Feedback',
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(width: 1, color: Colors.blueAccent),
                 ),

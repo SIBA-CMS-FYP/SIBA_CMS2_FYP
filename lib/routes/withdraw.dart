@@ -12,7 +12,7 @@ class CourseWithdraw extends StatefulWidget {
   _CourseWithdrawState createState() => _CourseWithdrawState();
 }
 
-const DOMAIN = "192.168.10.18:8080";
+const DOMAIN = "192.168.102.60:8080";
 
 class _CourseWithdrawState extends State<CourseWithdraw> {
   // Future<SendWR>? _futureRequest;
@@ -107,59 +107,134 @@ class _CourseWithdrawState extends State<CourseWithdraw> {
                       : (count + 0);
                   print("Total Withdraw " + count.toString());
                   return Card(
-                    child: count < 2
-                        ? ListTile(
-                            title: Text(cData.data[index].title),
-                            leading: Icon(Icons.book_online_rounded),
-                            trailing: ((cData.data[index].isTeacherAcp == 0 &&
-                                    cData.data[index].isHODAcept == 0)
-                                ? ElevatedButton(
-                                    onPressed: () => {
-                                      setState(
-                                        () {
-                                          updateisWithdraw(
-                                              cData.data[index].cms,
-                                              cData.data[index].courseCode);
-                                        },
-                                      ),
-                                    },
-                                    child: Text("Withdraw"),
-                                  )
-                                : (cData.data[index].isTeacherAcp == 1 &&
+                    child: cData.data[index].CGPA <= 2.33
+                        ? count < 2
+                            ? ListTile(
+                                title: Text(cData.data[index].title),
+                                leading: Icon(Icons.book_online_rounded),
+                                trailing: ((cData.data[index].isTeacherAcp ==
+                                            0 &&
                                         cData.data[index].isHODAcept == 0)
                                     ? ElevatedButton(
-                                        onPressed: null,
-                                        child: Text("pending"),
+                                        onPressed: () => {
+                                          setState(
+                                            () {
+                                              updateisWithdraw(
+                                                  cData.data[index].cms,
+                                                  cData.data[index].courseCode);
+                                            },
+                                          ),
+                                        },
+                                        child: Text("Withdraw"),
                                       )
-                                    : ElevatedButton(
-                                        onPressed: null,
-                                        child: Text("Accept"),
-                                      )),
-                          )
-                        : Column(children: [
-                            index == 0
-                                ? Text(
-                                    "You Already Withdraw two Subject's",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 23),
-                                  )
-                                : Text(""),
-                            ListTile(
-                              title: Text(cData.data[index].title),
-                              leading: Icon(Icons.book_online_rounded),
-                              trailing: ((cData.data[index].isTeacherAcp == 0 &&
-                                      cData.data[index].isHODAcept == 0)
-                                  ? ElevatedButton(
-                                      onPressed: null,
-                                      child: Text("Withdraw"),
-                                    )
-                                  : ElevatedButton(
-                                      onPressed: null,
-                                      child: Text("Accept"),
-                                    )),
-                            ),
-                          ]),
+                                    : (cData.data[index].isTeacherAcp == 1 &&
+                                            cData.data[index].isHODAcept == 0)
+                                        ? ElevatedButton(
+                                            onPressed: null,
+                                            child: Text("pending"),
+                                          )
+                                        : ElevatedButton(
+                                            onPressed: null,
+                                            child: Text("Accept"),
+                                          )),
+                              )
+                            : Column(
+                                children: [
+                                  index == 0
+                                      ? Text(
+                                          "You Already Withdraw two Subject's",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 23),
+                                        )
+                                      : Text(""),
+                                  ListTile(
+                                    title: Text(cData.data[index].title),
+                                    leading: Icon(Icons.book_online_rounded),
+                                    trailing: ((cData
+                                                    .data[index].isTeacherAcp ==
+                                                0 &&
+                                            cData.data[index].isHODAcept == 0)
+                                        ? ElevatedButton(
+                                            onPressed: null,
+                                            child: Text("Withdraw"),
+                                          )
+                                        : (cData.data[index].isTeacherAcp ==
+                                                    1 &&
+                                                cData.data[index].isHODAcept ==
+                                                    0)
+                                            ? ElevatedButton(
+                                                onPressed: null,
+                                                child: Text("pending"),
+                                              )
+                                            : ElevatedButton(
+                                                onPressed: null,
+                                                child: Text("Accept"),
+                                              )),
+                                  ),
+                                ],
+                              )
+                        : count < 1
+                            ? ListTile(
+                                title: Text(cData.data[index].title),
+                                leading: Icon(Icons.book_online_rounded),
+                                trailing: ((cData.data[index].isTeacherAcp ==
+                                            0 &&
+                                        cData.data[index].isHODAcept == 0)
+                                    ? ElevatedButton(
+                                        onPressed: () => {
+                                          setState(
+                                            () {
+                                              updateisWithdraw(
+                                                  cData.data[index].cms,
+                                                  cData.data[index].courseCode);
+                                            },
+                                          ),
+                                        },
+                                        child: Text("Withdraw"),
+                                      )
+                                    : (cData.data[index].isTeacherAcp == 1 &&
+                                            cData.data[index].isHODAcept == 0)
+                                        ? ElevatedButton(
+                                            onPressed: null,
+                                            child: Text("pending"),
+                                          )
+                                        : ElevatedButton(
+                                            onPressed: null,
+                                            child: Text("Accept"),
+                                          )),
+                              )
+                            : Column(children: [
+                                index == 0
+                                    ? Text(
+                                        "You Already Withdraw One Subject's",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 23),
+                                      )
+                                    : Text(""),
+                                ListTile(
+                                  title: Text(cData.data[index].title),
+                                  leading: Icon(Icons.book_online_rounded),
+                                  trailing: ((cData.data[index].isTeacherAcp ==
+                                              0 &&
+                                          cData.data[index].isHODAcept == 0)
+                                      ? ElevatedButton(
+                                          onPressed: null,
+                                          child: Text("Withdraw"),
+                                        )
+                                      : (cData.data[index].isTeacherAcp == 1 &&
+                                              cData.data[index].isHODAcept == 0)
+                                          ? ElevatedButton(
+                                              onPressed: null,
+                                              child: Text("pending"),
+                                            )
+                                          : ElevatedButton(
+                                              onPressed: null,
+                                              child: Text("Accept"),
+                                            )),
+                                ),
+                              ]),
                   );
                 },
               );

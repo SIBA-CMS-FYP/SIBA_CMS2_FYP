@@ -34,85 +34,53 @@ class _DashboardPageState extends State<DashboardPage> {
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20,
                       children: <Widget>[
-                        Column(
-                          children: [
-                            CategoryCard(
-                              title: "Profile",
-                              images: "assets/images/profile.png",
-                              press: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Profile(),
-                                  ),
-                                );
-                              },
-                            ),
-                            Text(
-                              "Profile",
-                              textAlign: TextAlign.center,
-                            )
-                          ],
+                        CategoryCard(
+                          title: "Profile",
+                          images: "assets/images/profile.png",
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Profile(),
+                              ),
+                            );
+                          },
                         ),
-                        Column(
-                          children: [
-                            CategoryCard(
-                              title: "Courses",
-                              images: "assets/images/course.png",
-                              press: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => CurrentEnroll(),
-                                  ),
-                                );
-                              },
-                            ),
-                            Text(
-                              "Current Courses",
-                              textAlign: TextAlign.center,
-                            )
-                          ],
+                        CategoryCard(
+                          title: "Courses",
+                          images: "assets/images/course.png",
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CurrentEnroll(),
+                              ),
+                            );
+                          },
                         ),
-                        Column(
-                          children: [
-                            CategoryCard(
-                              title: "Attendence",
-                              images: "assets/images/attendance.png",
-                              press: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) {
-                                    return Attendence();
-                                  }),
-                                );
-                              },
-                            ),
-                            Text(
-                              "Attendance",
-                              textAlign: TextAlign.center,
-                            )
-                          ],
+                        CategoryCard(
+                          title: "Attendence",
+                          images: "assets/images/attendance.png",
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return Attendence();
+                              }),
+                            );
+                          },
                         ),
-                        Column(
-                          children: [
-                            CategoryCard(
-                              title: "Result",
-                              images: "assets/images/result.png",
-                              press: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) {
-                                    return Result();
-                                  }),
-                                );
-                              },
-                            ),
-                            Text(
-                              "Result",
-                              textAlign: TextAlign.center,
-                            )
-                          ],
+                        CategoryCard(
+                          title: "Result",
+                          images: "assets/images/result.png",
+                          press: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return Result();
+                              }),
+                            );
+                          },
                         ),
                       ],
                     ),

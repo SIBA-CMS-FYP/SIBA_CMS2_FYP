@@ -548,13 +548,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  push_notification:
-    dependency: "direct main"
-    description:
-      name: push_notification
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.1"
   responsive_framework:
     dependency: "direct main"
     description:

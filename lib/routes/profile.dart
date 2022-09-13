@@ -183,22 +183,7 @@ class _ProfileTempState extends State<ProfileTemp> {
                                   outerColor: Colors.orangeAccent,
                                   innerAnimationSeconds: 10,
                                   outerAnimationSeconds: 10,
-                                  child: CachedNetworkImage(
-                                    imageUrl: widget.img,
-                                    imageBuilder: (context, imageProvider) =>
-                                        Container(
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    placeholder: (context, url) =>
-                                        CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
-                                  ),
+                                  child: Image.asset(widget.img + ".jpg"),
                                 ),
                               ),
                             ),
