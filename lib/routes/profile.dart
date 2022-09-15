@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/components/constants.dart';
 import 'package:siba_cms_2/models/http_model.dart';
 import 'package:siba_cms_2/models/student_data.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 
 import 'package:widget_circular_animator/widget_circular_animator.dart';
 
@@ -183,7 +184,18 @@ class _ProfileTempState extends State<ProfileTemp> {
                                   outerColor: Colors.orangeAccent,
                                   innerAnimationSeconds: 10,
                                   outerAnimationSeconds: 10,
-                                  child: Image.asset(widget.img + ".jpg"),
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    child: SizedBox(
+                                      width: 350,
+                                      height: 200,
+                                      child: ClipOval(
+                                        child: Image.asset("assets/images/" +
+                                            widget.img +
+                                            ".jpg"),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),

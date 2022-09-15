@@ -16,6 +16,27 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  Card dashboardCard(String img, String _title) {
+    return Card(
+        margin: EdgeInsets.all(20),
+        elevation: 9.0,
+        shadowColor: Color.fromARGB(96, 143, 142, 142),
+        shape: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide:
+                const BorderSide(color: Color.fromARGB(255, 169, 166, 166))),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Padding(
+              padding: EdgeInsets.all(7),
+              child: Image.asset("assets/images/" + img + ".png")),
+          const SizedBox(height: 7),
+          Text(
+            _title,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ]));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,57 +52,54 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: GridView.count(
                       crossAxisCount: 2,
                       childAspectRatio: .85,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
                       children: <Widget>[
-                        CategoryCard(
-                          title: "Profile",
-                          images: "assets/images/profile.png",
-                          press: () {
+                        InkWell(
+                            hoverColor: Color.fromARGB(96, 143, 142, 142),
+                            onTap: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Profile(),
+                                    ),
+                                  ),
+                                },
+                            child: dashboardCard("profile", "Profile")),
+                        InkWell(
+                          hoverColor: Color.fromARGB(96, 143, 142, 142),
+                          onTap: () => {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Profile(),
+                                builder: (context) => const CurrentEnroll(),
                               ),
-                            );
+                            ),
                           },
+                          child: dashboardCard("course", "Courses"),
                         ),
-                        CategoryCard(
-                          title: "Courses",
-                          images: "assets/images/course.png",
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CurrentEnroll(),
-                              ),
-                            );
-                          },
-                        ),
-                        CategoryCard(
-                          title: "Attendence",
-                          images: "assets/images/attendance.png",
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return Attendence();
-                              }),
-                            );
-                          },
-                        ),
-                        CategoryCard(
-                          title: "Result",
-                          images: "assets/images/result.png",
-                          press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return Result();
-                              }),
-                            );
-                          },
-                        ),
+                        InkWell(
+                            hoverColor: Color.fromARGB(96, 143, 142, 142),
+                            onTap: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Attendence(),
+                                    ),
+                                  ),
+                                },
+                            child: dashboardCard("attendance", "Attendance")),
+                        InkWell(
+                            hoverColor: Color.fromARGB(96, 143, 142, 142),
+                            onTap: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Result(),
+                                    ),
+                                  ),
+                                },
+                            child: dashboardCard("result", "Result")),
                       ],
                     ),
                   ),

@@ -15,7 +15,7 @@ class LogIn extends StatefulWidget {
 
 const PROTOCOL = "http";
 
-const DOMAIN = "192.168.102.60:8080";
+const DOMAIN = "192.168.220.60:8080";
 
 class _LogInState extends State<LogIn> {
   final TextEditingController cms = TextEditingController();
@@ -31,15 +31,15 @@ class _LogInState extends State<LogIn> {
     };
     var res = await http.post(Uri.parse(url), body: data);
     var resData = jsonDecode(res.body);
-    if (resData["success"].toString() == "false") {
-      Fluttertoast.showToast(
-          msg: "incorrect password", toastLength: Toast.LENGTH_SHORT);
-    } else {
+    if (resData["success"].toString() == "true") {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('cms', cms.text);
       prefs.setString("password", password.text);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => MainScreen()));
+    } else {
+      Fluttertoast.showToast(
+          msg: "incorrect password", toastLength: Toast.LENGTH_SHORT);
     }
   }
 
@@ -53,24 +53,27 @@ class _LogInState extends State<LogIn> {
       key: _scaffoldKey,
       backgroundColor: const Color(0xFFffffff),
       body: Background(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: SingleChildScrollView(
             child: Form(
               key: formKey, //key for form
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: height * 0.04),
+                  SizedBox(height: height * 0.01),
                   const Text(
                     "Welcome To",
-                    style: TextStyle(fontSize: 30, color: Color(0xFF363f93)),
+                    style: TextStyle(fontSize: 28, color: Color(0xFF363f93)),
                   ),
                   const Text(
                     "SIBA CMS 2.0",
-                    style: TextStyle(fontSize: 30, color: Color(0xFF363f93)),
+                    style: TextStyle(
+                        fontSize: 28,
+                        color: Color(0xFF363f93),
+                        fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: height * 0.04),
+                  SizedBox(height: height * 0.02),
                   TextFormField(
                     controller: cms,
                     decoration: const InputDecoration(
@@ -80,14 +83,14 @@ class _LogInState extends State<LogIn> {
                     validator: (userCms) {
                       if (userCms!.isEmpty ||
                           !RegExp(r'^\d{3}\-\d{2}\-\d{4}$').hasMatch(userCms)) {
-                        return "Enter correct CMS";
+                        return "CMS can't be lessthan 11 char";
                       } else {
                         // name = userCms;
                         return null;
                       }
                     },
                   ),
-                  SizedBox(height: height * 0.04),
+                  SizedBox(height: height * 0.02),
                   TextFormField(
                     controller: password,
                     obscureText: true,
@@ -98,38 +101,52 @@ class _LogInState extends State<LogIn> {
                     validator: (String? userPassword) {
                       if (userPassword!.isEmpty ||
                           !RegExp(r'^.{5,}').hasMatch(userPassword)) {
-                        return "Enter correct PAssword";
+                        return "Password can't be Empty";
                       } else {
                         return null;
                       }
                     },
                   ),
-                  SizedBox(height: height * 0.05),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      NeumorphicButton(
-                        margin: EdgeInsets.only(top: 12, left: width / 2 + 50),
-                        onPressed: () async {
-                          if (formKey.currentState!.validate()) {
-                            studyLogin();
-                          }
-                        },
-                        style: NeumorphicStyle(
-                            shape: NeumorphicShape.convex,
-                            boxShape: NeumorphicBoxShape.roundRect(
-                                BorderRadius.circular(100)),
-                            depth: 5,
-                            lightSource: LightSource.topLeft,
-                            color: const Color.fromARGB(200, 64, 106, 212)),
-                        padding: const EdgeInsets.all(12.0),
-                        child: const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  )
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(200, 64, 106, 212),
+                        padding: EdgeInsets.all(20)),
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        studyLogin();
+                      }
+                    },
+                    child: Text(
+                      "Login",
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     NeumorphicButton(
+                  //       margin: EdgeInsets.only(top: 12, left: width / 2 + 50),
+                  //       onPressed: () async {
+                  //         if (formKey.currentState!.validate()) {
+                  //           studyLogin();
+                  //         }
+                  //       },
+                  //       style: NeumorphicStyle(
+                  //           shape: NeumorphicShape.convex,
+                  //           boxShape: NeumorphicBoxShape.roundRect(
+                  //               BorderRadius.circular(100)),
+                  //           depth: 5,
+                  //           lightSource: LightSource.topLeft,
+                  //           color: const Color.fromARGB(200, 64, 106, 212)),
+                  //       padding: const EdgeInsets.all(12.0),
+                  //       child: const Icon(
+                  //         Icons.arrow_forward,
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // )
                 ],
               ),
             ),

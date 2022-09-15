@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   responsive_framework: ^0.2.0
   
+  
   shared_preferences:
 
   # flutter_svg: ^0.19.1
@@ -51,6 +52,9 @@ dependencies:
   widget_circular_animator: ^1.0.0
   cached_network_image: 
   pull_to_refresh: ^2.0.0
+  flutter_profile_picture: ^2.0.0
+  
+  
   
 
   # retrofit: ^2.0.1

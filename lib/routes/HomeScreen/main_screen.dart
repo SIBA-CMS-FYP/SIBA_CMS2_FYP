@@ -9,7 +9,7 @@ import 'package:siba_cms_2/routes/course.dart';
 import 'package:siba_cms_2/routes/dashboard.dart';
 import 'package:siba_cms_2/routes/terms.dart';
 import 'package:siba_cms_2/routes/my_drawer_header.dart';
-import 'package:siba_cms_2/routes/privacy_policy.dart';
+import 'package:siba_cms_2/routes/feedback.dart';
 import 'package:siba_cms_2/routes/logout.dart';
 import 'package:siba_cms_2/routes/withdraw.dart';
 

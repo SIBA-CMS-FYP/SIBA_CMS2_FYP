@@ -18,30 +18,34 @@ class Background extends StatelessWidget {
         alignment: Alignment.center,
         children: <Widget>[
           Positioned(
-            top: 0,
+            top: 1,
             right: 0,
-            child: Image.asset("assets/images/top1.png", width: size.width),
+            child: Image.asset("assets/images/top1.png",
+                width: size.width, fit: BoxFit.fitWidth),
           ),
           Positioned(
-            top: 0,
+            top: -3,
             right: 0,
-            child: Image.asset("assets/images/top2.png", width: size.width),
+            child: Image.asset("assets/images/top2.png",
+                width: size.width, fit: BoxFit.fitWidth),
           ),
           Positioned(
             top: 50,
-            right: 20,
+            right: 30,
             child: Image.asset("assets/images/iba_logo.png",
                 width: size.width * 0.30),
           ),
           Positioned(
             bottom: 0,
             right: 0,
-            child: Image.asset("assets/images/bottom1.png", width: size.width),
+            child: Image.asset("assets/images/bottom1.png",
+                width: size.width, fit: BoxFit.fitWidth),
           ),
           Positioned(
-            bottom: 0,
+            bottom: 7,
             right: 0,
-            child: Image.asset("assets/images/bottom2.png", width: size.width),
+            child: Image.asset("assets/images/bottom2.png",
+                width: size.width, fit: BoxFit.fitWidth),
           ),
           child
         ],

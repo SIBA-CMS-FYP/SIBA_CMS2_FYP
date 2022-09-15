@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:siba_cms_2/models/fees_model.dart';
 import 'package:siba_cms_2/models/http_model.dart';
@@ -13,8 +14,7 @@ class Finance extends StatefulWidget {
 class _FinanceState extends State<Finance> {
   TextEditingController fees = TextEditingController();
   Future<StudentFees>? studentFees;
-    var feestotal;
-  var coursfees;
+
   var cms;
   @override
   void initState() {
@@ -30,6 +30,81 @@ class _FinanceState extends State<Finance> {
     });
   }
 
+  ListTile CreateListTile(String season, String seasonName, int fee) {
+    return ListTile(
+      textColor: Colors.white,
+      title: Text(
+        season,
+        style: TextStyle(color: Colors.black),
+      ),
+      tileColor: Colors.white,
+      leading: ProfilePicture(
+        name: seasonName,
+        fontsize: 13,
+        radius: 13,
+      ),
+      trailing: Text("Rs : " + '$fee', style: TextStyle(color: Colors.black)),
+    );
+  }
+
+  Card CreateAcadmicCard(String titleText, int fee) {
+    return Card(
+      color: Color.alphaBlend(const Color.fromARGB(255, 41, 55, 124),
+          const Color.fromRGBO(39, 115, 171, 1)),
+      child: ExpansionTile(
+        title: Text(
+          titleText,
+          style: TextStyle(color: Colors.white),
+        ),
+        subtitle: Text("Rs : " + (127000).toString(),
+            style: TextStyle(color: Colors.white)),
+        leading: const Icon(
+          Icons.class_,
+          color: Colors.white,
+        ),
+        children: [
+          CreateListTile("Academic Fee F18:", "Fall", 0),
+          CreateListTile("Academic Fee S19:", "Spring", 0),
+          CreateListTile("Academic Fee F19:", "Fall", 0),
+          CreateListTile("Academic Fee S20:", "Spring", 0),
+          CreateListTile("Academic Fee F19:", "Fall", 0),
+          CreateListTile("Academic Fee S21:", "Spring", 0),
+          CreateListTile("Academic Fee F21:", "Fall", 40000),
+          CreateListTile("Academic Fee S22:", "Spring", 87000),
+        ],
+      ),
+    );
+  }
+
+  Card CreateHostelCard(String titleText, int fee) {
+    return Card(
+      color: Color.alphaBlend(const Color.fromARGB(255, 41, 55, 124),
+          const Color.fromRGBO(39, 115, 171, 1)),
+      child: ExpansionTile(
+        title: Text(
+          titleText,
+          style: TextStyle(color: Colors.white),
+        ),
+        subtitle: Text("Rs : " + (28000).toString(),
+            style: TextStyle(color: Colors.white)),
+        leading: const Icon(
+          Icons.class_,
+          color: Colors.white,
+        ),
+        children: [
+          CreateListTile("Hostel Fee F18:", "Fall", 0),
+          CreateListTile("Hostel Fee S19:", "Spring", 0),
+          CreateListTile("Hostel Fee F19:", "Fall", 0),
+          CreateListTile("Hostel Fee S20:", "Spring", 0),
+          CreateListTile("Hostel Fee F19:", "Fall", 0),
+          CreateListTile("Hostel Fee S21:", "Spring", 0),
+          CreateListTile("Hostel Fee F21:", "Fall", 10000),
+          CreateListTile("Hostel Fee S22:", "Spring", 18000),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,85 +112,80 @@ class _FinanceState extends State<Finance> {
         child: FutureBuilder<StudentFees>(
           future: studentFees,
           builder: (context, feeData) {
-            
             if (feeData.hasData) {
               return ListView.builder(
-                
                 itemCount: feeData.data!.row.length,
-                
                 itemBuilder: (context, index) {
                   return Column(
-                    
-                    children: <Widget>[
-                       Card(
-                        
-                        child: ListTile(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        const ListTile(
                           textColor: Colors.black,
-                          title: new Center( child: new Text(
-                        "Fees Information",
-                        style: new TextStyle (
-                          fontWeight: FontWeight. bold,
-                          fontSize: 20.0, ),
-                          ),
-                               ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Card(
-
-                        child: ListTile(
-                          shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-           textColor: Colors.white,
-           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
-
-                          title: Text(
-                            "Academic Fees:"   ),
-                          leading: Icon(Icons.class_, color: Colors.white,),
-                           trailing: Text( feeData.data!.row[index].courseFee.toString()),
-                        ),
-                       
-                      ),
-                      Card(
-                        child: ListTile(
-                          shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-           textColor: Colors.white,
-           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
-                          title: Text( " Hostel Fees:"),
-                          leading: Icon(Icons.home, color: Colors.white,),
-                          trailing: Text( feeData.data!.row[index].hostelFee.toString()
+                          title: Center(
+                            child: Text(
+                              "Fees Information",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.0,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                      Card(
-                        
-                        child: ListTile(
-                          
-                          shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-           textColor: Colors.white,
-           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
-                          title: Text( "Late Fees" ),
-                               leading: Icon(Icons.not_started, color: Colors.white,),
-                               trailing: Text(feeData.data!.row[index].lateFee.toString()),
+                        const SizedBox(
+                          height: 10,
                         ),
-                      ),
-                      Card(
-                        child: ListTile(
-                          shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-           textColor: Colors.white,
-           tileColor: Color.alphaBlend(Color.fromARGB(255, 41, 55, 124),  Color.fromRGBO(39, 115, 171, 1)),
-                          title: Text( "Total Fees" ),
-                          leading: Icon(Icons.disc_full, color: Colors.white,),
-                          trailing: Text( '${feestotal = feeData.data!.row[index].courseFee + feeData.data!.row[index].hostelFee + feeData.data!.row[index].lateFee}'),
+                        CreateAcadmicCard(
+                            "Acadmic Fee", feeData.data!.row[index].courseFee),
+                        const SizedBox(
+                          height: 10,
                         ),
-                      ),
-                    ],
-                  );
+                        CreateHostelCard(
+                            "Hostel Fee", feeData.data!.row[index].hostelFee),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Card(
+                          color: Color.alphaBlend(
+                              const Color.fromARGB(255, 41, 55, 124),
+                              const Color.fromRGBO(39, 115, 171, 1)),
+                          child: ExpansionTile(
+                            title: Text(
+                              "Late Fee ",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            subtitle: Text(
+                                'Rs : ' + '${feeData.data!.row[index].lateFee}',
+                                style: TextStyle(color: Colors.white)),
+                            leading: const Icon(
+                              Icons.class_,
+                              color: Colors.white,
+                            ),
+                            children: [
+                              CreateListTile("Fall 2021", "Fall",
+                                  feeData.data!.row[index].lateFee)
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Card(
+                          color: Color.alphaBlend(
+                              const Color.fromARGB(255, 41, 55, 124),
+                              const Color.fromRGBO(39, 115, 171, 1)),
+                          child: ExpansionTile(
+                            title: Text(
+                              "Total Fee",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            leading: const Icon(
+                              Icons.class_,
+                              color: Colors.white,
+                            ),
+                            trailing: Text((127000 + 5000 + 28000).toString()),
+                          ),
+                        ),
+                      ]);
                 },
               );
             } else if (feeData.hasError) {
@@ -126,8 +196,5 @@ class _FinanceState extends State<Finance> {
         ),
       ),
     );
-
-
-
   }
 }

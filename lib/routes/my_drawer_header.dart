@@ -59,21 +59,26 @@ class MyHeaderDrawerState extends State<MyHeaderDrawer> {
               children: [
                 Container(
                   margin: const EdgeInsets.only(bottom: 10),
-                  height: 70,
+                  height: 80,
                   child: WidgetCircularAnimator(
-                    size: 250,
+                    size: 69,
                     innerIconsSize: 3,
                     outerIconsSize: 3,
                     innerAnimation: Curves.easeInOutBack,
                     outerAnimation: Curves.easeInOutBack,
-                    innerColor: Colors.deepPurple,
+                    innerColor: Color.fromARGB(255, 189, 66, 55),
                     outerColor: Colors.orangeAccent,
                     innerAnimationSeconds: 10,
                     outerAnimationSeconds: 10,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Colors.grey[200]),
-                      child: Image.network(d.img),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      child: SizedBox(
+                        width: 250,
+                        height: 250,
+                        child: ClipOval(
+                          child: Image.asset("assets/images/" + d.img + ".jpg"),
+                        ),
+                      ),
                     ),
                   ),
                 ),
