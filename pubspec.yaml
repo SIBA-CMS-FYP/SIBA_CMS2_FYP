@@ -37,6 +37,7 @@ dependencies:
   flutter_zoom_drawer: ^3.0.1
   cupertino_icons: ^1.0.2
   responsive_framework: ^0.2.0
+  syncfusion_flutter_charts: ^20.2.49
   
   
   shared_preferences:
