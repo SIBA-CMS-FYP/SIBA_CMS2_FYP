@@ -65,67 +65,81 @@ class _AttendenceState extends State<Attendence> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Card(
-                          color: Colors.white38,
-                          // Color.alphaBlend(
-                          //   const Color.fromARGB(255, 30, 50, 151),
-                          //   const Color.fromARGB(255, 8, 119, 231),
-                          // ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Icon(
-                                    CupertinoIcons.book,
-                                    color: Colors.black,
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text(
-                                    '${resultData.data!.data[index].CourseTitle}',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w500),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                  Expanded(child: SizedBox()),
-                                  SizedBox(
-                                      width: 155,
-                                      height: 75,
-                                      child: SfCircularChart(
-                                        legend: Legend(isVisible: true),
-                                        series: <CircularSeries>[
-                                          PieSeries<PresentAb, String>(
-                                            strokeColor:
-                                                Color.fromARGB(255, 0, 7, 212),
-                                            dataSource: [
-                                              PresentAb(
-                                                  "P",
-                                                  resultData.data!.data[index]
-                                                      .Present,
-                                                  Colors.blue),
-                                              PresentAb(
-                                                  "A",
-                                                  resultData
-                                                      .data!.data[index].Absent,
-                                                  Colors.red)
-                                            ],
-                                            pointColorMapper:
-                                                (PresentAb data, _) =>
-                                                    data.color,
-                                            xValueMapper: (PresentAb data, _) =>
-                                                data.status,
-                                            yValueMapper: (PresentAb data, _) =>
-                                                data.valus,
-                                            dataLabelSettings:
-                                                DataLabelSettings(
-                                                    isVisible: true),
-                                            name: 'Data',
-                                          ),
-                                        ],
-                                      ))
-                                ]),
+                        InkWell(
+                          onTap: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AttendenceBYSub(
+                                        cmss,
+                                        enrollid,
+                                        resultData
+                                            .data!.data[index].courseCode)))
+                          },
+                          child: Card(
+                            color: Colors.white38,
+                            // Color.alphaBlend(
+                            //   const Color.fromARGB(255, 30, 50, 151),
+                            //   const Color.fromARGB(255, 8, 119, 231),
+                            // ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Icon(
+                                      CupertinoIcons.book,
+                                      color: Colors.black,
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                      '${resultData.data!.data[index].CourseTitle}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    Expanded(child: SizedBox()),
+                                    SizedBox(
+                                        width: 155,
+                                        height: 75,
+                                        child: SfCircularChart(
+                                          legend: Legend(isVisible: true),
+                                          series: <CircularSeries>[
+                                            PieSeries<PresentAb, String>(
+                                              strokeColor: Color.fromARGB(
+                                                  255, 0, 7, 212),
+                                              dataSource: [
+                                                PresentAb(
+                                                    "P",
+                                                    resultData.data!.data[index]
+                                                        .Present,
+                                                    Colors.blue),
+                                                PresentAb(
+                                                    "A",
+                                                    resultData.data!.data[index]
+                                                        .Absent,
+                                                    Colors.red)
+                                              ],
+                                              pointColorMapper:
+                                                  (PresentAb data, _) =>
+                                                      data.color,
+                                              xValueMapper:
+                                                  (PresentAb data, _) =>
+                                                      data.status,
+                                              yValueMapper:
+                                                  (PresentAb data, _) =>
+                                                      data.valus,
+                                              dataLabelSettings:
+                                                  DataLabelSettings(
+                                                      isVisible: true),
+                                              name: 'Data',
+                                            ),
+                                          ],
+                                        ))
+                                  ]),
+                            ),
                           ),
                         )
                         // ListTile(

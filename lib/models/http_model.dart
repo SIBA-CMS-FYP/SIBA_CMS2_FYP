@@ -19,7 +19,7 @@ class RequestResult {
 }
 
 const PROTOCOL = "http";
-const DOMAIN = "192.168.134.60:8080";
+const DOMAIN = "192.168.177.60:8080";
 
 Future<StudentProfile> fetchStudent(String cms) async {
   var url = "$PROTOCOL://$DOMAIN/getstudent/?cms=$cms";
